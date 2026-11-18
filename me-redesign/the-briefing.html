@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Briefing – Mobile Europe mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;600;700;800&family=Roboto+Slab:wght@500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.b-intro{background:var(--brief-navy);color:#d9dbf0;padding:26px 0 0}
+.b-intro p{font:400 19px/1.5 var(--slab);max-width:820px}
+.b-hero{background:var(--brief-navy);padding:26px 0 46px}
+.b-hero .wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
+.b-next{background:linear-gradient(135deg,var(--brief-pink),#a1004f);color:#fff;border-radius:16px;overflow:hidden}
+.b-next .in{padding:30px 32px 26px}
+.b-next .lbl{display:flex;justify-content:space-between;font:700 11px var(--body);letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.b-next .when{font:500 22px var(--slab);margin-top:16px}
+.b-next h1{font:800 44px/1.04 var(--body);letter-spacing:-.02em;margin-top:6px}
+.b-next p{margin-top:14px;font-size:16px;line-height:1.55;opacity:.95;max-width:620px}
+.b-next .count div{width:62px;padding:8px 0}.b-next .count b{font-size:24px}
+.b-next .sp{background:#fff;color:var(--ink);padding:14px 32px;display:flex;align-items:center;gap:14px;font:600 10.5px var(--body);letter-spacing:.12em;text-transform:uppercase}
+.b-next .sp img{height:30px}
+.reg{background:#fff;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.reg h3{font:700 13px var(--body);letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:12px}
+.reg input,.reg select{width:100%;padding:10px;border:0;background:#eee;border-radius:4px;font:13.5px var(--body);margin-bottom:8px;color:#555}
+.reg .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.reg small{display:block;font-size:11px;color:var(--muted);margin:4px 0 12px;line-height:1.4}
+.reg .btn{width:100%;justify-content:center;padding:12px}
+.agenda{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.slot{border:1px solid var(--line);border-radius:12px;padding:18px}
+.slot .tm{font:500 14px var(--body)}.slot .tm b{color:var(--me);text-transform:uppercase;font-weight:700}
+.slot h4{font:700 18px/1.25 var(--slab);margin:8px 0 12px}
+.spk{display:flex;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:12px}
+.spk .i{width:44px;height:44px;border-radius:50%;background:var(--brief-navy);color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px var(--body);flex:none}
+.spk b{display:block;color:var(--me);font-size:14px}.spk span{font-size:12.5px;color:var(--muted)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.filters a{font:600 12px var(--body);letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border-radius:20px;border:1px solid var(--line)}
+.filters a.on{background:var(--brief-navy);color:#fff;border-color:var(--brief-navy)}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+.why div{background:var(--soft);border-radius:12px;padding:18px}
+.why b{display:block;font:800 17px var(--slab);margin-bottom:6px;color:var(--brief-navy)}
+.why p{font-size:14px;color:var(--ink2)}
+@media (max-width:900px){.b-hero .wrap,.agenda,.why{grid-template-columns:1fr}.b-next h1{font-size:32px}.b-next .in{padding:22px}.b-next .sp{padding:12px 22px}}
+</style>
+</head>
+<body data-page="brief">
+<div id="site-header"></div>
+
+<!-- Franchise band: ME stays on top, The Briefing owns this strip -->
+<div class="fband brief has-anno">
+  <div class="wrap">
+    <div class="mark"><span class="from">Mobile Europe<br>presents</span><span class="name">The Briefing</span></div>
+    <nav><a class="on" href="#">Upcoming</a><a href="#">On demand</a><a href="#">Sponsor a Briefing</a><a href="#">Contact</a></nav>
+    <a class="btn pink" href="#">Event alerts</a>
+  </div>
+  <div class="anno" style="top:10px;right:200px"><b>1</b><span>The ME header stays exactly the same on every page. The Briefing gets its own navy and pink band underneath with its own menu. It's clearly part of Mobile Europe while still having a strong identity of its own.</span></div>
+</div>
+<div class="b-intro"><div class="wrap"><p>Join the experts for in-depth discussions of the industry’s hottest topics, and put your own questions to them. The Briefing brings you the latest insight on telco trends and developments, live and free.</p></div></div>
+
+<section class="b-hero">
+  <div class="wrap">
+    <div class="b-next has-anno">
+      <div class="in">
+        <div class="lbl"><span>Our next Briefing · Live online</span><span>AI</span></div>
+        <div class="when">Tuesday 24 November 2026 · 09:30 GMT</div>
+        <h1>AI in Network Optimisation: Finding Forgotten Revenue</h1>
+        <p>After heavy investment in 5G and data centres, operators are determined to boost return on investment, and they are looking to AI to do it. This Briefing looks at their attitudes, their progress, what’s holding them back and what needs to happen next.</p>
+        <div class="count" data-cd style="margin-top:18px"></div>
+      </div>
+      <div class="sp">Exclusive sponsor <img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/07/anritsu-logo.svg" alt="Anritsu"></div>
+      <div class="anno" style="bottom:-26px;left:30px"><b>2</b><span>The countdown and sponsor here match the homepage's Next Briefing card exactly. Readers recognise the same object wherever they see it.</span></div>
+    </div>
+    <form class="reg" onsubmit="return false">
+      <h3>Register free for this Briefing</h3>
+      <div class="two"><input placeholder="First name*"><input placeholder="Last name*"></div>
+      <input placeholder="Business email*">
+      <div class="two"><input placeholder="Job title*"><input placeholder="Organisation*"></div>
+      <select><option>Your organisation is…*</option></select>
+      <select><option>Country*</option></select>
+      <small>Your details are shared with the organiser and the named sponsor, in line with UK GDPR. (Consent wording to be confirmed.)</small>
+      <button class="btn pink">Register now</button>
+    </form>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="sh brief"><h2>Agenda</h2><a href="#">Full agenda</a></div>
+  <div class="agenda">
+    <div class="slot"><div class="tm">09:30 | <b>Opening remarks</b></div><h4>Welcome and introduction</h4><div class="spk"><span class="i">JS</span><div><b>Jasdip Sensi</b><span>Editor, Mobile Europe</span></div></div></div>
+    <div class="slot"><div class="tm">09:35 | <b>Keynote</b></div><h4>Industry point of view</h4><div class="spk"><span class="i">DP</span><div><b>David Palmer</b><span>Strategy &amp; Innovation Lead, Stonesthro</span></div></div></div>
+    <div class="slot" style="background:var(--soft);border-style:dashed"><div class="tm">10:00 | <b>Panel</b></div><h4>Further sessions</h4><div class="spk"><span class="i" style="background:#bbb">+</span><div><b style="color:var(--ink2)">Speakers to be announced</b><span>Placeholder</span></div></div></div>
+  </div>
+
+  <div class="with-rail">
+    <div>
+      <div class="sh brief"><h2>All upcoming Briefings</h2></div>
+      <div class="filters"><a class="on">All</a><a>Automation</a><a>AI</a><a>Security</a><a>Cloud</a><a>5G</a><a>Telco to Techco</a></div>
+      <div class="ev-list">
+        <a class="ev next" href="#"><div class="d"><b>24</b><small>Nov 2026</small></div><div class="t"><div class="series">The Briefing <em>| AI · Next up</em></div><h3>AI in Network Optimisation: Finding Forgotten Revenue</h3><div class="sp">Exclusive sponsor <img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/07/anritsu-logo.svg" alt="Anritsu"></div></div></a>
+        <a class="ev tif" href="#"><div class="d"><b>10</b><small>Dec 2026</small></div><div class="t"><h3>Telecoms in Focus</h3></div></a>
+        <a class="ev" href="#"><div class="d"><b>4</b><small>Feb 2027</small></div><div class="t"><div class="series">The Briefing <em>| Security</em></div><h3>The critical role of telcos in defence</h3><div class="sp">Sponsored by <img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/07/Logo-Red_Hat-A-Standard-RGB-horizontal.svg" alt="Red Hat"></div></div></a>
+        <a class="ev" href="#"><div class="d"><b>15</b><small>Apr 2027</small></div><div class="t"><div class="series">The Briefing <em>| 5G</em></div><h3>Extracting the full potential of 5G Standalone</h3></div></a>
+        <a class="ev" href="#"><div class="d"><b>22</b><small>Apr 2027</small></div><div class="t"><div class="series">The Briefing <em>| Automation</em></div><h3>Telco Automation &amp; AI</h3><div class="sp">Sponsored by <img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/07/Logo-Red_Hat-A-Standard-RGB-horizontal.svg" alt="Red Hat"></div></div></a>
+        <a class="ev" href="#"><div class="d"><b>27</b><small>May 2027</small></div><div class="t"><div class="series">The Briefing <em>| Cloud</em></div><h3>Delivering a Cloud-native Telco</h3></div></a>
+        <a class="ev tif" href="#"><div class="d"><b>24</b><small>Jun 2027</small></div><div class="t"><h3>Telecoms in Focus</h3></div></a>
+      </div>
+    </div>
+    <aside class="rail" style="margin-top:40px">
+      <div class="has-anno">
+        <div class="ctx" style="background:var(--res-soft);border-radius:10px;padding:16px;border-top:4px solid var(--res)">
+          <div class="res-word" style="font-size:11px;margin-bottom:12px"><i>ME</i>Independent Research</div>
+          <a class="res-item" href="research.html"><div class="cover"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/03/ME-Report-Celfocus26-COVER.jpg" alt=""></div><h3>Agentic AI: Achieving autonomous network operations</h3><div class="by">Read before the 24 Nov Briefing</div><span class="cta">Download free →</span></a>
+        </div>
+        <div class="anno" style="top:0;right:310px"><b>3</b><span>Cross-promotion between franchises: the AI Briefing page suggests the AI report, and the report page suggests the Briefing. The two franchises feed each other.</span></div>
+      </div>
+      <div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 1<small>300×250 · GAM</small></div></div>
+    </aside>
+  </div>
+
+  <div class="sh brief"><h2>Why join The Briefing</h2></div>
+  <div class="why">
+    <div><b>Ask the experts</b><p>Put your questions directly to operators, analysts and vendors during the live session.</p></div>
+    <div><b>Free and online</b><p>One focused morning session. Watch live or catch up on demand afterwards.</p></div>
+    <div><b>Independent editorial</b><p>Chaired by the Mobile Europe editorial team, with sponsors credited transparently.</p></div>
+  </div>
+
+  <div class="sh"><h2>From the newsroom: AI &amp; networks</h2><a href="#">More on AI</a></div>
+  <div class="grid3">
+    <a class="card" href="#"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/OCT-Celfocus.png" alt=""><span class="tag ins">Opinion</span></div><h3>On AI and autonomous networks: sceptics and believers make the same mistake</h3></a>
+    <a class="card" href="#"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/Dejan-Leskaoski.png" alt=""><span class="tag ins">Interview</span></div><h3>Mavenir CRO on why AI is putting the mobile core back in focus</h3></a>
+    <a class="card" href="#"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Nokia-VodafoneThree.png" alt=""><span class="tag">5G &amp; Beyond</span></div><h3>VodafoneThree, Nokia partner to trial AI-powered mobile networks</h3></a>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="shared.js"></script>
+</body>
+</html>
