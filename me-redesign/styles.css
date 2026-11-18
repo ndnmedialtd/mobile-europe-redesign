@@ -800,3 +800,6 @@ a:hover .vthumb img{transform:scale(1.03);opacity:.85}
 /* Still trending: small sub-line */
 .trending{border-bottom:0;padding-bottom:2px}
 .trending-sub{font-size:11.5px;color:var(--muted);padding-bottom:10px;border-bottom:2px solid var(--ink);margin-top:-12px}
+/* Article sub-headings */
+.art-body h2{font:700 24px/1.25 var(--body);letter-spacing:-.01em;color:var(--ink);margin:34px 0 14px}
+@media (max-width:760px){.art-body h2{font-size:21px}}
