@@ -132,7 +132,7 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
   const pages = [['index.html', 'home', 'Homepage'], ['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html', 'cat', '5G & Beyond'], ['article.html', 'article', 'Article'], ['the-briefing.html', 'brief', 'The Briefing'], ['briefing-event.html', 'brief-event', 'Briefing sign-up'], ['research.html', 'res', 'Research'], ['members.html', 'members', 'Members area']];
   const idx = Math.max(0, pages.findIndex(p => p[1] === page));
   const toolbar = `<div class="mock">
-    <span class="lbl" style="padding:0 6px;color:#888">Mockup</span>
+    <span class="lbl" style="padding:0 6px;color:#888">Mockup <b style="color:#fff">v1</b></span>
     <a href="${pages[(idx + pages.length - 1) % pages.length][0]}" aria-label="Previous page">←</a>
     <select aria-label="Jump to page" onchange="location.href=this.value">
       ${pages.map(p => `<option value="${p[0]}"${p[1] === page ? ' selected' : ''}>${p[2]}</option>`).join('')}

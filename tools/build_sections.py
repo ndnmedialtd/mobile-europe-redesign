@@ -4,9 +4,11 @@ Run from the repo root:  python3 tools/build_sections.py
 Content (titles, images, dates) is taken from mobileeurope.co.uk for layout only.
 """
 from html import escape
+import os
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parent.parent / "me-redesign"
+# Output folder: Version 1 by default; run with ME_OUT=me-redesign-v2 to build into Version 2
+OUT = Path(__file__).resolve().parent.parent / os.environ.get("ME_OUT", "me-redesign")
 U = "https://www.mobileeurope.co.uk/wp-content/uploads/"
 V = "?v=14"
 

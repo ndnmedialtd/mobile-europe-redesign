@@ -5,10 +5,12 @@ Stories come from tools/category_data.json (scraped from mobileeurope.co.uk cate
 """
 import json
 from html import escape
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "me-redesign"
+# Output folder: Version 1 by default; run with ME_OUT=me-redesign-v2 to build into Version 2
+OUT = ROOT / os.environ.get("ME_OUT", "me-redesign")
 U = "https://www.mobileeurope.co.uk/wp-content/uploads/"
 V = "?v=18"
 DATA = json.loads((ROOT / "tools" / "category_data.json").read_text())
