@@ -58,18 +58,10 @@
   const toolbar = `<div class="mock">
     <span class="lbl" style="padding:0 6px;color:#888">Mockup</span>
     ${pages.map(p => `<a href="${p[0]}" class="${p[1] === page ? 'on' : ''}">${p[2]}</a>`).join('')}
-    <span class="div"></span>
-    <button id="notes" class="on">Design notes</button>
   </div>`;
 
   document.getElementById('site-header').outerHTML = header;
   document.getElementById('site-footer').outerHTML = footer + toolbar;
-
-  document.body.classList.add('show-notes');
-  document.getElementById('notes').onclick = e => {
-    const on = document.body.classList.toggle('show-notes');
-    e.currentTarget.classList.toggle('on', on);
-  };
 
   // Countdown to next Briefing (24 Nov 2026 09:30 GMT)
   const target = Date.UTC(2026, 10, 24, 9, 30);
