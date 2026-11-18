@@ -208,9 +208,7 @@ WP = [
     ("Want to deploy iOS and Android features in weeks?", "Case study", "GSMA", "2026/09/ISS-OnOff-Telecom-Case-Study-3-696x843.jpg"),
     ("Taking a proactive approach to telecom fraud prevention", "Case study", "GSMA", "2026/07/GSMA-Case-Study-July-2026-cover-2-696x988.jpg"),
     ("6G – A Path Towards AI-Native Generation of Networks", "White paper", "Comarch", "2026/07/Screenshot-2026-07-17-at-15.23.18-696x843.jpg"),
-    ("Outcomes first, autonomy follows: Business Value Pathways towards autonomous networks", "White paper", "Ericsson", "2026/07/business-value-pathways-cover3-696x860.jpg"),
     ("Telecoms 2030: How Intent-Driven Telcos Can Unlock New Value", "White paper", "Tallence", "2026/07/Screenshot-2026-07-02-at-14.14.01-696x896.jpg"),
-    ("Future-Ready Telco Playbook: 4 Challenges Operators Need to Tackle", "White paper", "Software Mind", "2026/04/Softwaremind-Apr-2026-Whitepaper-1-696x860.jpg"),
     ("Secure AI by Design: A Shift-Left Approach to AI Development", "White paper", "Celfocus", "2026/03/Celfocus-Apr-2026-Whitepaper-1-696x860.jpg"),
     ("How Deutsche Telekom easily shares network settings with more than 820 OEMs", "White paper", "GSMA", "2026/02/Ericsson-WP2-feb26-v1-1-696x860.jpg"),
     ("Moving towards intelligent platforms: The new role of OSS/BSS", "White paper", "Appledore Research for Ericsson", "2026/02/Ericsson-WP2-feb26-v1-696x860.jpg"),
@@ -222,19 +220,41 @@ wp_cards = "".join(
     f'<h3>{e(t)}</h3><div class="wp-meta">{e(kind)} · {e(by)}</div><span class="wp-dl">Download free →</span></a>'
     for t, kind, by, img in WP
 )
+# Sponsored pinned white papers: a swipeable carousel above the grid
+WP_PINNED = [
+    ("There’s a Core for That", "Mavenir", "2026/09/ISS-OnOff-Telecom-Case-Study-3-WP-696x844.jpg",
+     "Turn your mobile network core into a growth engine for new revenue, richer customer experiences and superior network performance."),
+    ("Outcomes first, autonomy follows: Business Value Pathways towards autonomous networks", "Ericsson", "2026/07/business-value-pathways-cover3-696x860.jpg",
+     "How operators can map business value at each step on the journey to autonomous networks."),
+    ("Future-Ready Telco Playbook: 4 Challenges Operators Need to Tackle", "Software Mind", "2026/04/Softwaremind-Apr-2026-Whitepaper-1-696x860.jpg",
+     "Four challenges operators need to tackle to become future-ready, and how to approach them."),
+]
+wp_slides = "".join(
+    f'''<div class="wp-pinned" role="group" aria-roledescription="slide" aria-label="{n} of {len(WP_PINNED)}">
+          <div class="cover-p"><img src="{U}{img}" alt=""></div>
+          <div class="txt">
+            <div class="sp-top"><span class="sp-label">Sponsored</span><span class="pin-inline" data-pin>Pinned post</span></div>
+            <h2>{e(t)}</h2>
+            <div class="wp-meta">White paper · {e(by)}</div>
+            <p>{e(desc)}</p>
+            <a class="btn red" href="#">Download free</a>
+          </div>
+        </div>'''
+    for n, (t, by, img, desc) in enumerate(WP_PINNED, 1)
+)
 wp_body = f"""
-      <div class="wp-pinned">
-        <div class="cover-p"><img src="{U}2026/09/ISS-OnOff-Telecom-Case-Study-3-WP-696x844.jpg" alt=""></div>
-        <div class="txt">
-          <div class="sp-top"><span class="sp-label">Sponsored</span><span class="pin-inline" data-pin>Pinned post</span></div>
-          <h2>There’s a Core for That</h2>
-          <div class="wp-meta">White paper · Mavenir</div>
-          <p>Turn your mobile network core into a growth engine for new revenue, richer customer experiences and superior network performance.</p>
-          <a class="btn red" href="#">Download free</a>
-          <a class="pin-cta" href="#" data-pin-cta style="display:block;text-align:left;margin-top:12px">Pin your white paper here →</a>
+      <div class="wp-carousel" aria-roledescription="carousel" aria-label="Pinned white papers">
+        <div class="wpc-track" tabindex="0">{wp_slides}</div>
+        <div class="wpc-foot">
+          <a class="pin-cta" href="#" data-pin-cta>Pin your white paper here →</a>
+          <div class="wpc-ctrl">
+            <button class="wpc-btn prev" type="button" aria-label="Previous white paper">‹</button>
+            <span class="wpc-dots">{''.join(f'<button type="button" aria-label="Show white paper {n}"></button>' for n in range(1, len(WP_PINNED) + 1))}</span>
+            <button class="wpc-btn next" type="button" aria-label="Next white paper">›</button>
+          </div>
         </div>
       </div>
-      <div class="sh" style="margin-top:34px"><h2>Latest white papers &amp; reports</h2></div>
+      <div class="sh" style="margin-top:30px"><h2>Latest white papers &amp; reports</h2></div>
       <div class="wp-grid">{wp_cards}</div>
       <div style="text-align:center;margin-top:30px"><a class="btn ghost" href="#">Load more</a></div>"""
 block_page("white-papers", "White Paper Hub",

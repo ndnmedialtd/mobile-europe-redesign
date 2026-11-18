@@ -803,3 +803,315 @@ a:hover .vthumb img{transform:scale(1.03);opacity:.85}
 /* Article sub-headings */
 .art-body h2{font:700 24px/1.25 var(--body);letter-spacing:-.01em;color:var(--ink);margin:34px 0 14px}
 @media (max-width:760px){.art-body h2{font-size:21px}}
+
+/* ===== Header boxes: franchise name only ===== */
+.fr small,.fr span{display:none}
+.fr{justify-content:center;align-items:center;text-align:center;padding:10px 14px}
+.fr.brief b{font-size:30px;line-height:1.05}
+.fr.res b{font-size:18px;letter-spacing:.32em;line-height:1.3}
+@media (max-width:1100px){.fr.brief b{font-size:24px}.fr.res b{font-size:15px}}
+@media (max-width:760px){.fr.brief b{font-size:22px}.fr.res b{font-size:13px;letter-spacing:.24em}}
+
+/* ===== Subscribe: black text on grey ===== */
+.acct-btns .subscribe{background:#e4e4e2;color:var(--ink)}
+.acct-btns .subscribe:hover{background:#d6d6d3}
+
+/* ===== Main-menu promo carousel (Next Briefing / latest report) ===== */
+.nav .wrap{overflow:visible}
+.nav-promo{margin-left:auto;display:flex;align-items:center;gap:6px;height:100%;flex:none}
+.np-slides{position:relative;display:grid}
+.np-slide{grid-area:1/1;display:flex;align-items:center;gap:8px;white-space:nowrap;opacity:0;visibility:hidden;transform:translateX(8px);transition:opacity .35s,transform .35s,visibility .35s}
+.np-slide.cur{opacity:1;visibility:visible;transform:none}
+.nav .np-slide{height:auto;border:0;margin:0;font:600 14px var(--body);letter-spacing:0;text-transform:none;color:var(--ink)}
+.nav .np-slide:hover{color:var(--ink)}
+.np-slide .me-sq{display:inline-flex;align-items:center;justify-content:center;background:var(--me);color:#fff;font:800 11px/1 var(--body);letter-spacing:-.02em;width:24px;height:24px;border-radius:0 6px 0 0}
+.np-slide b{font:800 15px var(--body);text-transform:uppercase;letter-spacing:.01em}
+.np-slide svg{width:16px;height:16px;margin-left:4px}
+.np-slide u{color:var(--me);text-decoration-thickness:2px;text-underline-offset:3px;font-weight:700}
+.np-slide:hover u{color:var(--me-dark)}
+.np-next{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:#9a9a9a;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none}
+.np-next:hover{color:var(--ink);border-color:#bbb}
+.np-next svg{width:16px;height:16px}
+@media (max-width:1180px){.nav-promo{display:none}}
+@media (max-width:1180px){.nav .wrap{overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.np-slide{transition:none}}
+.fr b{white-space:nowrap}
+.fr.brief b{font-size:23px}
+.fr.res b{font-size:16px;letter-spacing:.26em}
+@media (max-width:1100px){.fr.brief b{font-size:19px}.fr.res b{font-size:13px;letter-spacing:.2em}}
+@media (max-width:760px){.fr.brief b{font-size:17px}.fr.res b{font-size:11px;letter-spacing:.16em}}
+
+/* Promo strip under both menus on narrower screens */
+.promo-strip{display:none;background:#fff;border-bottom:1px solid var(--line)}
+.promo-strip .wrap{display:flex;align-items:center;min-height:46px}
+.promo-strip .nav-promo{display:flex;margin:0;width:100%;justify-content:space-between;height:auto}
+.promo-strip .np-slide{font:600 14px var(--body);color:var(--ink)}
+.promo-strip .np-slide:hover{color:var(--ink)}
+@media (max-width:1180px){.promo-strip{display:block}}
+@media (max-width:420px){
+  .promo-strip .np-slide{gap:6px;font-size:12.5px}
+  .promo-strip .np-slide b{font-size:13px}
+  .promo-strip .np-slide svg{display:none}
+}
+/* Homepage: Still trending level with the top of the lead picture (side-by-side layout only) */
+@media (min-width:901px){.lead-side{padding-top:29px}}
+
+/* ===== White Paper Hub: swipeable pinned carousel ===== */
+.wpc-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 2px 16px;margin:-2px -2px 0;overscroll-behavior-x:contain}
+.wpc-track::-webkit-scrollbar{display:none}
+.wpc-track:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.wpc-track > .wp-pinned{flex:0 0 100%;scroll-snap-align:start;margin-right:0}
+.wpc-track > .wp-pinned + .wp-pinned{margin-left:4px}
+.wpc-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:-6px}
+.wpc-foot .pin-cta{text-align:left}
+.wpc-ctrl{display:flex;align-items:center;gap:10px}
+.wpc-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font:400 20px/1 var(--body);cursor:pointer;display:flex;align-items:center;justify-content:center;padding-bottom:2px}
+.wpc-btn:hover:not(:disabled){border-color:var(--ink)}
+.wpc-btn:disabled{opacity:.35;cursor:default}
+.wpc-dots{display:flex;gap:6px}
+.wpc-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:#ccc;cursor:pointer}
+.wpc-dots button[aria-current="true"]{background:var(--me);width:20px;border-radius:4px}
+/* Let grid columns shrink so wide children (carousels) can't push the page sideways */
+.with-rail > *{min-width:0}
+
+/* ===== Top billboard: Telecoms in Focus (house ad in the full-width slot) ===== */
+.tif-bb{position:relative;display:flex;align-items:center;gap:28px;height:150px;padding:0 28px;overflow:hidden;background:#06122a;color:#fff;border-radius:2px;isolation:isolate}
+.tif-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.tif-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,10,28,.55) 0%,rgba(4,10,28,.25) 45%,rgba(4,10,28,.7) 100%)}
+.tif-brand{display:flex;flex-direction:column;gap:6px;flex:none}
+.tif-kicker{font:700 10px var(--body);letter-spacing:.28em;text-transform:uppercase;color:#f2b705}
+.tif-brand img{height:74px;width:auto}
+.tif-date{display:flex;align-items:center;gap:10px;font-family:var(--slab);flex:none;padding-left:24px;border-left:1px solid rgba(255,255,255,.3)}
+.tif-date b{font:500 52px/1 var(--slab)}
+.tif-date span{font:500 17px/1.15 var(--slab)}
+.tif-spons{display:flex;align-items:center;gap:12px;background:#fff;border-radius:8px;padding:10px 14px;margin-left:auto;min-width:0}
+.tif-spons small{font:700 9px var(--body);letter-spacing:.24em;text-transform:uppercase;color:#555;writing-mode:vertical-rl;transform:rotate(180deg)}
+.tif-logos{display:flex;align-items:center;gap:16px}
+.tif-logos img{height:22px;width:auto;max-width:96px;object-fit:contain}
+.tif-cta{flex:none;background:#fff;color:#06122a;font:800 13px var(--body);letter-spacing:.08em;text-transform:uppercase;padding:12px 18px;border-radius:4px;box-shadow:0 0 22px rgba(242,183,5,.75);transition:transform .15s,box-shadow .15s}
+.tif-bb:hover .tif-cta{transform:translateY(-1px);box-shadow:0 0 30px rgba(242,183,5,1)}
+.tif-bb:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@media (max-width:1180px){.tif-spons{display:none}.tif-cta{margin-left:auto}}
+@media (max-width:760px){
+  .tif-bb{width:320px;max-width:100%;height:100px;margin:0 auto;padding:0 12px;gap:10px}
+  .tif-kicker,.tif-date span{display:none}
+  .tif-brand img{height:46px}
+  .tif-date{padding-left:10px}
+  .tif-date b{font-size:15px;font-weight:700;font-family:var(--body);white-space:nowrap}
+  .tif-cta{font-size:10px;padding:8px 9px;letter-spacing:.04em}
+}
+.tif-short{display:none;font-style:normal}
+@media (max-width:760px){.tif-date b{display:none}.tif-short{display:block;font:700 15px var(--body);white-space:nowrap}}
+/* TIF banner: tighter layout so all five sponsors fit */
+.tif-bb{gap:22px;padding:0 22px}
+.tif-brand img{height:84px}
+.tif-date{flex-direction:column;align-items:flex-start;gap:6px;padding-left:20px}
+.tif-dl{display:flex;align-items:center;gap:8px}
+.tif-date b{font-size:46px}
+.tif-date .tif-dl > span{font-size:15px}
+.tif-kicker{font-size:9.5px;letter-spacing:.22em}
+.tif-spons{gap:10px;padding:10px 12px;flex:0 1 auto}
+.tif-logos{gap:12px}
+.tif-logos img{height:18px;max-width:78px}
+@media (max-width:760px){.tif-kicker{display:none}.tif-date .tif-dl > span{display:none}}
+/* TIF banner: sponsors as a slim white strip along the bottom */
+.tif-bb{padding:0 26px 36px;gap:26px}
+.tif-brand img{height:70px}
+.tif-date b{font-size:42px}
+.tif-cta{margin-left:auto}
+.tif-spons{position:absolute;left:0;right:0;bottom:0;height:36px;margin:0;border-radius:0;padding:0 26px;justify-content:center;gap:22px;background:#fff}
+.tif-spons small{writing-mode:horizontal-tb;transform:none;font-size:9.5px;letter-spacing:.3em}
+.tif-logos{gap:30px}
+.tif-logos img{height:20px;max-width:110px}
+@media (max-width:1180px){.tif-spons{display:flex}.tif-logos{gap:18px}.tif-logos img{height:16px}}
+@media (max-width:760px){.tif-bb{padding:0 12px}.tif-spons{display:none}}
+.tif-cta .cta-short{display:none}
+@media (max-width:760px){
+  .tif-bb{padding:0 10px;gap:10px}
+  .tif-brand img{height:34px}
+  .tif-date{padding-left:10px;gap:0}
+  .tif-cta{padding:8px 10px;font-size:11px}
+  .tif-cta .cta-long{display:none}
+  .tif-cta .cta-short{display:inline}
+}
+@media (max-width:760px){.tif-date .tif-dl{display:flex}.tif-date .tif-short{display:block;font:700 15px var(--body)}}
+
+/* Real MPU creatives (300×250) */
+.mpu-creative{display:block;width:300px;max-width:100%;height:250px;margin:0 auto;background:#eee;overflow:hidden}
+.mpu-creative img,.mpu-creative video{display:block;width:100%;height:100%;object-fit:cover}
+.mpu-creative:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* Billboard: black multiply tint so the background sits a little darker */
+.tif-shade{background:rgba(0,0,0,.42);mix-blend-mode:multiply}
+.tif-shade::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.25),rgba(0,0,0,0) 45%,rgba(0,0,0,.3))}
+
+/* Header order (desktop/tablet): logo · Subscribe/Log in · franchise boxes on the far right */
+@media (min-width:761px){
+  .mast .wrap{gap:28px}
+  .mast-tools{order:1;margin-left:8px}
+  .franchises{order:2;margin-left:auto}
+  .burger{order:3}
+}
+
+/* ===== ☰ button + slide-in menu ===== */
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;padding:0;flex:none}
+.burger span{display:block;width:20px;height:2px;background:var(--ink);border-radius:2px}
+.burger:hover{border-color:var(--ink)}
+/* Small tablets and phones: Subscribe/Log in move into the menu, ☰ appears */
+@media (max-width:960px){
+  .mast-tools{display:none}
+  .burger{display:flex}
+  .logo-img img{height:48px}
+}
+@media (max-width:760px){.burger{margin-left:auto}.logo-img img{height:auto}}
+
+.mmenu{position:fixed;inset:0;z-index:300}
+.mmenu[hidden]{display:none}
+.mm-backdrop{position:absolute;inset:0;background:rgba(6,8,18,.6);opacity:0;transition:opacity .25s}
+.mm-panel{position:absolute;top:0;right:0;bottom:0;width:min(400px,92vw);background:#fff;overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);transition:transform .25s ease;padding:0 20px 28px;box-shadow:-10px 0 30px rgba(0,0,0,.2)}
+.mmenu.open .mm-backdrop{opacity:1}
+.mmenu.open .mm-panel{transform:none}
+@media (prefers-reduced-motion:reduce){.mm-backdrop,.mm-panel{transition:none}}
+.mm-head{position:sticky;top:0;z-index:1;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0 12px;border-bottom:1px solid var(--line)}
+.mm-logo img{height:34px;width:auto}
+.mm-close{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;font:300 26px/1 var(--body);cursor:pointer;color:var(--ink)}
+.mm-close:hover{border-color:var(--ink)}
+.mm-search{display:flex;align-items:center;gap:8px;border:1px solid #d4d4d4;border-radius:6px;padding:0 12px;height:44px;margin-top:16px}
+.mm-search svg{width:18px;height:18px;color:var(--muted)}
+.mm-search input{border:0;outline:0;flex:1;min-width:0;font:15px var(--body)}
+.mm-search:focus-within{border-color:var(--ink)}
+.mm-acct{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.mm-acct .btn{justify-content:center;height:44px}
+.mm-acct .subscribe{background:#e4e4e2;color:var(--ink)}
+.mm-acct .login{background:#fff;color:var(--ink);border:1px solid #d4d4d4}
+.mm-sections{list-style:none;margin:18px 0 0;border-top:3px solid var(--ink)}
+.mm-sections a{display:flex;justify-content:space-between;align-items:center;padding:13px 2px;border-bottom:1px solid var(--line);font:500 19px var(--head);text-transform:uppercase;letter-spacing:.03em}
+.mm-sections a span{color:#bbb;font:400 24px/1 var(--body)}
+.mm-sections a:hover,.mm-sections a[aria-current="page"]{color:var(--me)}
+.mm-sections a[aria-current="page"]{box-shadow:inset 4px 0 0 var(--me);padding-left:12px}
+.mm-fr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.mm-fr a{display:flex;flex-direction:column;justify-content:center;min-height:78px;padding:12px;color:#fff;border-radius:0 12px 0 12px}
+.mm-fr b{display:block}
+.mm-fr span{font-size:11.5px;opacity:.85;margin-top:4px;line-height:1.3}
+.mm-brief{background:var(--brief-navy)}
+.mm-brief b{font:800 17px/1.1 var(--slab);text-transform:uppercase}
+.mm-res{background:var(--res)}
+.mm-res b{font:700 11px/1.3 var(--body);letter-spacing:.2em;text-transform:uppercase}
+.mm-fr a[aria-current="page"]{outline:3px solid var(--ink);outline-offset:2px}
+.mm-label{font:700 11px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.mm-topics{display:flex;flex-wrap:wrap;gap:6px}
+.mm-topics a{font-size:13px;padding:7px 11px;border:1px solid var(--line);border-radius:20px;color:var(--ink2)}
+.mm-topics a:hover{border-color:var(--ink)}
+.mm-topics a[aria-current="page"]{background:var(--me);border-color:var(--me);color:#fff}
+.mm-next{display:block;margin-top:22px;background:linear-gradient(135deg,var(--brief-pink),#9d0052);color:#fff;border-radius:10px;padding:16px}
+.mm-next small{display:block;font:700 10.5px var(--body);letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.mm-next b{display:block;font:800 18px/1.15 var(--body);margin:6px 0 12px}
+.mm-next .btn{background:#fff;color:var(--brief-pink)}
+.mm-foot{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink2)}
+.mm-foot a:hover{color:var(--me)}
+
+/* ===== Sticky main menu with small ME mark when stuck ===== */
+.nav{position:sticky;top:0;z-index:60;background:#fff;transition:box-shadow .2s}
+.nav.stuck{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.nav .nav-me{flex:none;display:flex;align-items:center;justify-content:center;width:0;height:30px;margin-right:-26px;overflow:hidden;opacity:0;background:var(--me);color:#fff;font:800 13px/1 var(--body);letter-spacing:-.02em;border:0;border-radius:0 8px 0 0;transition:width .2s,margin .2s,opacity .2s;align-self:center}
+.nav.stuck .nav-me{width:32px;margin-right:0;opacity:1}
+.nav .nav-me:hover{color:#fff;background:var(--me-dark)}
+@media (prefers-reduced-motion:reduce){.nav .nav-me,.nav{transition:none}}
+/* Keep sticky rail items and in-page jumps clear of the sticky menu */
+.rail .sticky,.art-rail .sticky{top:64px}
+html{scroll-padding-top:64px}
+
+/* Header backgrounds: white behind the billboard, light grey behind the logo header */
+.lb-zone{background:#fff}
+.mast{background:#f2f2f0;border-bottom-color:#e2e2df}
+.acct-btns .subscribe{background:#dcdcd9}
+.acct-btns .subscribe:hover{background:#cfcfcb}
+
+/* ===================================================================
+   Header versions (mockup comparison). Desktop and tablet only; phones keep the current layout.
+   =================================================================== */
+.mock .div{width:1px;height:20px;background:#333;margin:0 4px}
+@media (min-width:761px){
+  /* Both versions: logo · franchises · account (Subscribe / Log in far right) */
+  body.hdr-tabs .franchises,body.hdr-split .franchises{order:2;margin-left:auto}
+  body.hdr-tabs .mast-tools,body.hdr-split .mast-tools{order:3;margin-left:28px}
+
+  /* ---- Option 1: folder tabs sitting on the bottom edge of the header ---- */
+  body.hdr-tabs .franchises{flex:0 0 auto;align-self:flex-end;align-items:flex-end;gap:6px;margin-bottom:-19px}
+  body.hdr-tabs .fr{flex:none;width:186px;height:44px;min-height:0;padding:0 14px;margin:0;border-radius:0 12px 0 0;align-self:auto;transition:height .15s,filter .15s}
+  body.hdr-tabs .fr:hover{height:48px;filter:brightness(1.12)}
+  body.hdr-tabs .fr.brief b,body.hdr-tabs .fr.active.brief b{font-size:17px}
+  body.hdr-tabs .fr.res b,body.hdr-tabs .fr.active.res b{font-size:10.5px;letter-spacing:.2em;line-height:1.25}
+  body.hdr-tabs .fr.active{height:44px;margin-bottom:0;border-radius:12px 12px 0 0;align-self:auto;padding:0 14px}
+  body.hdr-tabs .franchises:has(.fr.active) .fr:not(.active){display:flex}   /* show both tabs, selected one joins its bar */
+  body.hdr-tabs .fr:not(.active){opacity:.92}
+
+  /* ---- Option 2: one split block, navy | red ---- */
+  body.hdr-split .franchises{flex:0 0 auto;align-self:center;gap:0;border-radius:0 14px 0 14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+  body.hdr-split .fr{flex:none;width:196px;height:62px;min-height:0;margin:0;border-radius:0;padding:0 14px;align-self:auto}
+  body.hdr-split .fr.res{border-left:2px solid #fff}
+  body.hdr-split .fr:hover{filter:brightness(1.12)}
+  body.hdr-split .fr.brief b,body.hdr-split .fr.active.brief b{font-size:19px}
+  body.hdr-split .fr.res b,body.hdr-split .fr.active.res b{font-size:12px;letter-spacing:.22em}
+  body.hdr-split .fr.active{margin-bottom:0;height:62px;padding:0 14px;border-radius:0;box-shadow:inset 0 -4px 0 rgba(255,255,255,.85)}
+  body.hdr-split .franchises:has(.fr.active) .fr:not(.active){display:flex}
+}
+@media (min-width:761px) and (max-width:1180px){
+  body.hdr-tabs .logo-img img,body.hdr-split .logo-img img{height:52px}
+  body.hdr-tabs .fr{width:150px;padding:0 10px}
+  body.hdr-split .fr{width:156px;padding:0 10px}
+  body.hdr-tabs .fr.brief b,body.hdr-tabs .fr.active.brief b,body.hdr-split .fr.brief b,body.hdr-split .fr.active.brief b{font-size:15px}
+  body.hdr-tabs .fr.res b,body.hdr-tabs .fr.active.res b,body.hdr-split .fr.res b,body.hdr-split .fr.active.res b{font-size:9.5px;letter-spacing:.16em}
+  body.hdr-tabs .mast-tools,body.hdr-split .mast-tools{width:190px;margin-left:20px}
+}
+
+/* ===== Top billboard: GSMA case study (static) ===== */
+.gsma-bb{display:flex;align-items:stretch;height:150px;background:#e4002b;color:#fff;overflow:hidden;font-family:'Inter','Roboto',system-ui,sans-serif}
+.gs-photo{flex:0 0 330px;position:relative;overflow:hidden;background:#ddd}
+.gs-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform:scale(1.25);transform-origin:40% 20%}
+.gs-copy{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:0 26px}
+.gs-kicker{font:400 13px var(--body);opacity:.95}
+.gs-head{font:300 28px/1.12 var(--body);letter-spacing:-.01em;margin-top:4px}
+.gs-sub{font:300 15px/1.35 var(--body);margin-top:8px;opacity:.95}
+.gs-side{flex:none;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:18px 26px 18px 0}
+.gs-pub small{display:block;font:400 10px var(--body);opacity:.9}
+.gs-pub b{display:block;font:700 13px/1.2 var(--body);letter-spacing:.14em;margin-top:6px}
+.gs-pub i{display:block;font:700 19px/1.1 var(--body);font-style:normal;letter-spacing:-.01em}
+.gs-cta{background:#fff;color:#e4002b;font:700 13px var(--body);padding:10px 16px;border-radius:3px;white-space:nowrap;transition:transform .15s}
+.gsma-bb:hover .gs-cta{transform:translateY(-1px)}
+.gsma-bb:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@media (max-width:1180px){.gs-photo{flex-basis:240px}.gs-head{font-size:23px}.gs-sub{font-size:13.5px}}
+@media (max-width:960px){.gs-sub{display:none}.gs-photo{flex-basis:200px}}
+@media (max-width:760px){
+  .gsma-bb{width:320px;max-width:100%;height:100px;margin:0 auto}
+  .gs-photo{flex-basis:96px}
+  .gs-copy{padding:0 10px}
+  .gs-kicker{font-size:10px}
+  .gs-head{font-size:14.5px;margin-top:2px}
+  .gs-side{padding:10px 10px 10px 0;justify-content:flex-end}
+  .gs-pub{display:none}
+  .gs-cta{font-size:10.5px;padding:7px 9px}
+}
+.gs-cta .cta-short{display:none}
+@media (max-width:760px){.gs-cta .cta-long{display:none}.gs-cta .cta-short{display:inline}}
+.gs-photo img{transform:none;object-position:45% 9%}
+.gs-photo img{inset:auto;width:185%;height:auto;max-width:none;left:-70px;top:-62px;object-fit:fill}
+@media (max-width:1180px){.gs-photo img{width:240%;left:-115px;top:-70px}}
+@media (max-width:760px){.gs-photo img{width:200%;left:-40px;top:-22px}}
+
+/* Section title + intro on one line (wider screens) */
+@media (min-width:961px){
+  .page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:48px}
+  .page-head .ptitle{flex:none}
+  .page-head .pdesc{flex:0 1 520px;margin:0 0 4px;font-size:15px;line-height:1.45;color:var(--ink2);border-left:3px solid var(--me);padding-left:14px}
+}
+
+/* Option 1 (folder tabs): franchise name back on the left of its own menu bar */
+.fband .mark{display:none}
+body.hdr-tabs .fband .mark{display:flex;color:#fff}
+body.hdr-tabs .fband.brief .name{font:800 26px var(--slab);text-transform:uppercase;letter-spacing:.02em;text-shadow:0 0 14px rgba(255,255,255,.35)}
+body.hdr-tabs .fband.res .name{font:700 14px/1.25 var(--body);letter-spacing:.32em;text-transform:uppercase}
+body.hdr-tabs .fband .mark{padding-right:28px;margin-right:2px;border-right:1px solid rgba(255,255,255,.3)}
+@media (max-width:760px){body.hdr-tabs .fband .mark{border:0;padding-right:0;width:100%}}
+.loz .loz-days{color:var(--muted)}
+.loz.tif .loz-days{color:#c9cbe0}

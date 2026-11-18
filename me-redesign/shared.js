@@ -29,7 +29,7 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
   ].join('<i aria-hidden="true">◆</i>');
 
   const header = `
-  <div class="util"><div class="wrap">
+  ${page === 'brief' || page === 'brief-event' ? `<div class="util"><div class="wrap">
     <a class="tk-label" href="briefing-event.html">Next Briefing</a>
     <div class="ticker" aria-label="Upcoming Briefings and new reports">
       <div class="tk-track">
@@ -38,8 +38,21 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
       </div>
     </div>
     <div class="right"><a href="#">Newsletter</a><a href="#">Advertise</a><a href="#">About</a></div>
+  </div></div>` : ''}
+  <div class="lb-zone"><div class="wrap"><div class="ad-label">Advertisement</div>
+    <a class="gsma-bb" href="white-papers.html" aria-label="Case study by GSMA Industry Services: Looking to deliver a seamless BYOD mobile experience? Download">
+      <span class="gs-photo"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/GSMA-sept26-wp-696x843.jpg" alt=""></span>
+      <span class="gs-copy">
+        <span class="gs-kicker">Case Study</span>
+        <span class="gs-head">Looking to deliver a seamless BYOD mobile experience?</span>
+        <span class="gs-sub">Discover how Cogeco was able to launch its BYOD programme with confidence.</span>
+      </span>
+      <span class="gs-side">
+        <span class="gs-pub"><small>Published by</small><b>GSMA</b><i>Industry Services</i></span>
+        <span class="gs-cta"><span class="cta-long">Download the case study</span><span class="cta-short">Download</span></span>
+      </span>
+    </a>
   </div></div>
-  <div class="lb-zone"><div class="wrap"><div class="ad-label">Advertisement</div><div class="ad ad-lb-full">Full-width leaderboard<small>1200×150 (responsive) · GAM · 320×100 on mobile</small></div></div></div>
   <div class="mast"><div class="wrap">
     <a class="logo logo-img" href="index.html">
       <img src="https://www.mobileeurope.co.uk/wp-content/uploads/2025/08/MobileEurope-logo-wide-strap-v4.png" alt="Mobile Europe: Communications infrastructure and digital services in EMEA" width="1343" height="236">
@@ -57,14 +70,22 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
       </div>
       <small class="acct-note">Log in to register for events, download reports and white papers, and manage your subscription.</small>
     </div>
-    <button class="burger" aria-label="Menu">☰</button>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
   </div></div>
   ${isBrief ? '' : `<div class="nav"><div class="wrap">
+    <a class="nav-me" href="index.html" aria-label="Mobile Europe home" tabindex="-1">ME</a>
     <button class="nav-search" id="search-toggle" aria-label="Search" aria-expanded="false" aria-controls="search-panel">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
     </button>
     <a href="index.html" class="${page === 'home' ? 'on' : ''}">Home</a>
     <a href="news.html" class="${page === 'news' ? 'on' : ''}">News</a><a href="insights.html" class="${page === 'insights' ? 'on' : ''}">Insights</a><a href="cxo.html" class="${page === 'cxo' ? 'on' : ''}">CxO Zone</a><a href="white-papers.html" class="${page === 'white-papers' ? 'on' : ''}">White Paper Hub</a><a href="videos.html" class="${page === 'videos' ? 'on' : ''}">Videos</a><a href="events.html" class="${page === 'events' ? 'on' : ''}">Events</a>
+    <div class="nav-promo" aria-roledescription="carousel" aria-label="Next Briefing and latest report">
+      <div class="np-slides">
+        <a class="np-slide cur" href="briefing-event.html"><b>Next Briefing</b><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>AI &amp; Revenue</span><u>24 November</u></a>
+        <a class="np-slide" href="research.html" tabindex="-1" aria-hidden="true"><b>New report</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z M14 3v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>OSS &amp; AI modernisation</span><u>Download</u></a>
+      </div>
+      <button class="np-next" type="button" aria-label="Show next: latest report"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
   </div></div>
   <div class="search-panel" id="search-panel" hidden><div class="wrap">
     <form role="search" onsubmit="return false">
@@ -100,6 +121,13 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
       ${pages.map(p => `<option value="${p[0]}"${p[1] === page ? ' selected' : ''}>${p[2]}</option>`).join('')}
     </select>
     <a href="${pages[(idx + 1) % pages.length][0]}" aria-label="Next page">→</a>
+    <span class="div"></span>
+    <label class="lbl" for="hdr-var" style="padding:0 2px 0 6px;color:#888">Header</label>
+    <select id="hdr-var" aria-label="Header version">
+      <option value="tabs">Current · Folder tabs</option>
+      <option value="current">Backup · Big boxes</option>
+      <option value="split">Alt · Split block</option>
+    </select>
   </div>`;
 
   document.getElementById('site-header').outerHTML = header;
@@ -266,5 +294,233 @@ document.querySelectorAll('.pin-slot:not([data-fixed])').forEach(slot => {
   b.addEventListener('click', () => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+})();
+
+
+// Main-menu promo carousel: Next Briefing <-> latest report (arrow, plus gentle auto-advance).
+// On narrower screens the same promo appears as a strip under the main menu and category bar.
+(function () {
+  const original = document.querySelector('.nav .nav-promo');
+  if (!original) return;
+  const cats = document.querySelector('.cats');
+  if (cats) {
+    const strip = document.createElement('div');
+    strip.className = 'promo-strip';
+    const wrap = document.createElement('div');
+    wrap.className = 'wrap';
+    wrap.appendChild(original.cloneNode(true));
+    strip.appendChild(wrap);
+    cats.after(strip);
+  }
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const labels = ['Show next: latest report', 'Show next: next Briefing'];
+  document.querySelectorAll('.nav-promo').forEach(box => {
+    const slides = [...box.querySelectorAll('.np-slide')];
+    const btn = box.querySelector('.np-next');
+    let i = 0, timer = null;
+    function go(n) {
+      slides[i].classList.remove('cur'); slides[i].setAttribute('aria-hidden', 'true'); slides[i].tabIndex = -1;
+      i = (n + slides.length) % slides.length;
+      slides[i].classList.add('cur'); slides[i].removeAttribute('aria-hidden'); slides[i].removeAttribute('tabindex');
+      btn.setAttribute('aria-label', labels[i]);
+    }
+    function restart() { if (reduce) return; clearInterval(timer); timer = setInterval(() => go(i + 1), 7000); }
+    btn.addEventListener('click', () => { go(i + 1); restart(); });
+    box.addEventListener('mouseenter', () => clearInterval(timer));
+    box.addEventListener('mouseleave', restart);
+    box.addEventListener('focusin', () => clearInterval(timer));
+    restart();
+  });
+})();
+
+// Swipeable carousel (White Paper Hub pinned white papers): native swipe/scroll + arrows + dots
+document.querySelectorAll('.wp-carousel').forEach(c => {
+  const track = c.querySelector('.wpc-track');
+  const slides = [...track.children];
+  const dots = [...c.querySelectorAll('.wpc-dots button')];
+  const idx = () => Math.round(track.scrollLeft / track.clientWidth);
+  const goTo = n => track.scrollTo({ left: Math.max(0, Math.min(n, slides.length - 1)) * track.clientWidth, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  const update = () => {
+    const i = idx();
+    dots.forEach((d, k) => d.setAttribute('aria-current', k === i ? 'true' : 'false'));
+    c.querySelector('.prev').disabled = i === 0;
+    c.querySelector('.next').disabled = i === slides.length - 1;
+  };
+  c.querySelector('.prev').addEventListener('click', () => goTo(idx() - 1));
+  c.querySelector('.next').addEventListener('click', () => goTo(idx() + 1));
+  dots.forEach((d, k) => d.addEventListener('click', () => goTo(k)));
+  track.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(idx() + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(idx() - 1); }
+  });
+  let t; track.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(update, 60); }, { passive: true });
+  update();
+});
+
+
+// Telecoms in Focus banner: respect reduced-motion (show the still poster instead of the moving video)
+(function () {
+  const v = document.querySelector('.tif-bg');
+  if (v && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+})();
+
+// MPUs: fill every 300×250 slot with real creatives, alternating ENEA (image) and the video ad
+(function () {
+  const ENEA = 'https://tpc.googlesyndication.com/simgad/12284539410342202964';
+  const VIDEO = 'https://s0.2mdn.net/dfp/260406/19415646/1794400797422/video.mp4';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.ad.ad-mpu').forEach((slot, n) => {
+    const a = document.createElement('a');
+    a.className = 'mpu-creative';
+    a.href = '#';
+    a.rel = 'sponsored';
+    if (n % 2 === 0) {
+      a.href = 'white-papers.html';
+      a.setAttribute('aria-label', 'Advertisement: ENEA, Detecting and countering fraud and revenue leakage in mobile networks');
+      a.innerHTML = `<img src="${ENEA}" width="300" height="250" alt="ENEA: Detecting and Countering Fraud and Revenue Leakage in Mobile Networks">`;
+    } else {
+      a.setAttribute('aria-label', 'Advertisement (video)');
+      a.innerHTML = `<video src="${VIDEO}" width="300" height="250" muted loop playsinline ${reduce ? '' : 'autoplay'} preload="metadata" aria-hidden="true"></video>`;
+    }
+    slot.replaceWith(a);
+  });
+})();
+
+// Slide-in menu (opened from the ☰ button on phones and small tablets)
+(function () {
+  const page = document.body.dataset.page;
+  const cat = document.body.dataset.cat || '';
+  const catHref = window.ME_CAT_HREF || (() => '#');
+  const cats = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV', 'Digital Platforms & APIs', 'Edge', 'Financial/Regulation', 'Optical/IP', 'RAN', 'Satellite', 'Security', 'Sustainability'];
+  const sections = [['index.html', 'home', 'Home'], ['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events']];
+  const esc = t => t.replace(/&/g, '&amp;');
+  const panel = document.createElement('div');
+  panel.className = 'mmenu';
+  panel.id = 'mmenu';
+  panel.hidden = true;
+  panel.innerHTML = `
+    <div class="mm-backdrop" data-mm-close></div>
+    <nav class="mm-panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="mm-head">
+        <a href="index.html" class="mm-logo"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2025/08/MobileEurope-logo-wide-strap-v4.png" alt="Mobile Europe home"></a>
+        <button class="mm-close" type="button" data-mm-close aria-label="Close menu">×</button>
+      </div>
+      <form class="mm-search" role="search" onsubmit="return false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input placeholder="Search Mobile Europe" aria-label="Search Mobile Europe">
+      </form>
+      <div class="mm-acct">
+        <a class="btn subscribe" href="#" data-subscribe>Subscribe</a>
+        <a class="btn login" href="#" data-login>Log in</a>
+      </div>
+      <ul class="mm-sections">
+        ${sections.map(([h, k, t]) => `<li><a href="${h}"${k === page ? ' aria-current="page"' : ''}>${t}<span aria-hidden="true">›</span></a></li>`).join('')}
+      </ul>
+      <div class="mm-fr">
+        <a class="mm-brief" href="the-briefing.html"${page === 'brief' || page === 'brief-event' ? ' aria-current="page"' : ''}><b>The Briefing</b><span>Next: 24 Nov · AI &amp; Revenue</span></a>
+        <a class="mm-res" href="research.html"${page === 'res' ? ' aria-current="page"' : ''}><b>Independent Research</b><span>New: OSS &amp; AI modernisation</span></a>
+      </div>
+      <div class="mm-label">Topics</div>
+      <div class="mm-topics">
+        ${cats.map(c => `<a href="${catHref(c)}"${c === cat ? ' aria-current="page"' : ''}>${esc(c)}</a>`).join('')}
+      </div>
+      <a class="mm-next" href="briefing-event.html">
+        <small>Next Briefing · Tue 24 Nov</small>
+        <b>AI in Network Optimisation: Finding Forgotten Revenue</b>
+        <span class="btn pink">Register free</span>
+      </a>
+      <div class="mm-foot"><a href="#">Newsletter</a><a href="#">Advertise</a><a href="#">About</a><a href="#">Contact</a></div>
+    </nav>`;
+  document.body.appendChild(panel);
+
+  const burger = document.querySelector('.burger');
+  if (!burger) return;
+  let last = null;
+  function open() {
+    last = document.activeElement;
+    panel.hidden = false;
+    requestAnimationFrame(() => panel.classList.add('open'));
+    document.body.classList.add('modal-open');
+    burger.setAttribute('aria-expanded', 'true');
+    panel.querySelector('.mm-close').focus();
+  }
+  function close() {
+    if (panel.hidden) return;
+    panel.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('modal-open');
+    setTimeout(() => { panel.hidden = true; }, 250);
+    if (last) last.focus();
+  }
+  burger.addEventListener('click', open);
+  panel.addEventListener('click', e => {
+    if (e.target.closest('[data-mm-close]')) close();
+    else if (e.target.closest('[data-subscribe], [data-login]')) close(); // the pop-up takes over
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') close();
+    // keep keyboard focus inside the open menu
+    if (e.key === 'Tab' && !panel.hidden) {
+      const f = [...panel.querySelectorAll('a, button, input')];
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+})();
+
+// Sticky main menu: show the small ME mark once the bar is stuck to the top
+(function () {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  const me = nav.querySelector('.nav-me');
+  const sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  sentinel.style.cssText = 'height:1px;margin-bottom:-1px';
+  nav.before(sentinel);
+  new IntersectionObserver(([e]) => {
+    const stuck = !e.isIntersecting && e.boundingClientRect.top < 0;
+    nav.classList.toggle('stuck', stuck);
+    if (me) me.tabIndex = stuck ? 0 : -1;
+  }).observe(sentinel);
+})();
+
+
+// Mockup only: switch between header versions (remembered while browsing; ?header=tabs|split|current also works)
+(function () {
+  const sel = document.getElementById('hdr-var');
+  const fromUrl = new URLSearchParams(location.search).get('header');
+  let v = fromUrl;
+  if (!v) { try { v = localStorage.getItem('me-header2'); } catch (e) {} }
+  if (!['current', 'tabs', 'split'].includes(v)) v = 'tabs';   // folder tabs are now the default
+  const apply = val => {
+    document.body.classList.remove('hdr-tabs', 'hdr-split');
+    if (val !== 'current') document.body.classList.add('hdr-' + val);
+    try { localStorage.setItem('me-header2', val); } catch (e) {}
+  };
+  apply(v);
+  if (sel) { sel.value = v; sel.addEventListener('change', () => apply(sel.value)); }
+})();
+
+// Listing pages: group the section title and its intro so the intro can sit beside the title on wide screens
+document.querySelectorAll('h1.ptitle').forEach(h => {
+  const p = h.nextElementSibling;
+  if (!p || !p.classList.contains('pdesc')) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'page-head';
+  h.before(wrap);
+  wrap.append(h, p);
+});
+
+// Briefing list: "SECURITY | IN 25 DAYS" — days until each event, worked out from today's date
+(function () {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  document.querySelectorAll('.loz[data-date]').forEach(l => {
+    const [y, m, d] = l.dataset.date.split('-').map(Number);
+    const days = Math.round((new Date(y, m - 1, d) - today) / 86400000);
+    const topic = l.querySelector('.topic');
+    if (!topic || days < 0) return;
+    const label = days === 0 ? 'Today' : days === 1 ? 'Tomorrow' : `In ${days} days`;
+    topic.insertAdjacentHTML('beforeend', `<span class="loz-days"> | ${label}</span>`);
   });
 })();
