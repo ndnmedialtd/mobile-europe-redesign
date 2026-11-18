@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Members area – Mobile Europe mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@400;500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=71">
+</head>
+<body data-page="members">
+<div id="site-header"></div>
+
+<main class="wrap mem" id="mem">
+  <!-- Shown when nobody is logged in -->
+  <section class="mem-locked" id="mem-locked" hidden>
+    <h1>Members area</h1>
+    <p>Log in to see your downloads, registered Briefings, recommended articles and topics.</p>
+    <a class="btn red" href="#" data-login>Log in</a>
+    <small>Mockup: use <b>test</b> / <b>test</b>.</small>
+  </section>
+
+  <!-- Dashboard (filled in by members.js) -->
+  <div id="mem-dash" hidden>
+    <section class="mem-hero">
+      <div class="mem-id">
+        <span class="mem-av" id="mem-av"></span>
+        <div>
+          <h1 id="mem-greet"></h1>
+          <p id="mem-meta"></p>
+          <div class="mem-actions"><a class="btn ghost" href="#">Edit profile</a><button class="btn ghost" type="button" id="mem-logout">Log out</button></div>
+        </div>
+      </div>
+      <div class="mem-stats" id="mem-stats"></div>
+    </section>
+
+    <div class="mem-grid">
+      <div class="mem-main">
+        <section class="mem-card">
+          <div class="mem-h"><h2>Recommended for you</h2><span class="mem-sub" id="rec-why"></span></div>
+          <div class="rec-grid" id="rec-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="mem-card">
+          <div class="mem-h"><h2>Your events</h2><a href="the-briefing.html">All Briefings →</a></div>
+          <div id="mem-events"></div>
+        </section>
+
+        <section class="mem-card">
+          <div class="mem-h"><h2>Your downloads</h2><a href="research.html">Research hub →</a></div>
+          <div id="mem-downloads"></div>
+        </section>
+
+        <section class="mem-card">
+          <div class="mem-h"><h2>Continue reading</h2></div>
+          <div class="read-list" id="mem-reading"></div>
+        </section>
+      </div>
+
+      <aside class="mem-side">
+        <section class="mem-card">
+          <div class="mem-h"><h2>Your topics</h2><span class="mem-sub" id="topic-count"></span></div>
+          <p class="mem-help">Tap a topic to follow or unfollow it. Your recommendations update straight away.</p>
+          <div class="tag-cloud" id="tag-cloud"></div>
+        </section>
+
+        <section class="mem-card">
+          <div class="mem-h"><h2>Suggested Briefings</h2></div>
+          <div id="mem-suggest-events"></div>
+        </section>
+
+        <section class="mem-card">
+          <div class="mem-h"><h2>Email preferences</h2></div>
+          <div id="mem-prefs"></div>
+        </section>
+
+        <section class="mem-card mem-data">
+          <div class="mem-h"><h2>Connected data</h2><span class="pill-demo">Mockup</span></div>
+          <ul>
+            <li><b>Downloads &amp; event attendance</b><span>From the email platform (EMX / ActiveCampaign) contact record, via API</span></li>
+            <li><b>Email preferences</b><span>Two-way sync with EMX / ActiveCampaign lists</span></li>
+            <li><b>Topics followed</b><span>Saved to the profile and pushed to the email platform as tags, for targeted newsletters</span></li>
+            <li><b>Articles read</b><span>From site analytics, linked to the logged-in member</span></li>
+          </ul>
+          <p class="mem-help">All figures on this page are sample data for the mockup.</p>
+        </section>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="shared.js?v=72"></script>
+<script src="members-data.js?v=69"></script>
+<script src="members.js?v=70"></script>
+</body>
+</html>

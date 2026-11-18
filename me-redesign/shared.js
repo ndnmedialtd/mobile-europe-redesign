@@ -1,3 +1,20 @@
+// ---- Demo member (mockup login: test / test). Stored in this browser only. ----
+window.ME_MEMBER = (function () {
+  const KEY = 'me-member';
+  const demo = { first: 'Sam', last: 'Taylor', title: 'Head of Network Strategy', company: 'Example Telecom', since: 'March 2025' };
+  let mem = null; // fallback if browser storage is blocked
+  const read = () => { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return mem; } };
+  return {
+    get: () => read() || (new URLSearchParams(location.search).get('demo') === 'member' ? demo : null),
+    login(user, pass) {
+      if (String(user).trim().toLowerCase() !== 'test' || pass !== 'test') return false;
+      try { localStorage.setItem(KEY, JSON.stringify(demo)); } catch (e) { mem = demo; }
+      return true;
+    },
+    logout() { try { localStorage.removeItem(KEY); } catch (e) {} mem = null; }
+  };
+})();
+
 // Shared header, footer and mockup toolbar for all pages
 
 // Small pin icon used by pages
@@ -112,7 +129,7 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
     <div class="legal">Design mockup: not the live site. Content and images from mobileeurope.co.uk, used for layout only.</div>
   </div></footer>`;
 
-  const pages = [['index.html', 'home', 'Homepage'], ['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html', 'cat', '5G & Beyond'], ['article.html', 'article', 'Article'], ['the-briefing.html', 'brief', 'The Briefing'], ['briefing-event.html', 'brief-event', 'Briefing sign-up'], ['research.html', 'res', 'Research']];
+  const pages = [['index.html', 'home', 'Homepage'], ['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html', 'cat', '5G & Beyond'], ['article.html', 'article', 'Article'], ['the-briefing.html', 'brief', 'The Briefing'], ['briefing-event.html', 'brief-event', 'Briefing sign-up'], ['research.html', 'res', 'Research'], ['members.html', 'members', 'Members area']];
   const idx = Math.max(0, pages.findIndex(p => p[1] === page));
   const toolbar = `<div class="mock">
     <span class="lbl" style="padding:0 6px;color:#888">Mockup</span>
@@ -163,13 +180,15 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
         <li>Register for <b>The Briefing</b> live events in one click</li>
         <li>Download <b>Independent Research</b> reports and white papers</li>
         <li>Manage your newsletters and subscription</li>
+        <li>Choose the <b>topics</b> you most want to read</li>
       </ul>
       <form id="login-form">
-        <label>Business email<input required type="email" autocomplete="username" placeholder="you@company.com"></label>
-        <label>Password<input required type="password" autocomplete="current-password" placeholder="••••••••"></label>
+        <label>Email or username<input required type="text" name="user" autocomplete="username" placeholder="you@company.com"></label>
+        <label>Password<input required type="password" name="pass" autocomplete="current-password" placeholder="••••••••"></label>
+        <p class="login-err" role="alert" hidden>Those details didn’t match. In this mockup, use <b>test</b> / <b>test</b>.</p>
         <div class="login-row"><label class="chk"><input type="checkbox"> Keep me logged in</label><a href="#">Forgot password?</a></div>
         <button class="btn subscribe" type="submit">Log in</button>
-        <small>Mockup only: this form doesn’t log you in yet.</small>
+        <small>Mockup: log in with <b>test</b> / <b>test</b> to see the Members area.</small>
       </form>
       <div class="thanks-msg" hidden><h3>You’re logged in</h3><p>In the live site you’d now see your saved events, downloads and subscription settings.</p><button class="btn" data-close>Close</button></div>
       <div class="login-foot">New to Mobile Europe? <a href="#">Create a free account →</a></div>
@@ -193,6 +212,7 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
             <li>Register for <b>The Briefing</b> live events in one click</li>
             <li>Download <b>Independent Research</b> reports and white papers</li>
             <li>Manage your newsletters and subscription</li>
+        <li>Choose the <b>topics</b> you most want to read</li>
           </ul>
           <input type="password" placeholder="Create a password" autocomplete="new-password" aria-label="Create a password">
         </div>
@@ -226,13 +246,13 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
   document.addEventListener('click', e => {
     if (e.target.closest('[data-pin-cta]')) { e.preventDefault(); openModal('pin-modal'); }
     else if (e.target.closest('[data-subscribe], .nl .btn, .art-nl .btn')) { e.preventDefault(); closeModals(); openModal('subscribe-modal'); }
-    else if (e.target.closest('.login, [data-login]')) { e.preventDefault(); closeModals(); openModal('login-modal'); }
+    else if (e.target.closest('.login, [data-login]')) { e.preventDefault(); closeModals(); if (window.ME_MEMBER && ME_MEMBER.get()) location.href = 'members.html'; else openModal('login-modal'); }
     else if (e.target.closest('[data-close]') || e.target.classList.contains('modal')) closeModals();
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
   const acct = document.getElementById('sub-account');
   acct.addEventListener('change', () => { document.getElementById('sub-extra').hidden = !acct.checked; });
-  document.querySelectorAll('.modal form').forEach(f => f.addEventListener('submit', e => {
+  document.querySelectorAll('.modal form:not(#login-form)').forEach(f => f.addEventListener('submit', e => {
     e.preventDefault(); f.hidden = true; f.closest('.modal-box').querySelector('.thanks-msg').hidden = false;
   }));
 
@@ -523,4 +543,37 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
     const label = days === 0 ? 'Today' : days === 1 ? 'Tomorrow' : `In ${days} days`;
     topic.insertAdjacentHTML('beforeend', `<span class="loz-days"> | ${label}</span>`);
   });
+})();
+
+
+// Login form: test / test logs in and opens the Members area
+(function () {
+  const form = document.getElementById('login-form');
+  if (!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const ok = ME_MEMBER.login(form.user.value, form.pass.value);
+    form.querySelector('.login-err').hidden = ok;
+    if (ok) {
+      let url = 'members.html';
+      try { localStorage.getItem('me-member') || (url += '?demo=member'); } catch (err) { url += '?demo=member'; }
+      location.href = url;
+    } else {
+      form.pass.value = ''; form.pass.focus();
+    }
+  });
+})();
+
+// Logged-in header: the Log in buttons become "Hi, Sam" and go to the Members area
+(function () {
+  const m = ME_MEMBER.get();
+  if (!m) return;
+  document.querySelectorAll('.login').forEach(b => {
+    b.innerHTML = `<span class="av">${m.first[0]}${m.last[0]}</span><span class="nm">${m.first}</span>`;
+    b.title = `${m.first} ${m.last}: your Members area`;
+    b.setAttribute('href', 'members.html');
+    b.setAttribute('aria-label', 'Your Members area');
+  });
+  const note = document.querySelector('.acct-note');
+  if (note) note.innerHTML = `Welcome back, ${m.first}. <a href="members.html">View your downloads, events and topics</a>.`;
 })();
