@@ -18,9 +18,8 @@
   </div></div>
   <div class="lb-zone"><div class="ad-label">Advertisement</div><div class="ad ad-lb">Leaderboard (LB)<small>728×90 · GAM · 320×50 on mobile</small></div></div>
   <div class="mast"><div class="wrap">
-    <a class="logo" href="index.html" aria-label="Mobile Europe home">
-      <span class="mark">ME</span>
-      <span class="word"><b>Mobile Europe</b><small>Communications infrastructure and digital services in EMEA</small></span>
+    <a class="logo logo-img" href="index.html">
+      <img src="https://www.mobileeurope.co.uk/wp-content/uploads/2025/08/MobileEurope-logo-wide-strap-v4.png" alt="Mobile Europe: Communications infrastructure and digital services in EMEA" width="1343" height="236">
     </a>
     <div class="franchises">
       <a class="fr brief" href="the-briefing.html"><small>Live events</small><b>The Briefing</b><span>Next: 24 Nov · AI &amp; Revenue</span></a>

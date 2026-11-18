@@ -288,3 +288,8 @@ footer.site .legal{border-top:1px solid #2a2a2a;margin-top:28px;padding-top:16px
   .res-grid{grid-template-columns:1fr}
   footer.site .cols{grid-template-columns:1fr}
 }
+
+/* Official ME logo (header) */
+.logo-img img{height:58px;width:auto}
+@media (max-width:1100px){.logo-img img{height:48px}}
+@media (max-width:760px){.logo-img img{height:38px;max-width:calc(100vw - 92px)}}
