@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Briefing – Mobile Europe mockup</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=132">
+<link rel="stylesheet" href="styles.css?v=141">
 <style>
 /* D2A: animate between pages (Chrome, Edge, Safari 18.2+; other browsers just load the page) */
 @view-transition{navigation:auto}
@@ -40,13 +40,12 @@
   <div class="wrap">
     <a class="mark" href="the-briefing.html"><span class="name">The Briefing</span></a>
     <nav><a class="on" href="the-briefing.html">Upcoming Briefings</a><a href="#">On demand</a><a href="#">Sponsor a Briefing</a><a href="#">Contact</a></nav>
-    <a class="btn pink" href="#" data-login>Event alerts</a>
   </div>
 </div>
 
 <section class="bl-top">
   <div class="wrap">
-    <p class="bl-intro">Join the experts for in-depth discussions of the industry’s hottest topics, and put your own questions to them. Live, online and free.</p>
+    <div class="bl-introrow"><p class="bl-intro">Join the experts for in-depth discussions of the industry’s hottest topics, and put your own questions to them. Live, online and free.</p><a class="btn pink" href="#" data-login>Event alerts</a></div>
 
     <div class="bl-next">
       <div class="in">
@@ -111,7 +110,7 @@
 </main>
 
 <div id="site-footer"></div>
-<script src="shared.js?v=132"></script>
+<script src="shared.js?v=141"></script>
 <script>
 (function () {
   document.getElementById('cv-menu').addEventListener('click', () => document.querySelector('.mast .burger').click());

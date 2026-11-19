@@ -315,6 +315,25 @@ for f in OUT.glob('*.html'):
     t = re.sub(r'<a class="pin-cta" href="#" data-pin-cta>[^<]*</a>', '', t)
     t = t.replace('<span class="sp-label">Sponsored</span>', '<span class="sp-label">Partner content</span>')
     f.write_text(t)
+# The Briefing page: Event alerts moves out of the band to sit on the right of the intro
+bp = OUT / 'the-briefing.html'
+t = bp.read_text()
+btn = '\n    <a class="btn pink" href="#" data-login>Event alerts</a>'
+assert btn in t
+t = t.replace(btn, '', 1)
+t = re.sub(r'(<p class="bl-intro">.*?</p>)', lambda m: '<div class="bl-introrow">' + m.group(1) + '<a class="btn pink" href="#" data-login>Event alerts</a></div>', t, count=1, flags=re.S)
+bp.write_text(t)
+
+# Independent Research page: same treatment, New report alerts on the right of the intro
+rp = OUT / 'research.html'
+t = rp.read_text()
+btn = '\n    <a class="btn" style="background:#fff;color:var(--res)" href="#" data-login>New report alerts</a>'
+assert btn in t
+t = t.replace(btn, '', 1)
+t = t.replace('<div class="r-intro"><div class="wrap">', '<div class="r-intro"><div class="wrap r-introrow">', 1)
+t = re.sub(r'(<div class="wrap r-introrow"><p>.*?</p>)', lambda m: m.group(1) + '<a class="btn" href="#" data-login>New report alerts</a>', t, count=1, flags=re.S)
+rp.write_text(t)
+
 # header: "Join" reads "Subscribe"
 for f in OUT.glob('*.html'):
     t = f.read_text()
