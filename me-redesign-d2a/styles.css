@@ -1870,3 +1870,23 @@ body[data-page="brief-event"].cv-sub .fband .btn{margin:0 0 0 auto}
 @media (max-width:760px){.ac-head .cv-meta{flex-wrap:wrap;max-width:100%}.ac-head .cv-meta em{font-size:15px}.ac-trail{gap:6px;flex-wrap:wrap;min-width:0}}
 /* D2A Briefing sign-up: bigger headline */
 .cv-sub .ev-head h1{font-size:clamp(34px,4.6vw,64px);line-height:1.02;letter-spacing:-.03em}
+
+/* ===== D2A: bookmarks ===== */
+.bm{border:0;background:none;cursor:pointer;color:var(--ink);font:inherit;padding:0}
+.bm-ico{display:inline-flex}
+.bm svg{width:18px;height:18px}
+.bm-card{position:absolute;top:8px;right:8px;z-index:2;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:transform .15s,background .15s}
+.bm-card:hover{transform:scale(1.08);background:#fff}
+.bm-card.on{color:var(--me)}
+.bm-art{display:inline-flex;align-items:center;gap:7px;margin:10px 0 4px;font:500 13px var(--body);color:var(--ink2)}
+.bm-art svg{width:17px;height:17px}
+.bm-art:hover,.bm-art.on{color:var(--me)}
+.bm-art:hover .bm-txt{text-decoration:underline;text-underline-offset:3px}
+.bm:focus-visible{outline:2px solid var(--me);outline-offset:2px}
+/* bookmarks: article link on the tags line; smaller icon tucked into the card corner */
+.art-tagrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
+.art-tagrow .art-tags{margin-bottom:0}
+.art-tagrow .bm-art{margin:0}
+.bm-card{top:6px;right:6px;width:28px;height:28px}
+.bm-card svg{width:15px;height:15px}
+.bm-card{margin:0!important}

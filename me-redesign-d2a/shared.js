@@ -590,3 +590,51 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   };
   fit(); addEventListener('resize', fit); addEventListener('load', fit);
 })();
+
+
+// D2A bookmarks
+(function () {
+  const ICON = filled => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v15.2a.6.6 0 0 1-1 .45L12 15.6l-5.5 4.55a.6.6 0 0 1-1-.45V4.5a1 1 0 0 1 1-1z" fill="${filled ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>`;
+  const KEY = 'me-saved';
+  const read = () => { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } };
+  const write = a => { try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {} };
+  const loggedIn = () => !!(window.ME_MEMBER && ME_MEMBER.get());
+  const paint = (b, on) => {
+    b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
+    b.querySelector('.bm-ico').innerHTML = ICON(on);
+    const t = b.querySelector('.bm-txt'); if (t) t.textContent = on ? 'Saved to read later' : 'Bookmark to read later';
+    b.setAttribute('aria-label', on ? 'Remove bookmark' : 'Bookmark to read later');
+  };
+  const make = (id, withText) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = withText ? 'bm bm-art' : 'bm bm-card'; b.dataset.bm = id;
+    b.innerHTML = '<span class="bm-ico"></span>' + (withText ? '<span class="bm-txt"></span>' : '');
+    paint(b, loggedIn() && read().includes(id));
+    return b;
+  };
+  // story cards (not partner content)
+  document.querySelectorAll('a.card:not(.sp-card), a.lead-big, a.top-story').forEach((card, i) => {
+    const img = card.querySelector('img'); if (!img) return;
+    const box = card.querySelector('.pic') || img.parentElement;
+    if (getComputedStyle(box).position === 'static') box.style.position = 'relative';
+    const t = card.querySelector('h2, h3, h4');
+    box.appendChild(make((t ? t.textContent : card.getAttribute('href') + i).trim().slice(0, 80), false));
+  });
+  // article: after the tags
+  const tags = document.querySelector('.art-tags');
+  if (tags) {
+    const id = 'article:' + (new URLSearchParams(location.search).get('s') || 'pulsant');
+    // same line as the tags (wraps underneath only if there are a lot of tags)
+    const row = document.createElement('div'); row.className = 'art-tagrow';
+    tags.before(row); row.append(tags, make(id, true));
+  }
+  // click: logged out -> log-in pop-up; logged in -> toggle saved
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.bm'); if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    if (!loggedIn()) { const l = document.querySelector('[data-login]'); if (l) l.click(); return; }
+    const a = read(), id = b.dataset.bm, i = a.indexOf(id);
+    if (i > -1) a.splice(i, 1); else a.push(id);
+    write(a); paint(b, i === -1);
+  }, true);
+})();
