@@ -39,8 +39,8 @@ def header(page):
       <img class="tri-logo" src="../brand/mobile-europe-logo-strap.png" alt="Mobile Europe: Communications infrastructure and digital services in EMEA" width="1343" height="236">
       <img class="tri-mark" src="../brand/me-mark.png" alt="" width="400" height="400">
     </a>
-    <a class="tri-tab brief{tab('brief')}" href="the-briefing.html"><b>The Briefing</b><small>Next: 24 Nov · AI &amp; Revenue</small></a>
-    <a class="tri-tab res{tab('res')}" href="research.html"><b>Independent<br>Research</b><small>New: OSS &amp; AI</small></a>
+    <a class="tri-tab brief{tab('brief')}" href="the-briefing.html"><b>The Briefing</b></a>
+    <a class="tri-tab res{tab('res')}" href="research.html"><b>Independent Research</b></a>
   </div>
   <div class="tri-bar">
     <div class="wrap">

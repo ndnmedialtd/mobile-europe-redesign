@@ -323,16 +323,20 @@ js += r"""
 # Mockup bar: switch between D2A and D2B, staying on the same page
 lab = '<span class="lbl" style="padding:0 6px;color:#888">Mockup <b style="color:#fff">D2A</b></span>'
 assert lab in js
-js = js.replace(lab, '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="d2a">D2A</option><option value="d2b">D2B</option></select><span class="div"></span>', 1)
+js = js.replace(lab, '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option></select><span class="div"></span>', 1)
 js += r"""
 
 // D2A / D2B version switch (mockup only): same page, other version
 (function () {
   const sel = document.getElementById('ver-switch'); if (!sel) return;
-  sel.value = /me-redesign-d2b\//.test(location.pathname) ? 'd2b' : 'd2a';
+  const here = (location.pathname.match(/\/(me-redesign(?:-d2[abc])?)\//) || [])[1] || 'me-redesign';
+  sel.value = here;
+  // pages that only exist in D2A/D2B fall back to the homepage elsewhere
+  const ONLY_NEW = ['about.html', 'editorial-board.html', 'white-paper.html'];
   sel.addEventListener('change', () => {
-    const file = location.pathname.split('/').pop() || 'index.html';
-    location.href = '../me-redesign-' + sel.value + '/' + file + location.search + location.hash;
+    let file = location.pathname.split('/').pop() || 'index.html';
+    if (/^me-redesign(-d2c)?$/.test(sel.value) && ONLY_NEW.includes(file)) file = 'index.html';
+    location.href = '../' + sel.value + '/' + file + location.search + location.hash;
   });
 })();
 """

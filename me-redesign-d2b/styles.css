@@ -1961,7 +1961,7 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 /* ===================== D2B: "three sites in one" header =====================
    Mobile Europe (grey), The Briefing (navy), Independent Research (red) are folder tabs.
    The site you are in has the raised tab, joined to a menu bar in its colour. */
-.d2b{--tri-me:#e2e2df}
+.d2b{--tri-me:#d3d3cf}
 .d2b .tri{position:relative;z-index:6;background:#fff;view-transition-name:tri-head}
 .tri-tabs{display:flex;align-items:flex-end;gap:8px;padding-top:16px}
 .tri-tab{display:flex;flex-direction:column;justify-content:center;gap:4px;height:62px;padding:0 24px;border-radius:16px 16px 0 0;color:#fff;
@@ -2064,3 +2064,9 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
   .tri-tab.me:not(.on) .tri-logo{display:none}
   .tri-tab.me:not(.on) .tri-mark{display:block}
 }
+/* D2B/D2C: franchise tabs carry just their name; Independent Research on one line */
+.tri-tab.res b{white-space:nowrap;font-size:13px;letter-spacing:.24em}
+.tri-tab.res.on b{font-size:15px;letter-spacing:.26em}
+@media (max-width:1100px){.tri-tab.res b,.tri-tab.res.on b{font-size:12px;letter-spacing:.16em}}
+@media (max-width:900px){.tri-tab.res b,.tri-tab.res.on b{font-size:11px;letter-spacing:.08em}}
+@media (max-width:760px){.tri-tab.res b,.tri-tab.res.on b{font-size:7.5px;letter-spacing:.04em}.tri-tab.brief b,.tri-tab.brief.on b{font-size:12px;white-space:nowrap}}
