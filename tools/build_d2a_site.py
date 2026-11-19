@@ -178,4 +178,12 @@ WIDE = '<img class="login-logo me-wide" src="../brand/mobile-europe-logo-wide.jp
 js = js.replace('<img class="login-logo" src="https://www.mobileeurope.co.uk/wp-content/uploads/2025/08/MobileEurope-logo-wide-strap-v4.png" alt="Mobile Europe">', WIDE)
 js = js.replace('<div class="pin-inline" style="margin-bottom:8px">', WIDE + '\n      <div class="pin-inline" style="margin-bottom:8px">', 1)
 (OUT / 'shared.js').write_text(js)
+# ---- pinned areas: no "Pinned post" label/icon, no "Pin your … here" link; "Sponsored" label reads "Partner content" ----
+for f in OUT.glob('*.html'):
+    t = f.read_text()
+    t = re.sub(r'<span class="pin-inline" data-pin[^>]*>[^<]*</span>', '', t)
+    t = re.sub(r'\n\s*<a class="pin-cta" href="#" data-pin-cta>[^<]*</a>', '', t)
+    t = re.sub(r'<a class="pin-cta" href="#" data-pin-cta>[^<]*</a>', '', t)
+    t = t.replace('<span class="sp-label">Sponsored</span>', '<span class="sp-label">Partner content</span>')
+    f.write_text(t)
 print('built', len(list(OUT.glob('*.html'))), 'pages in', OUT.name)

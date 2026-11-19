@@ -1856,3 +1856,5 @@ body[data-page="brief-event"].cv-sub .fband .btn{margin:0 0 0 auto}
 }
 .cv-word-link{display:flex;flex:none}
 .cv-word-link:hover .cv-word{opacity:.75}
+/* D2A: no "Pin your … here" link, so keep the carousel controls on the right */
+.cv2a .wpc-foot{justify-content:flex-end}
