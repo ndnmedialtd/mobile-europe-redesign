@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Data centres must look beyond the ‘bragawatts’ race, says Pulsant CEO – Mobile Europe mockup</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@400;500;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=120">
+<link rel="stylesheet" href="styles.css?v=125">
 <style>
 /* D2A: animate between pages (Chrome, Edge, Safari 18.2+; other browsers just load the page) */
 @view-transition{navigation:auto}
@@ -22,7 +22,7 @@
     <div class="cv-id"><a class="cv-word-link" href="index.html" aria-label="Mobile Europe home"><img class="cv-word" src="../brand/mobile-europe-wordmark.png" alt="Mobile Europe" width="1289" height="159"></a><p class="cv-tag">Communications infrastructure and digital services in EMEA</p></div>
     <div class="cv-acct">
       <button class="cv-ico" type="button" id="cv-search" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
-      <a href="#" data-subscribe>Join</a><span aria-hidden="true">|</span><a href="#" class="cv-login" data-login>Log in</a>
+      <a href="#" data-subscribe>Subscribe</a><span aria-hidden="true">|</span><a href="#" class="cv-login" data-login>Log in</a>
       <button class="cv-ico cv-menu" type="button" id="cv-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -144,7 +144,7 @@
 </main>
 
 <div id="site-footer"></div>
-<script src="shared.js?v=120"></script>
+<script src="shared.js?v=125"></script>
 <script>
 (function () {
   document.getElementById('cv-menu').addEventListener('click', () => document.querySelector('.mast .burger').click());
@@ -158,7 +158,7 @@
 <script>
 // Swap in the story chosen on the cover (?s=), so the image and headline match the one clicked
 (function () {
-  const STORIES = {"pulsant": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Rob-Coupland-ME.png", "chip": "Featured", "label": "Interview", "date": "11 Nov 2026", "tab": "insights.html", "title": "Data centres must look beyond the ‘bragawatts’ race, says Pulsant CEO", "cap": "Rob Coupland, CEO of Pulsant since 2019."}, "telefonica": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/telefonica-germany.png", "chip": "This just in", "label": "News", "date": "19 Nov 2026", "tab": "news.html", "title": "Telefónica Deutschland expands fibre broadband reach via Deutsche Glasfaser deal", "stand": "Telefónica Deutschland is expanding its fibre broadband reach through a new partnership with Deutsche Glasfaser, giving its O2 brand access to more fibre homes across Germany."}, "nokia": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Nokia-VodafoneThree.png", "chip": "This just in", "label": "News", "date": "18 Nov 2026", "tab": "news.html", "title": "VodafoneThree, Nokia partner to trial AI-powered mobile networks", "stand": "VodafoneThree has partnered with Nokia to test how AI could help make its mobile network faster and more reliable."}};
+  const STORIES = {"pulsant": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Rob-Coupland-ME.png", "chip": "Featured", "label": "Interview", "date": "11 Nov 2026", "tab": "insights.html", "title": "Data centres must look beyond the ‘bragawatts’ race, says Pulsant CEO", "cap": "Rob Coupland, CEO of Pulsant since 2019."}, "telefonica": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/telefonica-germany.png", "chip": "This just in", "label": "News", "date": "19 Nov 2026", "tab": "news.html", "title": "Telefónica Deutschland expands fibre broadband reach via Deutsche Glasfaser deal", "stand": "Telefónica Deutschland is expanding its fibre broadband reach through a new partnership with Deutsche Glasfaser, giving its O2 brand access to more fibre homes across Germany."}, "nokia": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Nokia-VodafoneThree.png", "chip": "This just in", "label": "News", "date": "18 Nov 2026", "tab": "news.html", "title": "VodafoneThree, Nokia partner to trial AI-powered mobile networks", "stand": "VodafoneThree has partnered with Nokia to test how AI could help make its mobile network faster and more reliable."}, "orange": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2022/09/Orange-Spain-Metaverse-Shop-e1666341211856-1068x661.png", "chip": "This just in", "label": "News", "date": "18 Nov 2026", "tab": "news.html", "title": "Orange pledges extra €250m to support emerging tech startups", "stand": "Orange has pledged an additional €250 million to its investment arm, Orange Ventures, adding to the group’s total assets under management."}, "ses": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/SES.png", "chip": "This just in", "label": "News", "date": "18 Nov 2026", "tab": "news.html", "title": "SES, ITU expand partnership to improve digital education in Africa", "stand": "SES and the International Telecommunication Union are widening their partnership to bring better connectivity to schools across Africa."}, "belgium": {"img": "https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Belgium.png", "chip": "This just in", "label": "News", "date": "17 Nov 2026", "tab": "news.html", "title": "Belgium confirms 2G shutdown plans for 2028/29", "stand": "Belgium has confirmed that its mobile operators will switch off their 2G networks in 2028/29, freeing spectrum for newer technologies."}};
   const key = new URLSearchParams(location.search).get('s') || 'pulsant', s = STORIES[key];
   document.querySelectorAll('.cv-up a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === (s || STORIES.pulsant).tab));
   if (!s || key === 'pulsant') return;
@@ -172,6 +172,34 @@
   document.querySelector('.art-tags').innerHTML = '<a href="news.html">News</a>';
   document.querySelector('.art-body').innerHTML = '<p class="ac-note">Mockup: the full story text goes here, laid out exactly like the Pulsant interview. Click the Featured cover story to see a complete article.</p>';
   document.querySelector('.art-topics').remove(); document.querySelector('.byline span').textContent = 'Editor · ' + s.date.replace('Nov', 'November') + ' · 2 min read';
+})();
+</script>
+<script>
+(function () {
+  const SECTIONS = { 'news.html': 'News', 'insights.html': 'Insights', 'cxo.html': 'CxO Zone' };
+  const TOPIC = {
+    pulsant: ['insights.html', 'Cloud/NFV', 'category-cloud-nfv.html'],
+    telefonica: ['news.html', 'Access', 'category-access.html'],
+    nokia: ['news.html', 'RAN', 'category-ran.html'],
+    orange: ['news.html', 'Financial/Regulation', 'category-financial-regulation.html'],
+    ses: ['news.html', 'Satellite', 'category-satellite.html'],
+    belgium: ['news.html', 'RAN', 'category-ran.html']
+  };
+  const key = new URLSearchParams(location.search).get('s') || 'pulsant';
+  const [sec, topic, topicHref] = TOPIC[key] || TOPIC.pulsant;
+  const em = document.querySelector('.ac-head .cv-meta em');
+  em.classList.add('ac-trail');
+  em.innerHTML = `<a href="${sec}">${SECTIONS[sec]}</a><span aria-hidden="true">›</span><a href="${topicHref}">${topic}</a>`;
+  em.setAttribute('aria-label', 'Breadcrumb');
+  const base = location.href.replace(/[^/]*$/, ''), title = document.querySelector('.ac-title').textContent;
+  const ld = document.createElement('script'); ld.type = 'application/ld+json';
+  ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: base + 'index.html' },
+    { '@type': 'ListItem', position: 2, name: SECTIONS[sec], item: base + sec },
+    { '@type': 'ListItem', position: 3, name: topic, item: base + topicHref },
+    { '@type': 'ListItem', position: 4, name: title }
+  ] });
+  document.head.appendChild(ld);
 })();
 </script>
 </body>

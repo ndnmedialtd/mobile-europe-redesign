@@ -50,8 +50,67 @@ pin = re.search(r'\n        <div class="pin-slot">.*?\n        </div>', cur, re.
 grid = re.search(r'<h2>More latest news</h2>.*?<div class="grid3">(.*?)\n      </div>', home, re.S)
 cards = re.findall(r'\n        <a class="card".*?</a>', grid.group(1))
 home = home.replace(grid.group(1), ''.join(cards[:-1]) + pin, 1)
+# One cover story, not a carousel: keep the first slide, drop the others, the dots and the auto-rotate
+home = re.sub(r'\n  <a class="cv-slide" href=.*?\n  </a>', '', home, flags=re.S)
+home = re.sub(r'\n  <div class="cv-dots".*?\n  </div>', '', home, count=1, flags=re.S)
+home = home.replace('<!-- Full-bleed cover story (rotates) -->', '<!-- Full-bleed cover story -->')
+home = home.replace(' aria-roledescription="carousel" aria-label="Cover stories"', ' aria-label="Cover story"', 1)
+home = home.replace("  start();\n  document.getElementById('cv-menu')", "  document.getElementById('cv-menu')", 1)
+# and switch the rotation code off completely (hover/leave on the cover used to restart it, which blanked the single slide)
+home = re.sub(r"  const slides = \[\.\.\.document\.querySelectorAll\('\.cv-slide'\)\].*?hero\.addEventListener\('mouseleave', start\);\n", '', home, count=1, flags=re.S)
+home = home.replace('// Cover page: rotate cover stories; reuse the site menu and search', '// Cover page: reuse the site menu and search', 1)
+# More latest news: start the advert column level with the black rule above the heading
+home = home.replace('<div class="with-rail" style="margin-top:8px">\n    <div>\n      <div class="sh"><h2>More latest news</h2>',
+                    '<div class="with-rail" style="margin-top:48px">\n    <div>\n      <div class="sh" style="margin-top:0"><h2>More latest news</h2>', 1)
 cut = home.index('<div id="site-footer">')
 home = home[:cut] + '\n' + rest + home[cut:]
+# "Also just in" (top three on the homepage): each opens its own story on the article page
+U = 'https://www.mobileeurope.co.uk/wp-content/uploads/'
+ALSO = {
+    'orange': ('Orange pledges extra €250m to support emerging tech startups', '2022/09/Orange-Spain-Metaverse-Shop-e1666341211856-1068x661.png', '18 Nov 2026',
+               'Orange has pledged an additional €250 million to its investment arm, Orange Ventures, adding to the group’s total assets under management.'),
+    'ses': ('SES, ITU expand partnership to improve digital education in Africa', '2026/11/SES.png', '18 Nov 2026',
+            'SES and the International Telecommunication Union are widening their partnership to bring better connectivity to schools across Africa.'),
+    'belgium': ('Belgium confirms 2G shutdown plans for 2028/29', '2026/11/Belgium.png', '17 Nov 2026',
+                'Belgium has confirmed that its mobile operators will switch off their 2G networks in 2028/29, freeing spectrum for newer technologies.'),
+}
+for key, (title, img, date, stand) in ALSO.items():
+    home = home.replace(f'<a href="article.html"><time>{date[:6]}</time>{title}</a>', f'<a href="article.html?s={key}"><time>{date[:6]}</time>{title}</a>', 1)
+extra = ''.join(f', "{k}": {{"img": "{U + v[1]}", "chip": "This just in", "label": "News", "date": "{v[2]}", "tab": "news.html", "title": "{v[0]}", "stand": "{v[3]}"}}' for k, v in ALSO.items())
+i = article_t.index('const STORIES = {'); j = article_t.index('};', i)
+article_t = article_t[:j] + extra + article_t[j:]
+# Breadcrumb, the light way: the label above the headline becomes a "Section › Topic" link trail,
+# plus hidden schema.org BreadcrumbList data for Google (no extra breadcrumb bar)
+TRAIL_JS = """<script>
+(function () {
+  const SECTIONS = { 'news.html': 'News', 'insights.html': 'Insights', 'cxo.html': 'CxO Zone' };
+  const TOPIC = {
+    pulsant: ['insights.html', 'Cloud/NFV', 'category-cloud-nfv.html'],
+    telefonica: ['news.html', 'Access', 'category-access.html'],
+    nokia: ['news.html', 'RAN', 'category-ran.html'],
+    orange: ['news.html', 'Financial/Regulation', 'category-financial-regulation.html'],
+    ses: ['news.html', 'Satellite', 'category-satellite.html'],
+    belgium: ['news.html', 'RAN', 'category-ran.html']
+  };
+  const key = new URLSearchParams(location.search).get('s') || 'pulsant';
+  const [sec, topic, topicHref] = TOPIC[key] || TOPIC.pulsant;
+  const em = document.querySelector('.ac-head .cv-meta em');
+  em.classList.add('ac-trail');
+  em.innerHTML = `<a href="${sec}">${SECTIONS[sec]}</a><span aria-hidden="true">›</span><a href="${topicHref}">${topic}</a>`;
+  em.setAttribute('aria-label', 'Breadcrumb');
+  const base = location.href.replace(/[^/]*$/, ''), title = document.querySelector('.ac-title').textContent;
+  const ld = document.createElement('script'); ld.type = 'application/ld+json';
+  ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: base + 'index.html' },
+    { '@type': 'ListItem', position: 2, name: SECTIONS[sec], item: base + sec },
+    { '@type': 'ListItem', position: 3, name: topic, item: base + topicHref },
+    { '@type': 'ListItem', position: 4, name: title }
+  ] });
+  document.head.appendChild(ld);
+})();
+</script>
+"""
+article_t = article_t.replace('</body>', TRAIL_JS + '</body>', 1)
 (OUT / 'index.html').write_text(home)
 (OUT / 'article.html').write_text(article_t)
 
@@ -186,4 +245,8 @@ for f in OUT.glob('*.html'):
     t = re.sub(r'<a class="pin-cta" href="#" data-pin-cta>[^<]*</a>', '', t)
     t = t.replace('<span class="sp-label">Sponsored</span>', '<span class="sp-label">Partner content</span>')
     f.write_text(t)
+# header: "Join" reads "Subscribe"
+for f in OUT.glob('*.html'):
+    t = f.read_text()
+    f.write_text(t.replace('<a href="#" data-subscribe>Join</a>', '<a href="#" data-subscribe>Subscribe</a>'))
 print('built', len(list(OUT.glob('*.html'))), 'pages in', OUT.name)
