@@ -1890,3 +1890,10 @@ body[data-page="brief-event"].cv-sub .fband .btn{margin:0 0 0 auto}
 .bm-card{top:6px;right:6px;width:28px;height:28px}
 .bm-card svg{width:15px;height:15px}
 .bm-card{margin:0!important}
+
+/* D2A: Independent Research uses The Briefing's navy for its tab and its header band (red accent line kept) */
+.cv2a .cv-sections .f-r{background:var(--brief-navy)}
+.cv2a .cv-sections .f-r:hover{background:#1b2070}
+.cv2a .cv-sections a.f-r.on,body[data-page="res"].cv2a .cv-sections a.f-r.on{background:var(--brief-navy)!important;border-color:var(--brief-navy)!important}
+.cv-sub .fband.res{background:var(--brief-navy);border-bottom-color:var(--res)}
+body[data-page="res"].cv-sub .cv-up{border-bottom-color:var(--brief-navy)!important}
