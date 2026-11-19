@@ -638,3 +638,21 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
     write(a); paint(b, i === -1);
   }, true);
 })();
+
+
+// D2A: where a column opens with a black-ruled section heading, start the advert column level with that rule
+(function () {
+  const rows = [...document.querySelectorAll('.with-rail')].map(w => {
+    const col = w.firstElementChild, rail = w.querySelector(':scope > .rail');
+    const sh = col && col.firstElementChild;
+    return rail && sh && sh.classList.contains('sh') ? { col, rail, sh } : null;
+  }).filter(Boolean);
+  const fit = () => rows.forEach(({ col, rail, sh }) => {
+    rail.style.marginTop = '';
+    const c = col.getBoundingClientRect(), r = rail.getBoundingClientRect();
+    if (Math.abs(r.top - c.top) > 2 || r.left < c.right) return;   // only when the rail sits beside the column
+    const gap = Math.round(sh.getBoundingClientRect().top - c.top);
+    if (gap > 0) rail.style.marginTop = gap + 'px';
+  });
+  fit(); addEventListener('resize', fit); addEventListener('load', fit);
+})();

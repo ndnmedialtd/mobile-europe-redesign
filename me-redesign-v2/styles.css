@@ -1897,3 +1897,13 @@ body[data-page="brief-event"].cv-sub .fband .btn{margin:0 0 0 auto}
 .cv2a .cv-sections a.f-r.on,body[data-page="res"].cv2a .cv-sections a.f-r.on{background:var(--brief-navy)!important;border-color:var(--brief-navy)!important}
 .cv-sub .fband.res{background:var(--brief-navy);border-bottom-color:var(--res)}
 body[data-page="res"].cv-sub .cv-up{border-bottom-color:var(--brief-navy)!important}
+/* D2A phones: wordmark never squashed, strapline small and tucked under it, block centred against the ME mark */
+@media (max-width:760px){
+  .cv-id{align-self:center;justify-content:center;gap:3px}
+  .cv-word-link{line-height:0;max-width:100%}
+  .cv-word,.cv-sub .cv-word{height:auto!important;width:120px;max-width:100%}
+  .cv-id .cv-tag,.cv-sub .cv-id .cv-tag{font-size:9.5px;line-height:1.2;font-weight:600}
+  .cv-acct .cv-ico{width:34px;height:34px}
+  .cv-acct{gap:4px}
+}
+@media (max-width:760px){.cv-sub .cv-id{gap:3px}}
