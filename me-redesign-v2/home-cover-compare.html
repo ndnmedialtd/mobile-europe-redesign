@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D · Cover compared – Mobile Europe mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Roboto,system-ui,sans-serif;background:#e9e9e6;color:#141414;padding:18px 16px 40px}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;max-width:1800px;margin:0 auto 16px}
+.top h1{font:700 22px Oswald,sans-serif;text-transform:uppercase;letter-spacing:.03em}
+.top h1 span{color:#d0103a}
+.top p{font-size:13.5px;color:#555;flex:1;min-width:240px}
+.seg{display:flex;background:#fff;border-radius:999px;padding:3px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.seg button{border:0;background:none;font:600 13px Roboto;padding:7px 14px;border-radius:999px;cursor:pointer;color:#444}
+.seg button[aria-pressed="true"]{background:#141414;color:#fff}
+.back{font:600 13px Roboto;color:#d0103a;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;max-width:1800px;margin:0 auto}
+.col h2{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font:700 16px Roboto;margin-bottom:4px}
+.col h2 a{font:600 12.5px Roboto;color:#d0103a;text-decoration:none;white-space:nowrap}
+.col p{font-size:12.5px;color:#555;line-height:1.4;margin-bottom:8px;min-height:3.6em}
+.frame{position:relative;background:#fff;border-radius:0 14px 0 14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.frame iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;background:#fff}
+.phone .frame{max-width:300px;margin:0 auto;border-radius:22px;border:6px solid #141414}
+@media (max-width:1300px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.col p{min-height:0}}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Option D · <span>Cover</span>, four versions</h1>
+  <p>Same concept, four takes on the tabs, the cover headline and the speakers. Previews show the top of each page; open one full size to scroll and click around.</p>
+  <div class="seg" role="group" aria-label="Preview size"><button type="button" data-w="1400" aria-pressed="true">Desktop</button><button type="button" data-w="390" aria-pressed="false">Phone</button></div>
+  <a class="back" href="home-cover.html">← Back to D1</a>
+</div>
+<div class="grid" id="grid">
+  <div class="col"><h2>D1 · Cover <a href="home-cover.html" target="_top">Open full size →</a></h2><p>White tabs with black keylines; headline right in a black box; "Speaking next" panels with one lead speaker per event, tap a face to swap.</p><div class="frame"><iframe src="home-cover.html" title="D1 Cover preview" loading="lazy"></iframe></div></div>
+  <div class="col"><h2>D2 · Cover, split <a href="home-cover-2.html" target="_top">Open full size →</a></h2><p>Red tabs; headline left in a white box; an "Also just in" list sits on the photo so more news shows above the fold.</p><div class="frame"><iframe src="home-cover-2.html" title="D2 Cover split preview" loading="lazy"></iframe></div></div>
+  <div class="col"><h2>D3 · Cover, stage <a href="home-cover-3.html" target="_top">Open full size →</a></h2><p>Black tabs with a red top edge; big centred magazine headline; a full-width black "On stage next" band of portrait speaker cards with countdowns.</p><div class="frame"><iframe src="home-cover-3.html" title="D3 Cover stage preview" loading="lazy"></iframe></div></div>
+  <div class="col"><h2>D4 · Cover, The Briefing <a href="home-cover-4.html" target="_top">Open full size →</a></h2><p>D1 with the speakers branded ME The Briefing: newly added speakers first, then a row of who else is speaking.</p><div class="frame"><iframe src="home-cover-4.html" title="D4 Cover The Briefing preview" loading="lazy"></iframe></div></div>
+</div>
+<script>
+(function () {
+  let W = 1400;
+  const H = () => W === 1400 ? 2000 : 1500;
+  const fit = () => document.querySelectorAll('.frame').forEach(f => {
+    const fr = f.querySelector('iframe'), s = f.clientWidth / W;
+    fr.style.width = W + 'px'; fr.style.height = H() + 'px'; fr.style.transform = `scale(${s})`;
+    f.style.height = Math.round(H() * s) + 'px';
+  });
+  document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+    W = +b.dataset.w;
+    document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    document.getElementById('grid').classList.toggle('phone', W < 600);
+    fit();
+  }));
+  addEventListener('resize', fit); fit();
+})();
+</script>
+</body>
+</html>

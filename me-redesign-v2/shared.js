@@ -139,6 +139,10 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
     </select>
     <a href="${pages[(idx + 1) % pages.length][0]}" aria-label="Next page">→</a>
     <span class="div"></span>
+    ${page === 'home' ? `<span class="div"></span><label class="lbl" for="home-opt" style="padding:0 2px 0 6px;color:#888">Homepage</label>
+    <select id="home-opt" aria-label="Homepage option" onchange="location.href=this.value">
+      ${[['index.html', 'Current'], ['home-voices.html', 'A · Voices'], ['home-agenda.html', 'B · The Agenda'], ['home-room.html', 'C · The Room'], ['home-cover.html', 'D1 · Cover'], ['home-cover-2.html', 'D2 · Cover, split'], ['home-cover-2a.html', 'D2A · Split + transitions'], ['home-cover-3.html', 'D3 · Cover, stage'], ['home-cover-4.html', 'D4 · Cover, The Briefing'], ['home-cover-compare.html', 'D · Compare all']].map(([h, l]) => `<option value="${h}"${location.pathname.endsWith('/' + h) || (h === 'index.html' && /\/$/.test(location.pathname)) ? ' selected' : ''}>${l}</option>`).join('')}
+    </select>` : ''}
     <label class="lbl" for="hdr-var" style="padding:0 2px 0 6px;color:#888">Header</label>
     <select id="hdr-var" aria-label="Header version">
       <option value="tabs">Current · Folder tabs</option>

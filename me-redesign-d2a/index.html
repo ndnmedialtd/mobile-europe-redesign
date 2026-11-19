@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile Europe – D2A homepage mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@400;500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=119">
+<style>
+/* D2A: animate between pages (Chrome, Edge, Safari 18.2+; other browsers just load the page) */
+@view-transition{navigation:auto}
+</style>
+</head>
+<body data-page="home" class="cover-page cv2 cv2a">
+<div id="site-header"></div>
+
+<!-- Cover header: big ME mark, tagline, Join | Log in -->
+<header class="cv-bar">
+  <div class="cv-in">
+    <a class="cv-me" href="index.html" aria-label="Mobile Europe home"><img src="../brand/me-mark.png" alt="ME" width="400" height="400"></a>
+    <div class="cv-id"><a class="cv-word-link" href="index.html" aria-label="Mobile Europe home"><img class="cv-word" src="../brand/mobile-europe-wordmark.png" alt="Mobile Europe" width="1289" height="159"></a><p class="cv-tag">Communications infrastructure and digital services in EMEA</p></div>
+    <div class="cv-acct">
+      <button class="cv-ico" type="button" id="cv-search" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+      <a href="#" data-subscribe>Join</a><span aria-hidden="true">|</span><a href="#" class="cv-login" data-login>Log in</a>
+      <button class="cv-ico cv-menu" type="button" id="cv-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Full-bleed cover story (rotates) -->
+<section class="cv-hero" aria-roledescription="carousel" aria-label="Cover stories">
+  <a class="cv-slide cur" href="article.html?s=pulsant" style="--img:url(https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Rob-Coupland-ME.png)">
+    <span class="cv-head"><span class="cv-meta"><i>Featured</i><em>Interview</em><time>11 Nov 2026</time></span><b>Data centres must look beyond the ‘bragawatts’ race, says Pulsant CEO</b></span>
+  </a>
+  <a class="cv-slide" href="article.html?s=telefonica" style="--img:url(https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/telefonica-germany.png)" aria-hidden="true" tabindex="-1">
+    <span class="cv-head"><span class="cv-meta"><i>This just in</i><em>News</em><time>19 Nov 2026</time></span><b>Telefónica Deutschland expands fibre broadband reach via Deutsche Glasfaser deal</b></span>
+  </a>
+  <a class="cv-slide" href="article.html?s=nokia" style="--img:url(https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Nokia-VodafoneThree.png)" aria-hidden="true" tabindex="-1">
+    <span class="cv-head"><span class="cv-meta"><i>This just in</i><em>News</em><time>18 Nov 2026</time></span><b>VodafoneThree, Nokia partner to trial AI-powered mobile networks</b></span>
+  </a>
+  <aside class="cv-also" aria-label="Also just in">
+    <h2>Also just in</h2>
+    <a href="article.html"><time>18 Nov</time>Orange pledges extra €250m to support emerging tech startups</a>
+    <a href="article.html"><time>18 Nov</time>SES, ITU expand partnership to improve digital education in Africa</a>
+    <a href="article.html"><time>17 Nov</time>Belgium confirms 2G shutdown plans for 2028/29</a>
+  </aside>
+  <a class="cv-more" href="news.html">More latest news <span aria-hidden="true">→</span></a>
+  <div class="cv-dots" role="tablist" aria-label="Choose cover story">
+    <button type="button" aria-label="Story 1" aria-current="true"></button><button type="button" aria-label="Story 2"></button><button type="button" aria-label="Story 3"></button>
+  </div>
+</section>
+
+<!-- Slim section bar -->
+<nav class="cv-sections" aria-label="Sections">
+  <div class="wrap">
+    <a href="news.html">News</a><a href="insights.html">Insights</a><a href="cxo.html">CxO Zone</a><a href="white-papers.html">White Papers</a><a href="videos.html">Videos</a><a href="events.html">Events</a><a href="about.html">About</a>
+    <a class="f-b" href="the-briefing.html">The Briefing</a><a class="f-r" href="research.html">Independent Research</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <!-- Speaking next: lead speaker per event, tap a face to swap -->
+  <section class="cv-minds">
+    <div class="cv-minds-hd">
+      <div><span class="kicker">Speaking next</span><h2>Bringing the best minds together in the telco space</h2></div>
+      <a class="btn red" href="events.html">See all events</a>
+    </div>
+    <div class="sn-grid" id="sn-grid"></div>
+  </section>
+
+  <div class="with-rail" style="margin-top:8px">
+    <div>
+      <div class="sh"><h2>More latest news</h2><a href="news.html">All news</a></div>
+      <div class="grid3">
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2022/09/Orange-Spain-Metaverse-Shop-e1666341211856-1068x661.png" alt=""><span class="tag">Financial/Regulation</span></div><h3>Orange pledges extra €250m to support emerging tech startups</h3><div class="date">18 Nov 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/SES.png" alt=""><span class="tag">Middle East &amp; Africa</span></div><h3>SES, ITU expand partnership to improve digital education in Africa</h3><div class="date">18 Nov 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Belgium.png" alt=""><span class="tag">5G &amp; Beyond</span></div><h3>Belgium confirms 2G shutdown plans for 2028/29</h3><div class="date">17 Nov 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2025/03/Orange-poland-AdobeStock_833458545.jpeg" alt=""><span class="tag">BSS/OSS/CX</span></div><h3>Orange Jordan replaces 17-year-old billing platform with Ericsson system</h3><div class="date">17 Nov 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/MTN-Telecom.png" alt=""><span class="tag">Middle East &amp; Africa</span></div><h3>MTN exits Syrian market as Zain prepares to take over</h3><div class="date">16 Nov 2026</div></a>
+        <div class="pin-slot">
+          <a class="card sp-card" href="article.html">
+            <div class="sp-top"><span class="sp-label">Sponsored</span><span class="pin-inline" data-pin>Pinned post</span></div>
+            <div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/ISS-OnOff-Telecom-Case-Study-3-WP-696x844.jpg" alt="" style="object-position:center 20%"></div>
+            <h3>There’s a Core for That: turn your mobile core into a growth engine</h3>
+          </a>
+          <a class="pin-cta" href="#" data-pin-cta>Pin your post here →</a>
+        </div>
+      </div>
+    </div>
+    <aside class="rail"><div class="sticky"><div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 1<small>300×250 · GAM</small></div></div><div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 2<small>300×250 · GAM</small></div></div></div></aside>
+  </div>
+
+</main>
+
+
+<div class="bb-zone"><div class="ad-label">Advertisement</div><div class="ad ad-bb">Billboard (BB)<small>970×250 · GAM · 300×250 on mobile</small></div></div>
+
+<main class="wrap">
+  <div class="with-rail">
+    <div>
+      <div class="sh" style="margin-top:0"><h2>Insights</h2><a href="insights.html">More insights</a></div>
+      <div class="grid3">
+        <div class="pin-slot">
+          <a class="card sp-card" href="article.html">
+            <div class="sp-top"><span class="sp-label">Sponsored</span><span class="pin-inline" data-pin>Pinned post</span></div>
+            <div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/d4ec9bf7-82db-4cab-acec-7541e9eb7c3a-1068x712.jpg" alt=""><span class="tag ins">Insights</span></div>
+            <h3>Huawei organisations across 14 European countries achieve ISO 37001 certification</h3>
+          </a>
+          <a class="pin-cta" href="#" data-pin-cta>Pin your post here →</a>
+        </div>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Steve-Cray.png" alt=""><span class="tag ins">Interview</span></div><h3>Cellnex UK MD on ‘catching up’ with Europe’s 5G networks</h3><div class="date">5 Nov 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/Everton-Mobile.png" alt=""><span class="tag ins">Interview</span></div><h3>Does a football club really need its own mobile service? ‘There’s no need,’ says Everton Mobile boss</h3><div class="date">30 Oct 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/OCT-Celfocus.png" alt=""><span class="tag ins">Opinion</span></div><h3>On AI and autonomous networks: sceptics and believers make the same mistake</h3><div class="date">27 Oct 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/Dejan-Leskaoski.png" alt=""><span class="tag ins">Interview</span></div><h3>Mavenir CRO on why AI is putting the mobile core back in focus</h3><div class="date">20 Oct 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/Job-cuts-continue-ME.png" alt=""><span class="tag ins">Analysis</span></div><h3>Fresh wave of job cuts hits telecoms industry</h3><div class="date">13 Oct 2026</div></a>
+      </div>
+    </div>
+    <aside class="rail"><div class="sticky">
+      <div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 3<small>300×250 · GAM</small></div></div>
+      <div class="nl"><h4>Get the newsletter</h4><p>The week’s essential EMEA telecoms news and analysis, plus first notice of new Briefings and reports.</p><input placeholder="Work email" aria-label="Work email"><button class="btn red">Subscribe</button></div>
+    </div></aside>
+  </div>
+</main>
+
+<!-- ===== INDEPENDENT RESEARCH BAND ===== -->
+<section class="res-band has-anno">
+  <div class="wrap">
+    <div class="hd">
+      <div class="res-word"><i>ME</i>Independent Research</div>
+      <a class="btn" style="background:var(--res)" href="research.html">All reports</a>
+    </div>
+    <div class="res-grid">
+      <a class="res-item big" href="research.html"><div class="cover"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/ME-Report-BLUEPLANET-COVER-v1.jpg" alt=""></div><div class="kick" style="color:var(--res);margin-top:14px">New report</div><h3 style="margin-top:0">OSS: Why trusted data matters as a catalyst for AI modernisation</h3><div class="by">Dawn Bushaus, Telecoms Analyst</div><span class="cta">Download free →</span></a>
+      <a class="res-item" href="research.html"><div class="cover"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/03/ME-Report-Celfocus26-COVER.jpg" alt=""></div><h3>Agentic AI: Achieving autonomous network operations</h3><div class="by">Sue Tabbitt</div></a>
+      <a class="res-item" href="research.html"><div class="cover"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/03/ME-Report-Druid-COVER-v1.jpg" alt=""></div><h3>Solving the profit puzzle of P5G networks</h3><div class="by">Dawn Bushaus</div></a>
+      <a class="res-item" href="research.html"><div class="cover"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2025/11/ME-Report-Automation-Mavenir-COVER-tint_v1-1024x724.gif" alt=""></div><h3>AN + AI: Change telecoms’ future</h3><div class="by">Sue Tabbitt</div></a>
+    </div>
+    <div class="writers">
+      <span>Our analysts</span>
+      <a class="av" href="research.html"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/Dawn.jpg" alt="">Dawn Bushaus</a>
+      <a class="av" href="research.html"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/Anne.jpg" alt="">Anne Morris</a>
+      <a class="av" href="research.html"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/Sue.png" alt="">Sue Tabbitt</a>
+      <a class="av" href="research.html"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/07/Annie-Turner-2.jpg" alt="">Annie Turner</a>
+      <a class="av" href="research.html"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/10/Charlotte2.jpg" alt="">Charlotte Patrick</a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="with-rail">
+    <div class="grid2" style="align-items:start">
+      <div>
+        <div class="sh"><h2>CxO Zone</h2><a href="cxo.html">All moves</a></div>
+        <div class="rows">
+          <a href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Google-Annika-Bizon.png" alt=""></div><div><div class="kick">Appointment</div><h3>Google poaches Samsung VP Annika Bizon to lead TMT team</h3></div></a>
+          <a href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Telus.png" alt=""></div><div><div class="kick">Board</div><h3>Telus names ex-EE and ex-KPMG chiefs to board</h3></div></a>
+          <a href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/SpaceX-696x464.jpeg" alt=""></div><div><div class="kick">Board</div><h3>Google’s Don Harrison resigns from SpaceX board</h3></div></a>
+          <a href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/CELFOCUS-.png" alt=""></div><div><div class="kick">Mobile Europe</div><h3>Celfocus’ Carla Penedo joins Mobile Europe’s Editorial Advisory Board</h3></div></a>
+        </div>
+      </div>
+      <div class="has-anno">
+        <div class="sh"><h2>White Paper Hub</h2><a href="white-papers.html">All papers</a></div>
+        <div class="rows wp">
+          <a href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/ISS-OnOff-Telecom-Case-Study-3-WP-696x844.jpg" alt=""></div><div><h3>There’s a Core for That</h3><div class="spon">White paper · Mavenir</div></div></a>
+          <a href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/windriver-nov26-696x901.jpg" alt=""></div><div><h3>IDC Spotlight: Telco Core and IT Modernization – Cloud-Native Convergence Built for the AI Era</h3><div class="spon">Report · Wind River</div></div></a>
+          <a href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/11/Detecting-and-Countering-Fraud-and-Revenue-Leakage-in-Mobile-Networks-Handbook-for-Fraud-Revenue-Assurance-Network-Teams-1-1-696x905.jpg" alt=""></div><div><h3>Detecting and Countering Fraud and Revenue Leakage in Mobile Networks</h3><div class="spon">Handbook · ENEA</div></div></a>
+        </div>
+      </div>
+    </div>
+    <aside class="rail"><div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 4<small>300×250 · GAM</small></div></div></aside>
+  </div>
+
+  <div class="with-rail">
+    <div class="has-anno">
+      <div class="sh brief"><h2>The Briefing &amp; Events</h2><a href="the-briefing.html">All upcoming</a></div>
+      <div class="ev-list">
+        <a class="ev next" href="the-briefing.html"><div class="d"><b>24</b><small>Nov 2026</small></div><div class="t"><div class="series">The Briefing <em>| AI · Next up</em></div><h3>AI in Network Optimisation: Finding Forgotten Revenue</h3><div class="sp">Exclusive sponsor <img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/07/anritsu-logo.svg" alt="Anritsu"></div></div></a>
+        <a class="ev tif" href="#"><div class="d"><b>10</b><small>Dec 2026</small></div><div class="t"><h3>Telecoms in Focus</h3></div></a>
+        <a class="ev" href="the-briefing.html"><div class="d"><b>4</b><small>Feb 2027</small></div><div class="t"><div class="series">The Briefing <em>| Security</em></div><h3>The critical role of telcos in defence</h3><div class="sp">Sponsored by <img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/07/Logo-Red_Hat-A-Standard-RGB-horizontal.svg" alt="Red Hat"></div></div></a>
+        <a class="ev" href="#"><div class="d"><b>1–4</b><small>Mar 2027</small></div><div class="t"><div class="series">Event <em>| Coverage &amp; meetups</em></div><h3>MWC Barcelona</h3></div></a>
+      </div>
+    </div>
+    <aside class="rail" style="margin-top:40px"><div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 5<small>300×250 · GAM</small></div></div></aside>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="shared.js?v=119"></script>
+<script>
+// Cover page: rotate cover stories; reuse the site menu and search
+(function () {
+  const slides = [...document.querySelectorAll('.cv-slide')], dots = [...document.querySelectorAll('.cv-dots button')];
+  let i = 0, t;
+  const go = n => {
+    slides[i].classList.remove('cur'); slides[i].setAttribute('aria-hidden', 'true'); slides[i].tabIndex = -1; dots[i].removeAttribute('aria-current');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('cur'); slides[i].removeAttribute('aria-hidden'); slides[i].removeAttribute('tabindex'); dots[i].setAttribute('aria-current', 'true');
+  };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const start = () => { if (!reduce) { clearInterval(t); t = setInterval(() => go(i + 1), 6000); } };
+  dots.forEach((d, k) => d.addEventListener('click', () => { go(k); start(); }));
+  const hero = document.querySelector('.cv-hero');
+  hero.addEventListener('mouseenter', () => clearInterval(t)); hero.addEventListener('mouseleave', start);
+  start();
+  document.getElementById('cv-menu').addEventListener('click', () => document.querySelector('.mast .burger').click());
+  document.getElementById('cv-search').addEventListener('click', () => {
+    const p = document.getElementById('search-panel'); document.querySelector('.cv-bar').after(p); p.hidden = !p.hidden; if (!p.hidden) p.querySelector('input').focus();
+  });
+  const m = window.ME_MEMBER && ME_MEMBER.get();
+  if (m) { const l = document.querySelector('.cv-login'); l.textContent = 'Hi, ' + m.first; l.setAttribute('href', 'members.html'); l.removeAttribute('data-login'); }
+})();
+
+// Speaking next: one lead speaker per event, small faces swap in (tap or every 6s)
+(function () {
+  const U = 'https://www.mobileeurope.co.uk/wp-content/uploads/';
+  const EV = [
+    { cls: 'brief', label: 'The Briefing · Live online', date: '2026-11-24', day: '24 Nov', title: 'AI in Network Optimisation: Finding Forgotten Revenue', href: 'briefing-event.html', cta: 'Register free', more: 4,
+      sp: [['Nektaria Efthymiou', 'Network Platform & Security Research Director', 'BT', '2026/10/Nektaria-Efthymiou.jpg'],
+           ['Andy Linham', 'Principal Strategy Manager', 'Vodafone Business', '2026/06/Andy-Linham-1024x1024.jpg'],
+           ['Larbi Belkhit', 'Principal Analyst', 'ABI Research', '2026/07/Larbi-Belkhit-1010x1024.jpg']] },
+    { cls: 'tif', label: 'Telecoms in Focus · Virtual conference', date: '2026-12-10', day: '10 Dec', title: '2026 in focus, 2027 and beyond', href: 'events.html', cta: 'Register', more: 11,
+      sp: [['Colin Bannon', 'CTO', 'BT Business', '2025/12/Colin-Bannon.jpg'],
+           ['Philippe Ensarguet', 'VP Cloud & Software Engineering', 'Orange', '2025/11/Philippe-Ensarguet.jpg'],
+           ['Francesca Serravalle', 'Head of Network Monetisation Strategy', 'Vodafone', '2026/10/Francesca-Serravalle.jpg']] }
+  ];
+  const esc = t => t.replace(/&/g, '&amp;');
+  const days = d => Math.max(0, Math.ceil((new Date(d + 'T09:00:00') - new Date()) / 864e5));
+  const grid = document.getElementById('sn-grid');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  EV.forEach(ev => {
+    const el = document.createElement('article');
+    el.className = 'sn ' + ev.cls; let cur = 0;
+    const draw = () => {
+      const [n, r, o, img] = ev.sp[cur], d = days(ev.date);
+      el.innerHTML = `<div class="sn-lead"><img src="${U + img}" alt="${n}"><span class="sn-count">${d === 0 ? 'On stage <b>today</b>' : `On stage in <b>${d}</b> day${d === 1 ? '' : 's'}`}</span></div>
+        <div class="sn-body"><small class="sn-ev">${ev.label} · ${ev.day}</small>
+        <h3 class="sn-name">${n}</h3><p class="sn-role">${esc(r)}, <em>${esc(o)}</em></p>
+        <p class="sn-topic">Discussing <b>${ev.title}</b></p>
+        <div class="sn-also"><span>Also speaking</span>${ev.sp.map((s, k) => k === cur ? '' : `<button type="button" data-k="${k}" title="${s[0]}, ${esc(s[2])}" aria-label="Show ${s[0]}"><img src="${U + s[3]}" alt=""></button>`).join('')}<span class="sn-more">+${ev.more}</span></div>
+        <a class="btn white" href="${ev.href}">${ev.cta}</a></div>`;
+      el.querySelectorAll('.sn-also button').forEach(b => b.addEventListener('click', () => { cur = +b.dataset.k; draw(); restart(); }));
+    };
+    let t; const restart = () => { clearInterval(t); if (!reduce) t = setInterval(() => { if (!el.matches(':hover, :focus-within')) { cur = (cur + 1) % ev.sp.length; draw(); } }, 6000); };
+    draw(); restart(); grid.appendChild(el);
+  });
+})();
+</script>
+</body>
+</html>
