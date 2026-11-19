@@ -210,6 +210,7 @@ js += """
   const me = document.querySelector('.cv-me'), w = cats.querySelector('.wrap');
   const fit = () => {
     w.style.paddingLeft = '';
+    if (!me) return;
     const a = me.getBoundingClientRect(), b = w.getBoundingClientRect();
     if (a.bottom > b.top + 4 && a.right > b.left) w.style.paddingLeft = Math.round(a.right - b.left + 14) + 'px';
   };
@@ -317,6 +318,22 @@ js += r"""
   apply(v);
   const sel = document.getElementById('tab-style');
   if (sel) { sel.value = v; sel.addEventListener('change', () => { apply(sel.value); try { localStorage.setItem('me-tabs', sel.value); } catch (e) {} }); }
+})();
+"""
+# Mockup bar: switch between D2A and D2B, staying on the same page
+lab = '<span class="lbl" style="padding:0 6px;color:#888">Mockup <b style="color:#fff">D2A</b></span>'
+assert lab in js
+js = js.replace(lab, '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="d2a">D2A</option><option value="d2b">D2B</option></select><span class="div"></span>', 1)
+js += r"""
+
+// D2A / D2B version switch (mockup only): same page, other version
+(function () {
+  const sel = document.getElementById('ver-switch'); if (!sel) return;
+  sel.value = /me-redesign-d2b\//.test(location.pathname) ? 'd2b' : 'd2a';
+  sel.addEventListener('change', () => {
+    const file = location.pathname.split('/').pop() || 'index.html';
+    location.href = '../me-redesign-' + sel.value + '/' + file + location.search + location.hash;
+  });
 })();
 """
 # pop-ups (log in, subscribe/join, sales): one-line Mobile Europe logo, a little bigger

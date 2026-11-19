@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edge – Mobile Europe D2B mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;600;700;800&family=Roboto+Slab:wght@500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=150">
+<style>
+.ctx{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
+.ctx .lbl{font:700 10.5px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.toppanel{display:grid;grid-template-columns:1.7fr 1fr;gap:22px;margin-top:22px;padding:18px;background:var(--soft);border-radius:10px}
+.toppanel.full{grid-template-columns:1fr}
+.lead-big{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;background:#fff;border-radius:8px;overflow:hidden}
+.lead-big .pic{aspect-ratio:auto;height:100%;min-height:260px}
+.toppanel.full .lead-big .pic{min-height:320px}
+.lead-big .txt{padding:22px 20px 20px 0}
+.lead-big h2{font:700 27px/1.12 var(--body);letter-spacing:-.015em;margin-top:8px}
+.toppanel.full .lead-big h2{font-size:32px}
+.lead-big:hover h2{color:var(--me)}
+.lead-big p{color:var(--ink2);margin-top:10px}
+.rep-small{background:#fff;border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.rep-small h3{font:700 17px/1.25 var(--body)}
+.rep-small:hover h3{color:var(--res)}
+.rep-small .by{font-size:12.5px;color:var(--muted)}
+.rep-small .cta{font:700 12.5px var(--body);color:var(--res)}
+@media (max-width:900px){.toppanel{grid-template-columns:1fr}.lead-big{grid-template-columns:1fr}.lead-big .txt{padding:0 18px 18px}.lead-big .pic,.toppanel.full .lead-big .pic{min-height:0;aspect-ratio:16/9}}
+</style>
+<style>
+/* D2A: animate between pages (Chrome, Edge, Safari 18.2+; other browsers just load the page) */
+@view-transition{navigation:auto}
+</style>
+</head>
+<body data-page="cat" data-cat="Edge" class="d2b cover-page cv2 cv2a cv-sub"><script>try{if(['brief','brief-event','res'].includes(document.body.dataset.page)||localStorage.getItem('me-tabs')==='grey')document.body.classList.add('tabs-grey')}catch(e){}</script>
+<div id="site-header"></div>
+<!-- D2B: three sites in one. The site you are in has the raised tab, joined to its own menu bar -->
+<header class="tri" data-site="me">
+  <div class="wrap tri-tabs">
+    <a class="tri-tab me on" aria-current="true" href="index.html" aria-label="Mobile Europe home">
+      <img class="tri-logo" src="../brand/mobile-europe-logo-strap.png" alt="Mobile Europe: Communications infrastructure and digital services in EMEA" width="1343" height="236">
+      <img class="tri-mark" src="../brand/me-mark.png" alt="" width="400" height="400">
+    </a>
+    <a class="tri-tab brief" href="the-briefing.html"><b>The Briefing</b><small>Next: 24 Nov · AI &amp; Revenue</small></a>
+    <a class="tri-tab res" href="research.html"><b>Independent<br>Research</b><small>New: OSS &amp; AI</small></a>
+  </div>
+  <div class="tri-bar">
+    <div class="wrap">
+      <nav class="tri-nav" aria-label="Mobile Europe menu"><a href="index.html">Home</a><a href="news.html" class="on" aria-current="page">News</a><a href="insights.html">Insights</a><a href="cxo.html">CxO Zone</a><a href="white-papers.html">White Papers</a><a href="videos.html">Videos</a><a href="events.html">Events</a><a href="about.html">About</a></nav>
+      <div class="tri-tools">
+        <button class="tri-ico" type="button" id="cv-search" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+        <a class="tri-sub" href="#" data-subscribe>Subscribe</a>
+        <a class="tri-login cv-login" href="#" data-login>Log in</a>
+        <button class="tri-ico tri-menu" type="button" id="cv-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+<section class="nc-band">
+  <div class="wrap">
+    <h1>Edge</h1>
+    <p>Edge computing, private networks, data centres and the infrastructure moving compute closer to users.</p>
+    
+  </div>
+</section>
+
+<main class="wrap nc-main">
+
+  <section class="toppanel">
+    <a class="lead-big" href="article.html">
+      <div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/Submer.png" alt=""><span class="tag">Edge</span></div>
+      <div class="txt">
+        <div class="kick">Latest</div>
+        <h2>Submer unveils Corenix to tackle AI data centre demand</h2>
+        <p>Submer has launched a new company, Corenix, focused on building modular data centre infrastructure for AI. As a result, the new business will work with...</p>
+        <div class="date">29 September 2026</div>
+      </div>
+    </a>
+    <!-- Optional: editors can pin a relevant Independent Research report on any category page -->
+    <a class="rep-small" href="research.html">
+      
+      <div class="cover"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/03/ME-Report-Druid-COVER-v1.jpg" alt="Solving the profit puzzle of P5G networks report cover"></div>
+      <h3>Solving the profit puzzle of P5G networks</h3>
+      <div class="by">Dawn Bushaus, Telecoms Analyst</div>
+      <span class="cta">Download free →</span>
+    </a>
+  </section>
+
+  <div class="with-rail" style="margin-top:8px">
+    <div>
+      <div class="sh"><h2>More in Edge</h2><a href="#">RSS</a></div>
+      <div class="grid2">
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/Nscale-AI.png" alt=""><span class="tag">Automation/AI</span></div><h3>Nscale raises $3.36bn for AI infrastructure</h3><p>Nscale has raised $3.36 billion (£2.54 billion) in new funding in a bid to expand its infrastructure. The funding comes through convertible loan notes and...</p><div class="date">28 Sep 2026</div></a>
+        <div class="pin-slot" data-fixed>
+          <a class="card sp-card" href="article.html">
+            <div class="sp-top"><span class="sp-label">Partner content</span></div>
+            <div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/04/Softwaremind-Apr-2026-Whitepaper-1-696x860.jpg" alt="" style="object-position:center 20%"></div>
+            <h3>Future-Ready Telco Playbook: 4 Challenges Operators Need to Tackle</h3>
+          </a>
+        </div>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/MoU-ICT.png" alt=""><span class="tag">Middle East &amp; Africa</span></div><h3>Jordan, Rwanda sign MoU to boost ICT cooperation</h3><p>Jordan and Rwanda have signed a Memorandum of Understanding (MoU) to strengthen cooperation in Information and Communications Technology (ICT). Duting the U.N General Ass</p><div class="date">25 Sep 2026</div></a>
+        <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/AI-interview-696x464.png" alt=""><span class="tag ins">Insights</span></div><h3>The future of telecoms, according to AI</h3><p>The telecoms industry has never been short of predictions. Every year, at events, on panels and in keynote speeches, we hear about the next big...</p><div class="date">21 Sep 2026</div></a>
+      </div>
+    </div>
+    <aside class="rail">
+      <div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 1<small>300×250 · GAM</small></div></div>
+      <div class="ctx">
+        <div class="lbl">Next Briefing</div>
+        <a class="ev" href="briefing-event.html" style="border:0"><div class="d"><b>24</b><small>Nov 2026</small></div><div class="t" style="padding:10px 12px"><div class="series">The Briefing <em>| AI</em></div><h3 style="font-size:15px">AI in Network Optimisation: Finding Forgotten Revenue</h3></div></a>
+        <a class="btn pink" style="margin-top:10px;width:100%;justify-content:center" href="briefing-event.html">Register free</a>
+      </div>
+      <div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 2<small>300×250 · GAM</small></div></div>
+    </aside>
+  </div>
+</main>
+
+<div class="bb-zone"><div class="ad-label">Advertisement</div><div class="ad ad-bb">Billboard (BB)<small>970×250 · GAM</small></div></div>
+
+<main class="wrap">
+  <div class="with-rail">
+    <div class="grid2">
+      <a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/DE-CIX-Linkedin-696x464.png" alt=""><span class="tag">Edge</span></div><h3>DE-CIX unveils new Internet Exchange in Austria</h3><div class="date">21 Sep 2026</div></a><a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/BT-Drone-696x464.png" alt=""><span class="tag">Edge</span></div><h3>BT brings drone technology to British Transport Police</h3><div class="date">18 Sep 2026</div></a><a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/USA-airport-696x464.png" alt=""><span class="tag">5G &amp; Beyond</span></div><h3>Ericsson deploys private 5G network at US airport</h3><div class="date">11 Sep 2026</div></a><a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/09/Digital-Realty-Kenya-Credit-X-696x464.png" alt=""><span class="tag">Middle East &amp; Africa</span></div><h3>Digital Realty expands East Africa presence with new Nairobi data centre</h3><div class="date">8 Sep 2026</div></a><a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/08/Nvidia-aws-696x464.png" alt=""><span class="tag">Automation/AI</span></div><h3>AWS doubles down on Nvidia with 2 million more GPUs</h3><div class="date">28 Aug 2026</div></a><a class="card" href="article.html"><div class="pic"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2026/08/Boldyn-Networks-696x464.png" alt=""><span class="tag">5G &amp; Beyond</span></div><h3>Boldyn Networks deploys private 5G for livestock monitoring in West Sussex</h3><div class="date">27 Aug 2026</div></a>
+    </div>
+    <aside class="rail"><div class="sticky">
+      <div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 3<small>300×250 · GAM</small></div></div>
+      <div class="nl"><h4>Edge alerts</h4><p>Get this section’s top stories, plus new reports and Briefings on the topic, once a week.</p><input placeholder="Work email" aria-label="Work email"><button class="btn red">Follow topic</button></div>
+      <div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 4<small>300×250 · GAM</small></div></div>
+    </div></aside>
+  </div>
+  <div style="text-align:center;margin-top:30px"><a class="btn ghost" href="#">Load more Edge</a></div>
+</main>
+
+<div id="site-footer"></div>
+<script src="shared.js?v=150"></script>
+<script>
+(function () {
+  document.getElementById('cv-menu').addEventListener('click', () => document.querySelector('.mast .burger').click());
+  document.getElementById('cv-search').addEventListener('click', () => {
+    const p = document.getElementById('search-panel'); document.querySelector('.tri').after(p); p.hidden = !p.hidden; if (!p.hidden) p.querySelector('input').focus();
+  });
+  const m = window.ME_MEMBER && ME_MEMBER.get();
+  if (m) { const l = document.querySelector('.cv-login'); l.textContent = 'Hi, ' + m.first; l.setAttribute('href', 'members.html'); l.removeAttribute('data-login'); }
+  // phones: scroll the tab row so the selected tab is in view
+  const on = document.querySelector('.cv-up a.on'); if (on) on.parentElement.scrollLeft = on.offsetLeft - 16;
+})();
+</script>
+</body>
+</html>

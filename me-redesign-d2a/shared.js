@@ -132,7 +132,7 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
   const pages = [['index.html', 'home', 'Homepage'], ['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html', 'cat', '5G & Beyond'], ['article.html', 'article', 'Article'], ['the-briefing.html', 'brief', 'The Briefing'], ['briefing-event.html', 'brief-event', 'Briefing sign-up'], ['research.html', 'res', 'Research'], ['members.html', 'members', 'Members area'], ['about.html', 'about', 'About'], ['white-paper.html', 'wp-dl', 'White paper download']];
   const idx = Math.max(0, pages.findIndex(p => p[1] === page));
   const toolbar = `<div class="mock">
-    <span class="lbl" style="padding:0 6px;color:#888">Mockup <b style="color:#fff">D2A</b></span>
+    <span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="d2a">D2A</option><option value="d2b">D2B</option></select><span class="div"></span>
     <a href="${pages[(idx + pages.length - 1) % pages.length][0]}" aria-label="Previous page">←</a>
     <select aria-label="Jump to page" onchange="location.href=this.value">
       ${pages.map(p => `<option value="${p[0]}"${p[1] === page ? ' selected' : ''}>${p[2]}</option>`).join('')}
@@ -585,6 +585,7 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   const me = document.querySelector('.cv-me'), w = cats.querySelector('.wrap');
   const fit = () => {
     w.style.paddingLeft = '';
+    if (!me) return;
     const a = me.getBoundingClientRect(), b = w.getBoundingClientRect();
     if (a.bottom > b.top + 4 && a.right > b.left) w.style.paddingLeft = Math.round(a.right - b.left + 14) + 'px';
   };
@@ -667,4 +668,15 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   apply(v);
   const sel = document.getElementById('tab-style');
   if (sel) { sel.value = v; sel.addEventListener('change', () => { apply(sel.value); try { localStorage.setItem('me-tabs', sel.value); } catch (e) {} }); }
+})();
+
+
+// D2A / D2B version switch (mockup only): same page, other version
+(function () {
+  const sel = document.getElementById('ver-switch'); if (!sel) return;
+  sel.value = /me-redesign-d2b\//.test(location.pathname) ? 'd2b' : 'd2a';
+  sel.addEventListener('change', () => {
+    const file = location.pathname.split('/').pop() || 'index.html';
+    location.href = '../me-redesign-' + sel.value + '/' + file + location.search + location.hash;
+  });
 })();
