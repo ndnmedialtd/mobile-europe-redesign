@@ -138,7 +138,7 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
       ${pages.map(p => `<option value="${p[0]}"${p[1] === page ? ' selected' : ''}>${p[2]}</option>`).join('')}
     </select>
     <a href="${pages[(idx + 1) % pages.length][0]}" aria-label="Next page">→</a>
-    <span class="div"></span>
+    <span class="div"></span><label class="lbl" for="tab-style">Tabs</label><select id="tab-style" aria-label="Tab style"><option value="red">Red</option><option value="grey">Grey</option></select><span class="div"></span>
       </div>`;
 
   document.getElementById('site-header').outerHTML = header;
@@ -655,4 +655,16 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
     if (gap > 0) rail.style.marginTop = gap + 'px';
   });
   fit(); addEventListener('resize', fit); addEventListener('load', fit);
+})();
+
+
+// D2A: tab style switch (mockup only)
+(function () {
+  let v = 'red'; try { v = localStorage.getItem('me-tabs') || 'red'; } catch (e) {}
+  // The Briefing and Independent Research pages always use grey tabs, so their navy bands lead
+  const fr = ['brief', 'brief-event', 'res'].includes(document.body.dataset.page);
+  const apply = x => document.body.classList.toggle('tabs-grey', fr || x === 'grey');
+  apply(v);
+  const sel = document.getElementById('tab-style');
+  if (sel) { sel.value = v; sel.addEventListener('change', () => { apply(sel.value); try { localStorage.setItem('me-tabs', sel.value); } catch (e) {} }); }
 })();

@@ -302,6 +302,23 @@ js += r"""
   fit(); addEventListener('resize', fit); addEventListener('load', fit);
 })();
 """
+# Mockup bar: "Tabs: Red / Grey" switch to compare the main-nav tab styles (remembered in this browser)
+nxt = '<a href="${pages[(idx + 1) % pages.length][0]}" aria-label="Next page">→</a>\n    <span class="div"></span>'
+assert nxt in js
+js = js.replace(nxt, nxt + '<label class="lbl" for="tab-style">Tabs</label><select id="tab-style" aria-label="Tab style"><option value="red">Red</option><option value="grey">Grey</option></select><span class="div"></span>', 1)
+js += r"""
+
+// D2A: tab style switch (mockup only)
+(function () {
+  let v = 'red'; try { v = localStorage.getItem('me-tabs') || 'red'; } catch (e) {}
+  // The Briefing and Independent Research pages always use grey tabs, so their navy bands lead
+  const fr = ['brief', 'brief-event', 'res'].includes(document.body.dataset.page);
+  const apply = x => document.body.classList.toggle('tabs-grey', fr || x === 'grey');
+  apply(v);
+  const sel = document.getElementById('tab-style');
+  if (sel) { sel.value = v; sel.addEventListener('change', () => { apply(sel.value); try { localStorage.setItem('me-tabs', sel.value); } catch (e) {} }); }
+})();
+"""
 # pop-ups (log in, subscribe/join, sales): one-line Mobile Europe logo, a little bigger
 WIDE = '<img class="login-logo me-wide" src="../brand/mobile-europe-logo-wide.jpg" width="300" height="39" alt="Mobile Europe">'
 js = js.replace('<img class="login-logo" src="https://www.mobileeurope.co.uk/wp-content/uploads/2025/08/MobileEurope-logo-wide-strap-v4.png" alt="Mobile Europe">', WIDE)
@@ -333,6 +350,14 @@ t = t.replace(btn, '', 1)
 t = t.replace('<div class="r-intro"><div class="wrap">', '<div class="r-intro"><div class="wrap r-introrow">', 1)
 t = re.sub(r'(<div class="wrap r-introrow"><p>.*?</p>)', lambda m: m.group(1) + '<a class="btn" href="#" data-login>New report alerts</a>', t, count=1, flags=re.S)
 rp.write_text(t)
+
+# tab style switch: apply the saved choice before first paint (no red-to-grey flash)
+EARLY = "<script>try{if(['brief','brief-event','res'].includes(document.body.dataset.page)||localStorage.getItem('me-tabs')==='grey')document.body.classList.add('tabs-grey')}catch(e){}</script>"
+for f in OUT.glob('*.html'):
+    t = f.read_text()
+    if 'me-tabs' not in t:
+        t = re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + EARLY, t, count=1)
+        f.write_text(t)
 
 # header: "Join" reads "Subscribe"
 for f in OUT.glob('*.html'):

@@ -1943,3 +1943,17 @@ body[data-page="brief"].cv-sub .fband nav,body[data-page="res"].cv-sub .fband na
 /* Briefing intro: a step up from the menu */
 body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820px}
 @media (max-width:760px){body[data-page="brief"] .bl-intro{font-size:19px}}
+
+/* ===== D2A option: grey tabs with black text (switch in the mockup bar) =====
+   Grey tabs, black text; red on hover; the selected section stays black and joins the band; The Briefing / Research stay navy */
+.tabs-grey .cv2a .cv-sections a,.cv2a.tabs-grey .cv-sections a{background:#dcdcd8;border-color:#dcdcd8;color:var(--ink)}
+.cv2a.tabs-grey .cv-sections a:hover{background:var(--me);border-color:var(--me);color:#fff}
+.cv2a.tabs-grey .cv-sections a.on,.cv2a.tabs-grey .cv-sections a[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.cv2a.tabs-grey .cv-sections .f-b,.cv2a.tabs-grey .cv-sections .f-r{background:var(--brief-navy);border-color:var(--brief-navy);color:#fff}
+.cv2a.tabs-grey .cv-sections .f-b:hover,.cv2a.tabs-grey .cv-sections .f-r:hover{background:#fff;border-color:#fff;color:var(--me)}
+/* homepage: tabs sit over the photo, so a lighter grey and a black rule underneath instead of red */
+.cv2a.tabs-grey:not(.cv-sub) .cv-sections a:not(.f-b):not(.f-r){background:#ececea;border-color:#ececea}
+.cv2a.tabs-grey:not(.cv-sub) .cv-sections a:not(.f-b):not(.f-r):hover{background:var(--me);border-color:var(--me);color:#fff}
+.cv2a.tabs-grey:not(.cv-sub) .cv-sections{border-bottom-color:var(--ink)}
+.cv2a.tabs-grey .cv-up a:not(.on):not(.f-b):not(.f-r){border-color:#dcdcd8}
+.cv2a.tabs-grey .cv-up a:not(.on):not(.f-b):not(.f-r):hover{border-color:var(--me)}
