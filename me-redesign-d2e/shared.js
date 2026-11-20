@@ -95,7 +95,7 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
     </button>
     <a href="index.html" class="${page === 'home' ? 'on' : ''}">Home</a>
-    <a href="news.html" class="${page === 'news' ? 'on' : ''}">News</a><a href="insights.html" class="${page === 'insights' ? 'on' : ''}">Insights</a><a href="cxo.html" class="${page === 'cxo' ? 'on' : ''}">CxO Zone</a><a href="white-papers.html" class="${page === 'white-papers' ? 'on' : ''}">White Paper Hub</a><a href="videos.html" class="${page === 'videos' ? 'on' : ''}">Videos</a><a href="events.html" class="${page === 'events' ? 'on' : ''}">Events</a>
+    <a href="news.html" class="${page === 'news' ? 'on' : ''}">News</a><a href="insights.html" class="${page === 'insights' ? 'on' : ''}">Insights</a><a href="cxo.html" class="${page === 'cxo' ? 'on' : ''}">CxO Zone</a><a href="white-papers.html" class="${page === 'white-papers' ? 'on' : ''}">Downloads</a><a href="videos.html" class="${page === 'videos' ? 'on' : ''}">Videos</a><a href="events.html" class="${page === 'events' ? 'on' : ''}">Events</a>
     <div class="nav-promo" aria-roledescription="carousel" aria-label="Next Briefing and latest report">
       <div class="np-slides">
         <a class="np-slide cur" href="briefing-event.html"><b>Next Briefing</b><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>AI &amp; Revenue</span><u>24 November</u></a>
@@ -122,14 +122,14 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
         <a class="foot-logo" href="index.html"><img src="https://www.mobileeurope.co.uk/wp-content/uploads/2025/08/MobileEurope-logo-wide-strap-white-v1.png" alt="Mobile Europe: Communications infrastructure and digital services in EMEA" width="1000" height="176"></a>
         <p style="margin-top:12px;max-width:300px">Covering communications infrastructure and digital services in EMEA.</p>
       </div>
-      <div><h5>Editorial</h5><a href="news.html">News</a><a href="insights.html">Insights</a><a href="cxo.html">CxO Zone</a><a href="white-papers.html">White Paper Hub</a><a href="videos.html">Videos</a></div>
+      <div><h5>Editorial</h5><a href="news.html">News</a><a href="insights.html">Insights</a><a href="cxo.html">CxO Zone</a><a href="white-papers.html">Downloads</a><a href="videos.html">Videos</a></div>
       <div><h5>Franchises</h5><a href="the-briefing.html">The Briefing</a><a href="research.html">Independent Research</a><a href="#">Telecoms in Focus</a><a href="events.html">Events</a></div>
       <div><h5>Company</h5><a href="about.html">About</a><a href="#">Advertise</a><a href="editorial-board.html">Editorial Advisory Board</a><a href="#">Contact</a><a href="#">Privacy</a></div>
     </div>
     <div class="legal">Design mockup: not the live site. Content and images from mobileeurope.co.uk, used for layout only.</div>
   </div></footer>`;
 
-  const pages = [['index.html', 'home', 'Homepage'], ['news.html', 'news', 'News'], ['channels.html', 'topics', 'Channels'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html', 'cat', '5G & Beyond'], ['article.html', 'article', 'Article'], ['the-briefing.html', 'brief', 'The Briefing'], ['briefing-event.html', 'brief-event', 'Briefing sign-up'], ['research.html', 'res', 'Research'], ['members.html', 'members', 'Members area'], ['about.html', 'about', 'About'], ['white-paper.html', 'wp-dl', 'White paper download']];
+  const pages = [['index.html', 'home', 'Homepage'], ['news.html', 'news', 'News'], ['channels.html', 'topics', 'Channels'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'Downloads'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html', 'cat', '5G & Beyond'], ['article.html', 'article', 'Article'], ['the-briefing.html', 'brief', 'The Briefing'], ['briefing-event.html', 'brief-event', 'Briefing sign-up'], ['research.html', 'res', 'Research'], ['members.html', 'members', 'Members area'], ['about.html', 'about', 'About'], ['white-paper.html', 'wp-dl', 'White paper download']];
   const idx = Math.max(0, pages.findIndex(p => p[1] === page));
   const toolbar = `<div class="mock">
     <span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option></select><span class="div"></span>
@@ -408,7 +408,7 @@ document.querySelectorAll('.wp-carousel').forEach(c => {
   const cat = document.body.dataset.cat || '';
   const catHref = window.ME_CAT_HREF || (() => '#');
   const cats = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV', 'Digital Platforms & APIs', 'Edge', 'Financial/Regulation', 'Optical/IP', 'RAN', 'Satellite', 'Security', 'Sustainability'];
-  const sections = [['index.html', 'home', 'Home'], ['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['about.html', 'about', 'About']];
+  const sections = [['index.html', 'home', 'Home'], ['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'Downloads'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['about.html', 'about', 'About']];
   const esc = t => t.replace(/&/g, '&amp;');
   const panel = document.createElement('div');
   panel.className = 'mmenu';

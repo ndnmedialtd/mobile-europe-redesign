@@ -36,7 +36,7 @@ for f in sorted(OUT.glob('*.html')):
     t = re.sub(r'<div class="nl"><h4>Get the newsletter</h4>.*?</div>', BOARD_BOX, t)
     t = re.sub(r'(<body[^>]*class=")', r'\1d2d ', t, count=1)
     t = t.replace(' – Mobile Europe mockup</title>', ' – Mobile Europe D2D mockup</title>').replace('Mobile Europe – D2A homepage mockup', 'Mobile Europe – D2D homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2d17', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2d18', t)
     f.write_text(t)
 
 # ---- homepage ----
@@ -614,6 +614,16 @@ def own(m):
     return m.group(0)
 for f in OUT.glob('*.html'):
     s0 = f.read_text(); s1 = A.sub(own, s0)
+    if s1 != s0: f.write_text(s1)
+
+# White papers are now called Downloads (tabs, page headline, homepage section, links)
+REN = [('>White Papers<', '>Downloads<'), ('>White papers &amp; guides<', '>Downloads<'), ('>View the white paper hub<', '>All downloads<'),
+       ('<h1>White Paper Hub</h1>', '<h1>Downloads</h1>'), ('White Paper Hub – Mobile Europe', 'Downloads – Mobile Europe'),
+       ('– White Paper Hub –', '– Downloads –'), ('← White Paper Hub', '← Downloads'), ('More from the White Paper Hub', 'More downloads'),
+       ("'White Paper Hub']", "'Downloads']"), ('>White Paper Hub</a>', '>Downloads</a>')]
+for f in list(OUT.glob('*.html')) + [OUT / 'shared.js']:
+    s0 = f.read_text(); s1 = s0
+    for x, y in REN: s1 = s1.replace(x, y)
     if s1 != s0: f.write_text(s1)
 
 # ---- styles (D2D only) ----
