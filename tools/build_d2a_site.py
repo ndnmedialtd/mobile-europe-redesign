@@ -323,7 +323,7 @@ js += r"""
 # Mockup bar: switch between D2A and D2B, staying on the same page
 lab = '<span class="lbl" style="padding:0 6px;color:#888">Mockup <b style="color:#fff">D2A</b></span>'
 assert lab in js
-js = js.replace(lab, '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option><option value="me-redesign-d2f">D2F</option></select><span class="div"></span>', 1)
+js = js.replace(lab, '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option></select><span class="div"></span>', 1)
 js += r"""
 
 // D2A / D2B version switch (mockup only): same page, other version

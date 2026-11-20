@@ -2384,3 +2384,91 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 .d2e .stk-tabs a.f-b{border-left:0}
 .d2e .stk-tabs a.on,.d2e .stk-tabs a.on:hover{align-self:flex-end;background:var(--ink)!important;color:#fff!important;border-radius:0 10px 0 0;padding:12px 14px 10px;font-weight:600;border-left:0}
 .d2e .stk-tabs a.on + a{border-left:0}
+
+/* fonts (trial, also in D2F): Roboto Condensed for headings and menus in place of Oswald, Black on the main headings;
+   Metronic Slab (Adobe Fonts kit xvr5zgs) in place of Roboto Slab, with the Briefing name in Semibold */
+.d2e{--head:'Roboto Condensed',var(--body);--slab:"metronic-slab",'Roboto Slab',Georgia,serif}
+.d2e :is(.sh h2,.nc-band h1,.ptitle,.cv-also h2,.latest-box h3,.onstage-hd h2,.mem-h h2,.mem-locked h1,.eb-side h4,.nl h4){font-weight:900!important}
+.d2e :is(.fr.brief b,.mm-brief b,.fband.brief .name,.bl-strip b,.tri-tab.brief b,.bm-word){font-weight:600!important}
+/* News / Insights / CxO lead: the headline goes red only when the text panel is hovered, not the picture */
+.d2e .top-story:hover h2{color:inherit}
+.d2e .top-story .txt:hover h2{color:var(--me)}
+/* the same for the other big lead stories (the homepage cover keeps red on any rollover): homepage Insights / CxO Zone / Videos leads, channel page leads */
+.d2e :is(.hx-lead,.lead-big):hover :is(h2,h3){color:inherit}
+.d2e .cx-lead:hover h3{color:inherit}
+.d2e :is(.hx-lead,.lead-big) .txt:hover :is(h2,h3){color:var(--me)}
+
+/* ---- Headers: Black / Grey switch (mockup bar). Grey = light grey section headers instead of black (was D2F) ---- */
+.hdr-grey{--band:#dcdde0}
+.hdr-grey .nc-band{background:var(--band);color:var(--ink)}
+.hdr-grey .nc-band h1{color:var(--ink)}
+.hdr-grey .nc-band p{color:#4a4a4a}
+.hdr-grey .nc-band .topics a{color:var(--ink2);border-color:#b9b9bd}
+.hdr-grey .nc-band .topics a.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* the selected tab opens into the header, so it goes grey too (The Briefing / Research keep their navy) */
+.hdr-grey .cv-sections a.on:not(.f-b):not(.f-r),.hdr-grey .cv-sections a.on:not(.f-b):not(.f-r):hover{background:var(--band)!important;color:var(--ink)!important}
+.hdr-grey .stk-tabs a.on:not(.f-b):not(.f-r),.hdr-grey .stk-tabs a.on:not(.f-b):not(.f-r):hover{background:var(--band)!important;color:var(--ink)!important}
+/* no black rule under the tabs: grey all the way (The Briefing / Research keep theirs) */
+.hdr-grey:not(.brief-page):not([data-page="res"]) :is(.cv-sections,.cv-up){border-bottom-color:var(--band)!important}
+.hdr-grey .stk{border-bottom-color:var(--band)}
+/* sub-menu strip: grey like the header, with a light keyline underneath */
+.hdr-grey.cv-sub.d2a-cats .cats{background:var(--band)!important;border-bottom:1px solid #c6c7cb!important}
+.hdr-grey.cv-sub.d2a-cats .cats a{color:var(--ink)!important}
+.hdr-grey.cv-sub.d2a-cats .cats a:hover{background:#cbccd0!important;color:var(--ink)!important}
+.hdr-grey.cv-sub.d2a-cats .cats a.on,.hdr-grey.cv-sub.d2a-cats .cats a.on:hover{background:var(--me)!important;color:#fff!important}
+/* homepage Speaking next (The Briefing) box: the same grey as the headers and sub-menu */
+.hdr-grey .cv-minds{background:var(--band);border-color:#c6c7cb}
+/* Downloads: the research link on the grey header */
+.hdr-grey .nc-band .nc-res{background:#fff;border-color:#c8c8cc;color:var(--ink)}
+.hdr-grey .nc-band .nc-res b{color:var(--ink)}
+.hdr-grey .nc-band .nc-res:hover{border-color:var(--ink)}
+
+/* Speaking next: "New" tab on a newly added speaker, top left of the picture */
+.d2e .sn-new{position:absolute;left:0;top:0;z-index:2;background:var(--me);color:#fff;font:700 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;padding:7px 10px 6px;border-radius:0 0 10px 0}
+@media (max-width:760px){.d2e .sn-new{font-size:10px;padding:5px 8px 4px}}
+/* Font switch (mockup bar): heading / menu font options */
+.d2e[data-font="oswald"]{--head:'Oswald',var(--body)}
+.d2e[data-font="barlow"]{--head:'Barlow Condensed',var(--body)}
+.d2e[data-font="saira"]{--head:'Saira Condensed',var(--body)}
+.d2e[data-font="fira"]{--head:'Fira Sans Condensed',var(--body)}
+.d2e[data-font="plex"]{--head:'IBM Plex Sans Condensed',var(--body)}
+.d2e[data-font="archivo"]{--head:'Archivo Narrow',var(--body)}
+.d2e[data-font="antonio"]{--head:'Antonio',var(--body)}
+/* homepage Speaking next (The Briefing) box: the light grey from Headers: Grey, with black or grey headers */
+.d2e .cv-minds{background:#dcdde0;border-color:#c6c7cb}
+/* Headlines switch (mockup bar): story / article headline font options */
+.d2e[data-hl="rc"]{--hl:'Roboto Condensed',var(--body)}
+.d2e[data-hl="inter"]{--hl:'Inter',var(--body)}
+.d2e[data-hl="plex"]{--hl:'IBM Plex Sans',var(--body)}
+.d2e[data-hl="fira"]{--hl:'Fira Sans',var(--body)}
+.d2e[data-hl="barlow"]{--hl:'Barlow',var(--body)}
+.d2e[data-hl="rslab"]{--hl:'Roboto Slab',var(--body)}
+.d2e[data-hl="metronic"]{--hl:"metronic-slab",var(--body)}
+.d2e[data-hl="source"]{--hl:'Source Serif 4',var(--body)}
+.d2e[data-hl="merri"]{--hl:'Merriweather',var(--body)}
+.d2e[data-hl="playfair"]{--hl:'Playfair Display',var(--body)}
+.d2e[data-hl]:not([data-hl="rob"]) :is(.cv-head b,.ac-title,.art h1,.lead-main h1,.top-story h2,.card h3,.hx-lead h3,.cx-list h3,.evx-t h3,.wp3 h3,.wp-card h3,.wp-pinned h2,.vid-card h3,.vid-hero h2,.res-item h3,.rows h3,.is-lead b,.sn-name,.ev h3,.ev-card h3,.nb-card h3,.os-card h3,.rh-copy h1,.wpd-band h1,.ev-head h1,.bl-next h1,.art-body h2){font-family:var(--hl)!important}
+/* articles: the red-on-black label above the headline (e.g. Interview) is smaller */
+.d2e .ac-head .cv-meta em{font-size:12px!important;letter-spacing:.08em}
+@media (max-width:760px){.d2e .ac-head .cv-meta em{font-size:10.5px!important}}
+.d2e .cv-tag a,.d2e .cv-tag a:hover{color:inherit;text-decoration:none}
+/* phones, homepage: bigger Mobile Europe wordmark (the header buttons sit a little tighter to make room) */
+@media (max-width:760px){
+  .d2e[data-page="home"] .cv-acct{gap:2px}
+  .d2e[data-page="home"] .cv-acct .cv-ico{width:30px}
+  .d2e[data-page="home"] .cv-acct > a{padding-left:8px;padding-right:8px}
+  .d2e[data-page="home"] .cv-word-link{width:100%}
+  .d2e[data-page="home"] .cv-word{width:100%!important;max-width:160px}
+}
+/* billboards behave like Google Ad Manager slots: a fixed-size creative, never squashed. If the screen is too narrow
+   for it, the slot (with its label) is left out; phones get their own mobile size (320x100 / 300x250) */
+@media (min-width:761px){
+  .d2e .gsma-bb{width:1200px;max-width:none;flex:none;margin:0 auto}
+  .d2e .ad-bb{max-width:none}
+}
+@media (min-width:761px) and (max-width:1259px){
+  .d2e .lb-zone,.d2e .bb-zone:has(.gsma-bb){display:none!important}
+}
+@media (min-width:761px) and (max-width:1029px){
+  .d2e .bb-zone:has(.ad-bb){display:none!important}
+}

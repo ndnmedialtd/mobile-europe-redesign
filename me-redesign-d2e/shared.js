@@ -132,13 +132,13 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
   const pages = [['index.html', 'home', 'Homepage'], ['news.html', 'news', 'News'], ['channels.html', 'topics', 'Channels'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'Downloads'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html', 'cat', '5G & Beyond'], ['article.html', 'article', 'Article'], ['the-briefing.html', 'brief', 'The Briefing'], ['briefing-event.html', 'brief-event', 'Briefing sign-up'], ['research.html', 'res', 'Research'], ['members.html', 'members', 'Members area'], ['about.html', 'about', 'About'], ['white-paper.html', 'wp-dl', 'White paper download']];
   const idx = Math.max(0, pages.findIndex(p => p[1] === page));
   const toolbar = `<div class="mock">
-    <span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option><option value="me-redesign-d2f">D2F</option></select><span class="div"></span>
+    <span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option></select><span class="div"></span>
     <a href="${pages[(idx + pages.length - 1) % pages.length][0]}" aria-label="Previous page">←</a>
     <select aria-label="Jump to page" onchange="location.href=this.value">
       ${pages.map(p => `<option value="${p[0]}"${p[1] === page ? ' selected' : ''}>${p[2]}</option>`).join('')}
     </select>
     <a href="${pages[(idx + 1) % pages.length][0]}" aria-label="Next page">→</a>
-    <span class="div"></span><label class="lbl" for="tab-style">Tabs</label><select id="tab-style" aria-label="Tab style"><option value="red">Red</option><option value="grey">Grey</option></select><span class="div"></span>
+    <span class="div"></span><label class="lbl" for="tab-style">Tabs</label><select id="tab-style" aria-label="Tab style"><option value="red">Red</option><option value="grey">Grey</option></select><span class="div"></span><label class="lbl" for="hdr-style">Headers</label><select id="hdr-style" aria-label="Header colour"><option value="black">Black</option><option value="grey">Grey</option></select><span class="div"></span><label class="lbl" for="font-style">Sections</label><select id="font-style" aria-label="Section heading and menu font"><option value="rc">Roboto Condensed</option><option value="oswald">Oswald (original)</option><option value="barlow">Barlow Condensed</option><option value="saira">Saira Condensed</option><option value="fira">Fira Sans Condensed</option><option value="plex">IBM Plex Sans Condensed</option><option value="archivo">Archivo Narrow</option><option value="antonio">Antonio</option></select><span class="div"></span><label class="lbl" for="hl-style">Headlines</label><select id="hl-style" aria-label="Headline font"><option value="rob">Roboto (current)</option><option value="rc">Roboto Condensed</option><option value="inter">Inter</option><option value="plex">IBM Plex Sans</option><option value="fira">Fira Sans</option><option value="barlow">Barlow</option><option value="rslab">Roboto Slab</option><option value="metronic">Metronic Slab (Adobe)</option><option value="source">Source Serif</option><option value="merri">Merriweather</option><option value="playfair">Playfair Display</option></select><span class="div"></span>
       </div>`;
 
   document.getElementById('site-header').outerHTML = header;
@@ -823,4 +823,40 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   grid.querySelectorAll('.wp-card').forEach(c => { const m = c.querySelector('.wp-meta'); if (!m || !m.textContent.trim().startsWith(type)) c.remove(); });
   if (!grid.children.length) grid.insertAdjacentHTML('beforeend', '<p class="ac-note">Nothing here yet.</p>');
   document.title = label + ' – ' + document.title;
+})();
+
+
+// D2E: header colour switch (mockup only), remembered in this browser
+(function () {
+  let v = 'black'; try { v = localStorage.getItem('me-hdr') || 'black'; } catch (e) {}
+  const apply = x => document.body.classList.toggle('hdr-grey', x === 'grey');
+  apply(v);
+  const sel = document.getElementById('hdr-style');
+  if (sel) { sel.value = v; sel.addEventListener('change', () => { apply(sel.value); try { localStorage.setItem('me-hdr', sel.value); } catch (e) {} }); }
+})();
+// D2E: articles show the full date above the headline, e.g. Thursday 19 November 2026 (also on next stories as they load)
+(function () {
+  const full = el => { if (/day /.test(el.textContent)) return; const d = new Date(el.getAttribute('datetime') || el.textContent.trim()); if (isNaN(d)) return;
+    el.textContent = d.toLocaleDateString('en-GB', { weekday: 'long' }) + ' ' + d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); };
+  const run = () => document.querySelectorAll('.ac-head .cv-meta time').forEach(full);
+  run(); new MutationObserver(run).observe(document.body, { childList: true, subtree: true, characterData: true });
+})();
+// D2E: each tab carries its own text so the row can reserve the bold width (no shift between pages)
+document.querySelectorAll('.cv-sections a, .stk-tabs a').forEach(a => { a.dataset.t = a.textContent.trim(); });
+
+// D2E: the font switches are for local review only; the published mockup has no font choice
+if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) ['font-style', 'hl-style'].forEach(id => { const s = document.getElementById(id); if (!s) return; const l = document.querySelector('label[for="' + id + '"]'), d = s.nextElementSibling; if (l) l.remove(); if (d && d.classList.contains('div')) d.remove(); s.remove(); });
+// D2E: heading font switch (mockup only), remembered in this browser
+(function () {
+  const sel = document.getElementById('font-style'); if (!sel) return;
+  let v = 'rc'; try { v = localStorage.getItem('me-font') || 'rc'; } catch (e) {}
+  sel.value = v;
+  sel.addEventListener('change', () => { try { localStorage.setItem('me-font', sel.value); } catch (e) {} window.meFont(sel.value); });
+})();
+// D2E: headline font switch (mockup only), remembered in this browser
+(function () {
+  const sel = document.getElementById('hl-style'); if (!sel) return;
+  let v = 'rob'; try { v = localStorage.getItem('me-hl') || 'rob'; } catch (e) {}
+  sel.value = v;
+  sel.addEventListener('change', () => { try { localStorage.setItem('me-hl', sel.value); } catch (e) {} window.meHl(sel.value); });
 })();

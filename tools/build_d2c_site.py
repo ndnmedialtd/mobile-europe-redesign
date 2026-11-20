@@ -43,7 +43,7 @@ css = (OUT / 'styles.css').read_text() + '\n\n' + block + extra
 # ---- shared.js: build the header, version switch, drop the old header picker ----
 js = (OUT / 'shared.js').read_text()
 js = js.replace('<span class="lbl" style="padding:0 6px;color:#888">Mockup <b style="color:#fff">v1</b></span>',
-                '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option><option value="me-redesign-d2f">D2F</option></select><span class="div"></span>', 1)
+                '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option></select><span class="div"></span>', 1)
 js = re.sub(r'\n    <span class="div"></span>\n    <label class="lbl" for="hdr-var".*?</select>', '', js, count=1, flags=re.S)
 js += r"""
 
