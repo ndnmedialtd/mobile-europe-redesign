@@ -36,7 +36,7 @@ for f in sorted(OUT.glob('*.html')):
     t = re.sub(r'<div class="nl"><h4>Get the newsletter</h4>.*?</div>', BOARD_BOX, t)
     t = re.sub(r'(<body[^>]*class=")', r'\1d2d ', t, count=1)
     t = t.replace(' – Mobile Europe mockup</title>', ' – Mobile Europe D2D mockup</title>').replace('Mobile Europe – D2A homepage mockup', 'Mobile Europe – D2D homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2d18', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2d19', t)
     f.write_text(t)
 
 # ---- homepage ----
@@ -427,12 +427,13 @@ js += r"""
   const CATS = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV', 'Digital Platforms & APIs', 'Edge', 'Financial/Regulation', 'Optical/IP', 'RAN', 'Satellite', 'Security', 'Sustainability'];
   const MENUS = {
     topics: [['channels.html', 'All']].concat(CATS.map(c => [href(c), c])),
+    'white-papers': [['white-papers.html', 'All'], ['white-papers.html?f=whitepapers', 'Whitepapers'], ['white-papers.html?f=case-studies', 'Case Studies'], ['white-papers.html?f=reports', 'Reports'], ['white-papers.html?f=handbooks', 'Handbooks']],
     news: [['news.html', 'All'], ['news.html?f=europe', 'Europe'], ['news.html?f=mea', 'Middle East & Africa']],
     insights: [['insights.html', 'All'], ['insights.html?f=partner', 'Partner content'], ['insights.html?f=interviews', 'Interviews'], ['insights.html?f=analysis', 'Analysis']],
     cxo: [['cxo.html', 'CxO News'], ['#', 'CTO of the Year Awards'], ['#', 'CTO of the Year Hall of Fame']],
     videos: [['videos.html', 'All'], ['videos.html?f=mwc', 'MWC']]
   };
-  [['news.html', 'news'], ['insights.html', 'insights'], ['cxo.html', 'cxo'], ['videos.html', 'videos']].forEach(([h, k]) => { const a = row.querySelector(`a[href="${h}"]`); if (a) a.dataset.dd = k; });
+  [['news.html', 'news'], ['white-papers.html', 'white-papers'], ['insights.html', 'insights'], ['cxo.html', 'cxo'], ['videos.html', 'videos']].forEach(([h, k]) => { const a = row.querySelector(`a[href="${h}"]`); if (a) a.dataset.dd = k; });
 
   // no rollovers: a section's strip (styled exactly like the D2A category strip) shows only on that
   // section's own pages - Channels (with All) and the category pages, Insights, CxO Zone and Videos
@@ -557,6 +558,27 @@ js += r"""
   run();
 })();
 """
+js += r"""
+
+// D2D: Downloads sub-sections (?f=...) show just that type, and the type becomes the page headline
+(function () {
+  if (document.body.dataset.page !== 'white-papers') return;
+  const T = { whitepapers: ['Whitepapers', 'White paper', 'Free white papers from the companies building EMEA’s networks.'],
+              'case-studies': ['Case Studies', 'Case study', 'How operators and their partners have put new technology to work.'],
+              reports: ['Reports', 'Report', 'Industry reports and analyst spotlights, free to download.'],
+              handbooks: ['Handbooks', 'Handbook', 'Practical guides for network, fraud and operations teams.'] };
+  const d = T[new URLSearchParams(location.search).get('f')]; if (!d) return;
+  const [label, type, desc] = d;
+  const band = document.querySelector('.nc-band');
+  if (band) { band.querySelector('h1').textContent = label; band.querySelector('p').textContent = desc; }
+  const car = document.querySelector('.wp-carousel'); if (car) car.remove();
+  const h = document.querySelector('main .sh h2'); if (h) { h.textContent = 'Latest ' + label.toLowerCase(); h.parentElement.style.marginTop = '0'; }
+  const grid = document.querySelector('.wp-grid');
+  grid.querySelectorAll('.wp-card').forEach(c => { const m = c.querySelector('.wp-meta'); if (!m || !m.textContent.trim().startsWith(type)) c.remove(); });
+  if (!grid.children.length) grid.insertAdjacentHTML('beforeend', '<p class="ac-note">Nothing here yet.</p>');
+  document.title = label + ' – ' + document.title;
+})();
+"""
 (OUT / 'shared.js').write_text(js)
 
 # ---- Channels homepage: the latest three stories from every channel ----
@@ -625,6 +647,13 @@ for f in list(OUT.glob('*.html')) + [OUT / 'shared.js']:
     s0 = f.read_text(); s1 = s0
     for x, y in REN: s1 = s1.replace(x, y)
     if s1 != s0: f.write_text(s1)
+
+# Downloads: a link at the top to Mobile Europe's own independent research
+f = OUT / 'white-papers.html'; s = f.read_text()
+a = '<p>Free white papers, case studies, handbooks and reports from the companies building EMEA’s networks.</p>'
+assert a in s
+s = s.replace(a, a + '\n    <a class="nc-res" href="research.html"><i>ME</i><span>For the latest independent research from Mobile Europe, see <b>Independent Research</b></span><em aria-hidden="true">→</em></a>', 1)
+f.write_text(s)
 
 # ---- styles (D2D only) ----
 CSS = r"""
@@ -889,6 +918,13 @@ CSS = r"""
 .d2d .ac-hero{overflow:hidden;isolation:isolate;background:#222}
 .d2d .ac-hero::before{content:"";position:absolute;left:0;right:0;top:-14%;bottom:-14%;z-index:-1;background:var(--img) center 30%/cover no-repeat;transform:translate3d(0,var(--py,0px),0);will-change:transform}
 @media (prefers-reduced-motion:reduce){.d2d .ac-hero::before{transform:none}}
+/* Downloads: link to Independent Research at the top */
+.d2d .nc-band .nc-res{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 14px 8px 8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:5px;color:#fff;font-size:14px;line-height:1.35;text-decoration:none;max-width:100%}
+.d2d .nc-band .nc-res i{flex:none;font:700 12px/1 var(--body);font-style:normal;background:var(--res);color:#fff;padding:6px 6px;border-radius:0 6px 0 0}
+.d2d .nc-band .nc-res b{color:#fff}
+.d2d .nc-band .nc-res em{font-style:normal;transition:transform .2s}
+.d2d .nc-band .nc-res:hover{border-color:#fff}
+.d2d .nc-band .nc-res:hover em{transform:translateX(3px)}
 """
 (OUT / 'styles.css').write_text((OUT / 'styles.css').read_text() + CSS)
 print('built', len(list(OUT.glob('*.html'))), 'pages in', OUT.name)

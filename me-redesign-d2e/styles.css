@@ -2332,6 +2332,13 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 .d2d .ac-hero{overflow:hidden;isolation:isolate;background:#222}
 .d2d .ac-hero::before{content:"";position:absolute;left:0;right:0;top:-14%;bottom:-14%;z-index:-1;background:var(--img) center 30%/cover no-repeat;transform:translate3d(0,var(--py,0px),0);will-change:transform}
 @media (prefers-reduced-motion:reduce){.d2d .ac-hero::before{transform:none}}
+/* Downloads: link to Independent Research at the top */
+.d2d .nc-band .nc-res{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 14px 8px 8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:5px;color:#fff;font-size:14px;line-height:1.35;text-decoration:none;max-width:100%}
+.d2d .nc-band .nc-res i{flex:none;font:700 12px/1 var(--body);font-style:normal;background:var(--res);color:#fff;padding:6px 6px;border-radius:0 6px 0 0}
+.d2d .nc-band .nc-res b{color:#fff}
+.d2d .nc-band .nc-res em{font-style:normal;transition:transform .2s}
+.d2d .nc-band .nc-res:hover{border-color:#fff}
+.d2d .nc-band .nc-res:hover em{transform:translateX(3px)}
 
 
 /* ===================== D2E: homepage tabs above the cover picture ===================== */

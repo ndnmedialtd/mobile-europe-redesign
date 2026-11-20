@@ -684,12 +684,13 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   const CATS = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV', 'Digital Platforms & APIs', 'Edge', 'Financial/Regulation', 'Optical/IP', 'RAN', 'Satellite', 'Security', 'Sustainability'];
   const MENUS = {
     topics: [['channels.html', 'All']].concat(CATS.map(c => [href(c), c])),
+    'white-papers': [['white-papers.html', 'All'], ['white-papers.html?f=whitepapers', 'Whitepapers'], ['white-papers.html?f=case-studies', 'Case Studies'], ['white-papers.html?f=reports', 'Reports'], ['white-papers.html?f=handbooks', 'Handbooks']],
     news: [['news.html', 'All'], ['news.html?f=europe', 'Europe'], ['news.html?f=mea', 'Middle East & Africa']],
     insights: [['insights.html', 'All'], ['insights.html?f=partner', 'Partner content'], ['insights.html?f=interviews', 'Interviews'], ['insights.html?f=analysis', 'Analysis']],
     cxo: [['cxo.html', 'CxO News'], ['#', 'CTO of the Year Awards'], ['#', 'CTO of the Year Hall of Fame']],
     videos: [['videos.html', 'All'], ['videos.html?f=mwc', 'MWC']]
   };
-  [['news.html', 'news'], ['insights.html', 'insights'], ['cxo.html', 'cxo'], ['videos.html', 'videos']].forEach(([h, k]) => { const a = row.querySelector(`a[href="${h}"]`); if (a) a.dataset.dd = k; });
+  [['news.html', 'news'], ['white-papers.html', 'white-papers'], ['insights.html', 'insights'], ['cxo.html', 'cxo'], ['videos.html', 'videos']].forEach(([h, k]) => { const a = row.querySelector(`a[href="${h}"]`); if (a) a.dataset.dd = k; });
 
   // no rollovers: a section's strip (styled exactly like the D2A category strip) shows only on that
   // section's own pages - Channels (with All) and the category pages, Insights, CxO Zone and Videos
@@ -802,4 +803,24 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   addEventListener('scroll', ask, { passive: true }); addEventListener('resize', ask); addEventListener('load', run);
   new MutationObserver(ask).observe(document.body, { childList: true, subtree: true });
   run();
+})();
+
+
+// D2D: Downloads sub-sections (?f=...) show just that type, and the type becomes the page headline
+(function () {
+  if (document.body.dataset.page !== 'white-papers') return;
+  const T = { whitepapers: ['Whitepapers', 'White paper', 'Free white papers from the companies building EMEA’s networks.'],
+              'case-studies': ['Case Studies', 'Case study', 'How operators and their partners have put new technology to work.'],
+              reports: ['Reports', 'Report', 'Industry reports and analyst spotlights, free to download.'],
+              handbooks: ['Handbooks', 'Handbook', 'Practical guides for network, fraud and operations teams.'] };
+  const d = T[new URLSearchParams(location.search).get('f')]; if (!d) return;
+  const [label, type, desc] = d;
+  const band = document.querySelector('.nc-band');
+  if (band) { band.querySelector('h1').textContent = label; band.querySelector('p').textContent = desc; }
+  const car = document.querySelector('.wp-carousel'); if (car) car.remove();
+  const h = document.querySelector('main .sh h2'); if (h) { h.textContent = 'Latest ' + label.toLowerCase(); h.parentElement.style.marginTop = '0'; }
+  const grid = document.querySelector('.wp-grid');
+  grid.querySelectorAll('.wp-card').forEach(c => { const m = c.querySelector('.wp-meta'); if (!m || !m.textContent.trim().startsWith(type)) c.remove(); });
+  if (!grid.children.length) grid.insertAdjacentHTML('beforeend', '<p class="ac-note">Nothing here yet.</p>');
+  document.title = label + ' – ' + document.title;
 })();
