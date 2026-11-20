@@ -19,7 +19,7 @@ shutil.copytree(SRC, OUT)
 
 # logo icon: a small white line icon top left of the red block, different for each section and channel
 ICONS = {
-    'broadcast': '<circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19.1 4.9a10 10 0 0 1 0 14.2M4.9 19.1a10 10 0 0 1 0-14.2"/>',
+    'broadcast': '<path class="ghost" d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19.1 4.9a10 10 0 0 1 0 14.2M4.9 19.1a10 10 0 0 1 0-14.2"/><circle cx="12" cy="12" r="2"/><path class="w1" d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4"/><path class="w2" d="M19.1 4.9a10 10 0 0 1 0 14.2M4.9 19.1a10 10 0 0 1 0-14.2"/>',
     'news': '<path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M7 9h7M7 12h7M7 15h4"/>',
     'grid': '<rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/>',
     'bulb': '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
@@ -80,7 +80,7 @@ for f in sorted(OUT.glob('*.html')):
     t = f.read_text()
     t = re.sub(r'(<body[^>]*class=")', r'\1d2g ', t, count=1)
     t = t.replace('Mobile Europe D2E mockup', 'Mobile Europe D2G mockup').replace('Mobile Europe – D2E homepage mockup', 'Mobile Europe – D2G homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=d2e\d+', r'\1?v=d2g12', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=d2e\d+', r'\1?v=d2g20', t)
     # trial: the big ME mark is built in the page: MOBILE / EUROPE stacked in bold on the red square
     t = t.replace('<a class="cv-me" href="index.html" aria-label="Mobile Europe home"><img src="../brand/me-mark.png" alt="ME" width="400" height="400"></a>',
                   '<a class="cv-me me-built" href="index.html" aria-label="Mobile Europe home"><span class="me-stack"><b>MOBILE</b><b>EUROPE</b></span></a>')
@@ -98,7 +98,12 @@ CSS = """
 /* ===================== D2G: built logo ===================== */
 /* built logo, "masthead" style: MOBILE / EUROPE in Roboto Condensed Black at the bottom of the red square,
    a short white rule top left, rounded top-right corner. Sizes follow the square, so it works at every size */
-.d2g .cv-me.me-built{container-type:size;border-radius:0 17% 0 0!important;display:block!important;position:relative}
+.d2g .cv-me.me-built{container-type:size;border-radius:0!important;display:block!important;position:relative}
+/* the logo sits flush against the grey billboard band above it (pulls up over the header's 1px top line) */
+.d2g .cv-me.me-built{margin-top:-1px!important;z-index:9}
+/* inner pages: a bit bigger, filling the header bar from top to bottom */
+.d2g.cv-sub:not(.brief-page):not([data-page="res"]) .cv-me.me-built{width:68px!important;height:68px!important;align-self:flex-start!important;margin-bottom:0!important}
+@media (max-width:760px){.d2g.cv-sub:not(.brief-page):not([data-page="res"]) .cv-me.me-built{width:56px!important;height:56px!important}}
 .d2g .me-stack{position:absolute;left:9.5cqw;right:6cqw;bottom:8.5cqw;display:flex;flex-direction:column;align-items:flex-start;color:#fff;font:900 24cqw/.88 'Roboto Condensed',var(--body)!important;letter-spacing:0;text-transform:uppercase}
 .d2g .me-stack b{display:block;font-weight:900}
 .d2g .me-ico{position:absolute;left:8.5cqw;top:8.5cqw;width:22cqw;height:22cqw;color:#fff;display:block}
@@ -111,6 +116,16 @@ CSS = """
 /* the section's own icon, in black, just right of the broadcast icon */
 .d2g .me-ico.me-sec{left:36cqw;color:var(--ink)}
 @container (max-width:100px){.d2g .me-ico.me-sec{left:43cqw}}
+/* broadcast icon: the waves radiate out from the dot, inner then outer, on a slow loop;
+   a dark red copy of the waves stays behind them all the time, so the icon keeps its shape */
+.d2g .me-ico .ghost{stroke:#8e0a27}
+.d2g .cv-me .me-ico .w1,.d2g .cv-me .me-ico .w2{transform-origin:12px 12px;animation:meWave 2.4s ease-out infinite}
+.d2g .cv-me .me-ico .w2{animation-delay:.35s}
+@keyframes meWave{0%{opacity:0;transform:scale(.7)}25%{opacity:1;transform:scale(1)}60%{opacity:1;transform:scale(1.04)}100%{opacity:0;transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.d2g .cv-me .me-ico .w1,.d2g .cv-me .me-ico .w2{animation:none}}
+/* The Briefing page: the logo's bottom edge lines up with the baseline of THE BRIEFING (logo a little bigger, title moved right to keep the gap) */
+@media (min-width:1101px){.d2g[data-page="brief"] .cv-me.me-built{width:135px!important;height:135px!important;margin-bottom:-85px!important}.d2g[data-page="brief"] .fband .wrap{padding-left:179px!important}}
+@media (max-width:1100px) and (min-width:761px){.d2g[data-page="brief"]{--bme:min(130px,calc(75px + 5vw))}.d2g[data-page="brief"] .cv-me.me-built{width:var(--bme)!important;height:var(--bme)!important;margin-bottom:calc(50px - var(--bme))!important}.d2g[data-page="brief"] .fband .wrap{padding-left:calc(var(--bme) + 44px)!important}}
 """
 (OUT / 'styles.css').write_text((OUT / 'styles.css').read_text() + CSS)
 print('built', len(list(OUT.glob('*.html'))), 'pages in', OUT.name)
