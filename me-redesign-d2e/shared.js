@@ -684,11 +684,12 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   const CATS = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV', 'Digital Platforms & APIs', 'Edge', 'Financial/Regulation', 'Optical/IP', 'RAN', 'Satellite', 'Security', 'Sustainability'];
   const MENUS = {
     topics: [['channels.html', 'All']].concat(CATS.map(c => [href(c), c])),
+    news: [['news.html', 'All'], ['news.html?f=europe', 'Europe'], ['news.html?f=mea', 'Middle East & Africa']],
     insights: [['insights.html', 'All'], ['insights.html?f=partner', 'Partner content'], ['insights.html?f=interviews', 'Interviews'], ['insights.html?f=analysis', 'Analysis']],
     cxo: [['cxo.html', 'CxO News'], ['#', 'CTO of the Year Awards'], ['#', 'CTO of the Year Hall of Fame']],
     videos: [['videos.html', 'All'], ['videos.html?f=mwc', 'MWC']]
   };
-  [['insights.html', 'insights'], ['cxo.html', 'cxo'], ['videos.html', 'videos']].forEach(([h, k]) => { const a = row.querySelector(`a[href="${h}"]`); if (a) a.dataset.dd = k; });
+  [['news.html', 'news'], ['insights.html', 'insights'], ['cxo.html', 'cxo'], ['videos.html', 'videos']].forEach(([h, k]) => { const a = row.querySelector(`a[href="${h}"]`); if (a) a.dataset.dd = k; });
 
   // no rollovers: a section's strip (styled exactly like the D2A category strip) shows only on that
   // section's own pages - Channels (with All) and the category pages, Insights, CxO Zone and Videos
@@ -718,7 +719,7 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   const href = window.ME_CAT_HREF;
   const CATS = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV', 'Digital Platforms & APIs', 'Edge', 'Financial/Regulation', 'Optical/IP', 'RAN', 'Satellite', 'Security', 'Sustainability'];
   const OTHER = { 'Insights': 'insights.html', 'Interview': 'insights.html?f=interviews', 'Analysis': 'insights.html?f=analysis', 'Opinion': 'insights.html', 'CXO': 'cxo.html' };
-  document.querySelectorAll('.pic .tag').forEach(tag => {
+  document.querySelectorAll('.pic .tag, .cm-row .tag').forEach(tag => {
     const name = tag.textContent.trim(), sec = tag.closest('.tp-sec');
     // on the Channels page a label that isn't a channel (e.g. a region) opens that section's channel
     const to = CATS.includes(name) ? href(name) : OTHER[name] || (sec && sec.querySelector('.sh a').getAttribute('href'));
@@ -757,6 +758,10 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
       interviews: ['Interviews', c => tag(c) === 'Interview', 'In-depth conversations with the leaders shaping EMEA telecoms.'],
       analysis: ['Analysis', c => tag(c) === 'Analysis', 'Our take on the deals, strategies and trends behind the headlines.']
     },
+    news: {
+      europe: ['Europe', c => tag(c) !== 'Middle East & Africa' && !c.classList.contains('sp-card'), 'The latest communications infrastructure and digital services news from across Europe.'],
+      mea: ['Middle East & Africa', c => tag(c) === 'Middle East & Africa', 'The latest communications infrastructure and digital services news from the Middle East and Africa.']
+    },
     videos: { mwc: ['MWC', c => /^MWC/.test(tag(c)), 'Interviews and briefings filmed at MWC Barcelona.'] }
   };
   const d = DEF[page] && DEF[page][f]; if (!d) return;
@@ -775,4 +780,26 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   // the second block of stories is now empty: drop it with its billboard
   grids.slice(1).forEach(g => { if (g.children.length) return; const m = g.closest('main'); const bb = m && m.previousElementSibling; if (bb && bb.classList.contains('bb-zone')) bb.remove(); if (m) m.remove(); });
   document.title = label + ' – ' + document.title;
+})();
+
+
+// D2D: article pictures drift a little slower than the page as you scroll (also on the next stories that load below)
+(function () {
+  if (document.body.dataset.page !== 'article' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let ticking = false;
+  const run = () => {
+    ticking = false;
+    const vh = innerHeight;
+    document.querySelectorAll('.ac-hero').forEach(h => {
+      const r = h.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      // -1 when the picture's centre is at the bottom of the window, +1 at the top; moves up to 12% of its height
+      const t = ((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2);
+      h.style.setProperty('--py', (t * r.height * 0.12).toFixed(1) + 'px');
+    });
+  };
+  const ask = () => { if (!ticking) { ticking = true; requestAnimationFrame(run); } };
+  addEventListener('scroll', ask, { passive: true }); addEventListener('resize', ask); addEventListener('load', run);
+  new MutationObserver(ask).observe(document.body, { childList: true, subtree: true });
+  run();
 })();

@@ -36,7 +36,7 @@ for f in sorted(OUT.glob('*.html')):
     t = re.sub(r'<div class="nl"><h4>Get the newsletter</h4>.*?</div>', BOARD_BOX, t)
     t = re.sub(r'(<body[^>]*class=")', r'\1d2d ', t, count=1)
     t = t.replace(' – Mobile Europe mockup</title>', ' – Mobile Europe D2D mockup</title>').replace('Mobile Europe – D2A homepage mockup', 'Mobile Europe – D2D homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2d2', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2d17', t)
     f.write_text(t)
 
 # ---- homepage ----
@@ -167,7 +167,106 @@ t = t.replace('</body>', """<script>
 t = t.replace('<span class="kicker">Speaking next</span>', '<span class="kicker">Bringing the best minds together in the telco space</span>', 1)
 t = t.replace('<h2>Bringing the best minds together in the telco space</h2></div>', '<h2>Speaking next</h2></div>', 1)
 assert '<h2>Speaking next</h2>' in t
+# ---- lower homepage sections, laid out like the live site's section pages: big grey headings, a lead story,
+#      CxO Zone lead + list, white paper covers, Events & webinars (no Briefing-only section) and Videos ----
+t = t.replace('<h2>More latest news</h2>', '<h2>Latest news</h2>', 1)
+ins = t.index('<h2>Insights</h2>'); g = t.index('<div class="grid3">', ins)
+LEAD = ('<a class="card hx-lead" href="article.html?s=pulsant"><div class="pic"><img src="' + U + '2026/11/Rob-Coupland-ME.png" alt=""><span class="tag ins">Interview</span></div>'
+        '<div class="txt"><h3>Data centres must look beyond the ‘bragawatts’ race, says Pulsant CEO</h3>'
+        '<p>Pulsant CEO Rob Coupland says the industry has become fixated on building ever bigger AI campuses, and explains where the real demand lies.</p><div class="date">11 November 2026</div></div></a>\n      ')
+t = t[:g] + LEAD + t[g:]
+a = t.index('<div class="grid2" style="align-items:start">')
+b = t.index('\n    <aside class="rail"><div><div class="ad-label">Advertisement</div><div class="ad ad-mpu">MPU 4', a)
+CX = [('2026/11/Telus.png', 'Telus names ex-EE and ex-KPMG chiefs to board', '9 November 2026', 'Former EE chief executive Marc Allera and former KPMG International CEO Bill Thomas join the Telus board.'),
+      ('2026/11/Google-Annika-Bizon.png', 'Google poaches Samsung VP Annika Bizon to lead TMT team', '6 November 2026', 'Bizon becomes Google UK’s Managing Director for Technology, Media and Telecommunications.'),
+      ('2026/11/CELFOCUS-.png', 'Celfocus’ Carla Penedo joins Mobile Europe’s Editorial Advisory Board', '4 November 2026', 'Celfocus’ Executive Director of Cognitive Automation joins the board that helps shape our coverage.')]
+WP = [('2026/11/windriver-nov26-696x901.jpg', 'IDC Spotlight: Telco Core and IT Modernization – Cloud-Native Convergence Built for the AI Era', 'Report · Wind River'),
+      ('2026/11/Detecting-and-Countering-Fraud-and-Revenue-Leakage-in-Mobile-Networks-Handbook-for-Fraud-Revenue-Assurance-Network-Teams-1-1-696x905.jpg', 'Detecting and Countering Fraud and Revenue Leakage in Mobile Networks', 'Handbook · ENEA'),
+      ('2026/09/ISS-OnOff-Telecom-Case-Study-3-WP-696x844.jpg', 'There’s a Core for That', 'White paper · Mavenir')]
+cx = ('<div>\n        <div class="sh"><h2>CxO Zone</h2><a href="cxo.html">All moves</a></div>\n        <div class="cx">\n'
+      '          <a class="card hx-lead cx-lead" href="article.html"><div class="pic"><img src="' + U + '2026/11/SpaceX-696x464.jpeg" alt=""><span class="tag">Boardroom</span></div>'
+      '<div class="txt"><h3>Google’s Don Harrison resigns from SpaceX board</h3><div class="date">10 November 2026</div><p>SpaceX has announced Don Harrison has stepped down from its Board of Directors, according to a company filing.</p></div></a>\n'
+      '          <div class="cx-list">' + ''.join(f'<a href="article.html"><div class="pic"><img src="{U + i}" alt=""></div><div><h3>{h}</h3><div class="date">{d}</div><p>{p}</p></div></a>' for i, h, d, p in CX) + '</div>\n        </div>\n      </div>')
+t = t[:a] + cx + t[b:]
+# White papers & guides: full width, four in a row, just above the Independent Research band
+WP.append(('2026/07/business-value-pathways-cover3-696x860.jpg', 'Outcomes first, autonomy follows: Business Value Pathways towards autonomous networks', 'White paper · Ericsson'))
+wp = ('<main class="wrap wp-full has-anno">\n  <div class="sh"><h2>White papers &amp; guides</h2><a href="white-papers.html">View the white paper hub</a></div>\n'
+      '  <div class="wp3 wp4">' + ''.join(f'<a href="white-paper.html"><div class="pic"><img src="{U + i}" alt=""></div><h3>{h}</h3><div class="spon">{s}</div></a>' for i, h, s in WP) + '</div>\n</main>\n\n')
+assert '<!-- ===== INDEPENDENT RESEARCH BAND ===== -->' in t
+t = t.replace('<!-- ===== INDEPENDENT RESEARCH BAND ===== -->', wp + '<!-- ===== INDEPENDENT RESEARCH BAND ===== -->', 1)
+a = t.index('<div class="sh brief"><h2>The Briefing &amp; Events</h2>')
+b = t.index('\n    <aside class="rail" style="margin-top:40px">', a)
+EVX = [('briefing-event.html', '2026/10/ME-BRIEFING-AI3-ADS-2-v1--600x350.jpg', 'The Briefing · Online', '24 November 2026', 'AI in Network Optimisation: Finding Forgotten Revenue'),
+       ('events.html', '2026/07/TELECOMS-FOCUS-logo-event2-600x350.jpg', 'Telecoms in Focus · Online', '10 December 2026', '2026 in focus, 2027 and beyond'),
+       ('events.html', '2026/11/mwc27-Event-Theme-cropped.jpg', 'Fira Gran Via, Barcelona', '1–4 March 2027', 'MWC Barcelona')]
+VID = [('2026/06/Screenshot-2026-06-19-at-13.02.41-1068x668.jpg', 'Interview', 'Voice AI: monetising voice at scale with new intelligent services – Interview with Tallence'),
+       ('2026/04/Screenshot-2026-04-13-at-10.38.50-1068x668.jpg', 'Interview', 'Beyond AIOps: How knowledge-driven agentic AI enables autonomous network operations'),
+       ('2026/03/Screenshot-2026-03-27-at-09.50.41-1068x668.jpg', 'MWC26', 'MWC26: Beyond Cloud-Native – How Wind River Is Accelerating Telco Growth')]
+ev = ('<div class="sh"><h2>Events &amp; webinars</h2><a href="events.html">View more events</a></div>\n      <div class="evx">'
+      + ''.join(f'<a class="evx-card" href="{h}"><div class="pic"><img src="{U + i}" alt=""></div><div class="evx-t"><small>{w}</small><b>{d}</b><h3>{x}</h3><span class="evx-go">View detail</span></div></a>' for h, i, w, d, x in EVX)
+      + '</div>\n      <div class="sh"><h2>Videos</h2><a href="videos.html">All videos</a></div>\n'
+      '      <a class="card hx-lead vid-lead" href="videos.html"><div class="vthumb"><img src="' + U + '2026/09/Octave-ME-Sept26-1-1068x601.jpg" alt=""><span class="play big" aria-hidden="true"></span></div>'
+      '<div class="txt"><div class="kick">Partner video</div><h3>Moving from asset-centric to flow-driven network operations: interview with Octave</h3><p>Telecom network management is shifting from an asset-centric to a flow-centric approach. What does that mean for operators?</p></div></a>\n'
+      '      <div class="grid3 vid3">' + ''.join(f'<a class="vid-card" href="videos.html"><div class="vthumb"><img src="{U + i}" alt=""><span class="play" aria-hidden="true"></span><span class="tag">{g}</span></div><h3>{x}</h3></a>' for i, g, x in VID) + '</div>\n    </div>')
+t = t[:a] + ev + t[b:]
+assert 'The Briefing &amp; Events' not in t and t.count('hx-lead') == 3
+# Independent Research: three reports, not four
+t, n = re.subn(r'\n      <a class="res-item" href="research.html"><div class="cover"><img src="[^"]*Automation-Mavenir[^"]*" alt=""></div>.*?</a>', '', t, count=1); assert n == 1
 hp.write_text(t)
+
+# two category pages (Cloud/NFV, Automation/AI): the pinned partner piece becomes the main story at the top; the old main story drops into the grid
+for f in [OUT / 'category-cloud-nfv.html']:   # only this channel has a pinned lead
+    s = f.read_text()
+    lead = re.search(r'    <a class="lead-big" href="([^"]*)">\n      <div class="pic"><img src="([^"]*)" alt=""><span class="tag">(.*?)</span></div>\n      <div class="txt">\n        <div class="kick">[^<]*</div>\n        <h2>(.*?)</h2>\n        <p>(.*?)</p>\n        <div class="date">(.*?)</div>\n      </div>\n    </a>\n', s)
+    pin = re.search(r'        <div class="pin-slot" data-fixed>\n          <a class="card sp-card" href="([^"]*)">\n            <div class="sp-top">.*?</div>\n            <div class="pic"><img src="([^"]*)"[^>]*></div>\n            <h3>(.*?)</h3>\n          </a>\n        </div>\n', s)
+    assert lead and pin, f.name
+    h, img, tag, title, p, date = lead.groups()
+    ph, pimg, ptitle = pin.groups()
+    sp = (f'    <a class="lead-big sp-lead" href="{ph}">\n      <div class="pic"><img src="{pimg}" alt=""></div>\n      <div class="txt">\n'
+          f'        <div class="sp-top"><span class="sp-label">Partner content</span></div>\n        <h2>{ptitle}</h2>\n'
+          f'        <p>Pinned by our partner: free to read and download for Mobile Europe readers.</p>\n        <span class="btn red">Read more</span>\n      </div>\n    </a>\n')
+    card = f'        <a class="card" href="{h}"><div class="pic"><img src="{img}" alt=""><span class="tag">{tag}</span></div><h3>{title}</h3><p>{p.rstrip()}...</p><div class="date">{date}</div></a>\n'
+    s = s.replace(lead.group(0), sp, 1).replace(pin.group(0), card, 1)
+    f.write_text(s)
+
+# Automation/AI: no pinned partner post at all
+f = OUT / 'category-automation-ai.html'; s = f.read_text()
+s, n = re.subn(r'        <div class="pin-slot" data-fixed>\n.*?\n        </div>\n', '', s, count=1, flags=re.S); assert n == 1
+# keep the first grid even: the next story moves up from the lower grid
+g2 = s.index('<div class="grid2">', s.index('<main class="wrap">'))
+m = re.compile(r'\s*<a class="card" href=.*?</a>', re.S).search(s, g2)
+s = s[:m.start()] + s[m.end():]
+end1 = s.rindex('\n      </div>', 0, s.index('<main class="wrap">'))
+end1 = s.rindex('\n      </div>', 0, s.rindex('<aside class="rail">', 0, s.index('<main class="wrap">')))
+s = s[:end1] + '\n        ' + m.group(0).strip() + s[end1:]
+f.write_text(s)
+
+# category pages: story cards read picture, headline, label + date, then a few lines of text
+import sys; sys.path.insert(0, str(ROOT / 'tools')); from cat_excerpts import EX, SP
+CARD = re.compile(r'<a class="card" href="([^"]*)"><div class="pic"><img ([^>]*)><span class="(tag[^"]*)">(.*?)</span></div><h3>(.*?)</h3>(?:<p>(.*?)</p>)?(?:<div class="date">(.*?)</div>)?</a>')
+def cm(m):
+    h, img, tc, tag, title, p, date = m.groups()
+    p = p or EX.get(title, '')
+    return (f'<a class="card cm" href="{h}"><div class="pic"><img {img}></div><h3>{title}</h3>'
+            f'<div class="cm-row"><span class="{tc}">{tag}</span>' + (f'<span class="date">{date}</span>' if date else '') + '</div>'
+            + (f'<p>{p}</p>' if p else '') + '</a>')
+for f in sorted(OUT.glob('category-*.html')):   # a story's own intro wherever it appears with one
+    for m in CARD.finditer(f.read_text()):
+        if m.group(6): EX.setdefault(m.group(5), m.group(6).rstrip())
+CM_PAGES = sorted(OUT.glob('category-*.html')) + [OUT / 'news.html', OUT / 'insights.html', OUT / 'cxo.html']
+SPC = re.compile(r'(<a class="card sp-card"[^>]*>.*?<h3>(.*?)</h3>)(\s*</a>)', re.S)
+for f in CM_PAGES:   # (News, Insights and CxO Zone cards too, and the pinned partner card gets a line of text)
+    s = f.read_text(); s2 = CARD.sub(cm, s)
+    s2 = SPC.sub(lambda m: m.group(1) + (f'<p class="sp-txt">{SP[m.group(2)]}</p>' if m.group(2) in SP else '') + m.group(3), s2)
+    assert 'class="card cm"' in s2, f.name
+    f.write_text(s2)
+
+# pinned partner content (homepage, category pages, white paper hub): a pin in the top right corner
+PIN ='<span class="pin-ico" title="Pinned" aria-label="Pinned"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 2.5l6 6-2.3.8-3.6 3.6.6 4.6-1.9 1.9-4-4-5.6 5.6-1.3-1.3 5.6-5.6-4-4 1.9-1.9 4.6.6 3.6-3.6z" fill="currentColor"/></svg></span>'
+for f in OUT.glob('*.html'):
+    s = f.read_text()
+    s2 = s.replace('<span class="sp-label">Partner content</span></div>', '<span class="sp-label">Partner content</span>' + PIN + '</div>')
+    if s2 != s: f.write_text(s2)
 
 # ---- article ----
 ap = OUT / 'article.html'
@@ -328,11 +427,12 @@ js += r"""
   const CATS = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV', 'Digital Platforms & APIs', 'Edge', 'Financial/Regulation', 'Optical/IP', 'RAN', 'Satellite', 'Security', 'Sustainability'];
   const MENUS = {
     topics: [['channels.html', 'All']].concat(CATS.map(c => [href(c), c])),
+    news: [['news.html', 'All'], ['news.html?f=europe', 'Europe'], ['news.html?f=mea', 'Middle East & Africa']],
     insights: [['insights.html', 'All'], ['insights.html?f=partner', 'Partner content'], ['insights.html?f=interviews', 'Interviews'], ['insights.html?f=analysis', 'Analysis']],
     cxo: [['cxo.html', 'CxO News'], ['#', 'CTO of the Year Awards'], ['#', 'CTO of the Year Hall of Fame']],
     videos: [['videos.html', 'All'], ['videos.html?f=mwc', 'MWC']]
   };
-  [['insights.html', 'insights'], ['cxo.html', 'cxo'], ['videos.html', 'videos']].forEach(([h, k]) => { const a = row.querySelector(`a[href="${h}"]`); if (a) a.dataset.dd = k; });
+  [['news.html', 'news'], ['insights.html', 'insights'], ['cxo.html', 'cxo'], ['videos.html', 'videos']].forEach(([h, k]) => { const a = row.querySelector(`a[href="${h}"]`); if (a) a.dataset.dd = k; });
 
   // no rollovers: a section's strip (styled exactly like the D2A category strip) shows only on that
   // section's own pages - Channels (with All) and the category pages, Insights, CxO Zone and Videos
@@ -369,7 +469,7 @@ js += r"""
   const href = window.ME_CAT_HREF;
   const CATS = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV', 'Digital Platforms & APIs', 'Edge', 'Financial/Regulation', 'Optical/IP', 'RAN', 'Satellite', 'Security', 'Sustainability'];
   const OTHER = { 'Insights': 'insights.html', 'Interview': 'insights.html?f=interviews', 'Analysis': 'insights.html?f=analysis', 'Opinion': 'insights.html', 'CXO': 'cxo.html' };
-  document.querySelectorAll('.pic .tag').forEach(tag => {
+  document.querySelectorAll('.pic .tag, .cm-row .tag').forEach(tag => {
     const name = tag.textContent.trim(), sec = tag.closest('.tp-sec');
     // on the Channels page a label that isn't a channel (e.g. a region) opens that section's channel
     const to = CATS.includes(name) ? href(name) : OTHER[name] || (sec && sec.querySelector('.sh a').getAttribute('href'));
@@ -410,6 +510,10 @@ js += r"""
       interviews: ['Interviews', c => tag(c) === 'Interview', 'In-depth conversations with the leaders shaping EMEA telecoms.'],
       analysis: ['Analysis', c => tag(c) === 'Analysis', 'Our take on the deals, strategies and trends behind the headlines.']
     },
+    news: {
+      europe: ['Europe', c => tag(c) !== 'Middle East & Africa' && !c.classList.contains('sp-card'), 'The latest communications infrastructure and digital services news from across Europe.'],
+      mea: ['Middle East & Africa', c => tag(c) === 'Middle East & Africa', 'The latest communications infrastructure and digital services news from the Middle East and Africa.']
+    },
     videos: { mwc: ['MWC', c => /^MWC/.test(tag(c)), 'Interviews and briefings filmed at MWC Barcelona.'] }
   };
   const d = DEF[page] && DEF[page][f]; if (!d) return;
@@ -430,6 +534,29 @@ js += r"""
   document.title = label + ' – ' + document.title;
 })();
 """
+js += r"""
+
+// D2D: article pictures drift a little slower than the page as you scroll (also on the next stories that load below)
+(function () {
+  if (document.body.dataset.page !== 'article' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let ticking = false;
+  const run = () => {
+    ticking = false;
+    const vh = innerHeight;
+    document.querySelectorAll('.ac-hero').forEach(h => {
+      const r = h.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      // -1 when the picture's centre is at the bottom of the window, +1 at the top; moves up to 12% of its height
+      const t = ((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2);
+      h.style.setProperty('--py', (t * r.height * 0.12).toFixed(1) + 'px');
+    });
+  };
+  const ask = () => { if (!ticking) { ticking = true; requestAnimationFrame(run); } };
+  addEventListener('scroll', ask, { passive: true }); addEventListener('resize', ask); addEventListener('load', run);
+  new MutationObserver(ask).observe(document.body, { childList: true, subtree: true });
+  run();
+})();
+"""
 (OUT / 'shared.js').write_text(js)
 
 # ---- Channels homepage: the latest three stories from every channel ----
@@ -438,19 +565,36 @@ CAT_NAMES = ['5G & Beyond', 'Access', 'Automation/AI', 'BSS/OSS/CX', 'Cloud/NFV'
 cat_href = lambda c: 'category-5g.html' if c == '5G & Beyond' else 'category-' + re.sub(r'[/ ]+', '-', c.lower().replace(' & ', '-')) + '.html'
 secs = []
 for c in CAT_NAMES:
-    cards = re.findall(r'<a class="card" href="[^"]*">.*?</a>', (OUT / cat_href(c)).read_text(), re.S)[:3]
+    ct = (OUT / cat_href(c)).read_text()
+    cards = re.findall(r'<a class="card cm" href="[^"]*">.*?</a>', ct, re.S)[:3]
+    desc = re.search(r'</h1>\s*<p>(.*?)</p>', ct, re.S).group(1)
+    thumb = re.search(r'<img src="([^"]*)"', cards[0]).group(1)
     name = c.replace('&', '&amp;')
     joined = '\n          '.join(cards)
     secs.append(f'''      <section class="tp-sec">
-        <div class="sh"><h2>{name}</h2><a href="{cat_href(c)}">View all</a></div>
-        <div class="grid3">
+        <div class="sh tp-sh" role="button" tabindex="0" aria-expanded="false"><img class="tp-thumb" src="{thumb}" alt=""><div class="tp-ttl"><h2>{name}</h2><p class="tp-desc">{desc}</p></div><a href="{cat_href(c)}">View all</a><span class="tp-chev" aria-hidden="true"></span></div>
+        <div class="tp-acc"><div class="tp-in"><div class="grid3">
           {joined}
-        </div>
+        </div></div></div>
       </section>''')
 news = (OUT / 'news.html').read_text()
 a = news.index('<main class="wrap nc-main">'); b = news.index('<div id="site-footer">')
 rail = re.search(r'<aside class="rail"><div class="sticky">.*?</div></aside>', news[a:b], re.S).group(0)
 tp = news[:a] + '<main class="wrap nc-main tp-main">\n  <div class="with-rail">\n    <div>\n' + '\n'.join(secs) + '\n    </div>\n    ' + rail + '\n  </div>\n</main>\n\n' + news[b:]
+tp = tp.replace('<div id="site-footer"></div>', '''<div id="site-footer"></div>
+<script>
+// Channels: click a channel's heading to show its latest three stories (one open at a time)
+(function () {
+  const heads = [...document.querySelectorAll('.tp-sh')];
+  const toggle = h => { const open = h.getAttribute('aria-expanded') !== 'true';
+    heads.forEach(x => { x.setAttribute('aria-expanded', 'false'); x.closest('.tp-sec').classList.remove('open'); });
+    if (open) { h.setAttribute('aria-expanded', 'true'); h.closest('.tp-sec').classList.add('open'); } };
+  heads.forEach(h => {
+    h.addEventListener('click', e => { if (!e.target.closest('a')) toggle(h); });
+    h.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a')) { e.preventDefault(); toggle(h); } });
+  });
+})();
+</script>''', 1)
 tp = tp.replace('<body data-page="news"', '<body data-page="topics"', 1)
 tp = tp.replace('<title>News – ', '<title>Channels – ', 1)
 tp = tp.replace('<h1>News</h1>\n    <p>The latest communications infrastructure and digital services news from across Europe, the Middle East and Africa.</p>',
@@ -458,6 +602,19 @@ tp = tp.replace('<h1>News</h1>\n    <p>The latest communications infrastructure 
 tp = tp.replace('<a class="on" href="news.html" aria-current="page">', '<a href="news.html">', 1)
 assert 'data-page="topics"' in tp and '<h1>Channels</h1>' in tp
 (OUT / 'channels.html').write_text(tp)
+
+# the top three Latest news stories open their own article wherever they appear
+OWN = {'Orange pledges extra €250m to support emerging tech startups': 'orange',
+       'SES, ITU expand partnership to improve digital education in Africa': 'ses',
+       'Belgium confirms 2G shutdown plans for 2028/29': 'belgium'}
+A = re.compile(r'<a ([^>]*?)href="article\.html"([^>]*)>((?:(?!<a[ >]|</a>).)*)</a>', re.S)
+def own(m):
+    for title, key in OWN.items():
+        if title in m.group(3): return f'<a {m.group(1)}href="article.html?s={key}"{m.group(2)}>{m.group(3)}</a>'
+    return m.group(0)
+for f in OUT.glob('*.html'):
+    s0 = f.read_text(); s1 = A.sub(own, s0)
+    if s1 != s0: f.write_text(s1)
 
 # ---- styles (D2D only) ----
 CSS = r"""
@@ -613,6 +770,115 @@ CSS = r"""
 .nx-label span{font:600 14px var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--me)}
 .nx-art .ac-hero{view-transition-name:none}
 .nx-rel{margin-top:40px}
+/* lead story: picture left, red headline, standfirst, date */
+.d2d .card.hx-lead{display:grid;grid-template-columns:1.15fr 1fr;gap:30px;align-items:start;margin-bottom:40px}
+.d2d .hx-lead .pic,.d2d .hx-lead .vthumb{position:relative;overflow:hidden;aspect-ratio:3/2}
+.d2d .hx-lead .vthumb{aspect-ratio:16/9}
+.d2d .hx-lead .pic img{width:100%;height:100%;object-fit:cover}
+.d2d .hx-lead h3{font:800 clamp(24px,2.5vw,34px)/1.12 var(--body);color:var(--me);margin:0}
+.d2d .hx-lead p{font-size:16.5px;line-height:1.5;color:#2a2a2a;margin-top:12px}
+.d2d .hx-lead .date{margin-top:14px;font-size:12px}
+.d2d .hx-lead .kick{margin-bottom:8px}
+.d2d .hx-lead:hover h3{color:var(--ink)}
+/* CxO Zone: lead + list with date and short summary */
+.d2d .cx{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.d2d .cx .cx-lead{display:block;margin:0}
+.d2d .cx-lead h3{color:var(--ink);margin-top:16px}
+.d2d .cx-lead:hover h3{color:var(--me)}
+.d2d .cx-lead p{color:var(--muted)}
+.d2d .cx-list a{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:start;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid #ececea}
+.d2d .cx-list a:last-child{border-bottom:0;margin-bottom:0}
+.d2d .cx-list .pic{aspect-ratio:3/2;overflow:hidden}
+.d2d .cx-list img{width:100%;height:100%;object-fit:cover}
+.d2d .cx-list h3{font:700 16px/1.25 var(--body)}
+.d2d .cx-list a:hover h3{color:var(--me)}
+.d2d .cx-list .date{margin-top:5px}
+.d2d .cx-list p{font-size:14px;line-height:1.45;color:var(--muted);margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* white papers: three covers, title under */
+.d2d .wp3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.d2d .wp3 .pic{aspect-ratio:3/4;overflow:hidden;background:#f2f2f0}
+.d2d .wp3 img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s}
+.d2d .wp3 a:hover img{transform:scale(1.03)}
+.d2d .wp3 h3{font:500 16.5px/1.3 var(--body);margin-top:14px}
+.d2d .wp3 a:hover h3{color:var(--me)}
+.d2d .wp3 .spon{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+/* events & webinars: three cards (Briefings sit in with the other events) */
+.d2d .evx{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.d2d .evx-card{display:flex;flex-direction:column;border:1px solid #e2e2de;background:#fff}
+.d2d .evx-card .pic{aspect-ratio:600/350;overflow:hidden;background:#111}
+.d2d .evx-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.d2d .evx-card:hover img{transform:scale(1.04)}
+.d2d .evx-t{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:18px 18px 20px;flex:1}
+.d2d .evx-t small{font:600 10.5px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.d2d .evx-t b{font:700 15px var(--body);color:var(--me)}
+.d2d .evx-t h3{font:700 17px/1.25 var(--body);color:var(--me)}
+.d2d .evx-go{margin-top:auto;padding:9px 16px;border:1px solid #d8d8d4;font:500 11.5px var(--body);letter-spacing:.14em;text-transform:uppercase;color:#555}
+.d2d .evx-t h3 + .evx-go{margin-top:auto}
+.d2d .evx-t{row-gap:6px}.d2d .evx-t > h3{margin-bottom:12px}
+.d2d .evx-card:hover .evx-go{border-color:var(--me);color:var(--me)}
+.d2d .vid3{margin-top:0}
+/* pinned partner content: pin in the top right */
+.d2d .sp-top{position:relative}
+.d2d .pin-ico{margin-left:auto;display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;border-radius:50%;background:var(--me);color:#fff}
+.d2d .pin-ico svg{width:13px;height:13px}
+@media (max-width:1100px){.d2d .cx{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .d2d .card.hx-lead{grid-template-columns:1fr;gap:14px;margin-bottom:28px}
+  .d2d .wp3{gap:12px}.d2d .wp3 h3{font-size:14px}.d2d .wp3 .spon{font-size:9.5px}
+  .d2d .evx{grid-template-columns:1fr}
+  .d2d .cx-list a{grid-template-columns:104px 1fr;gap:12px}
+}
+/* category pages: pinned partner piece as the main story (cover shown whole on a light panel) */
+.d2d .lead-big.sp-lead .pic{position:relative;background:#efefec;aspect-ratio:16/10;height:auto;overflow:hidden}
+.d2d .lead-big.sp-lead .pic img{position:absolute;inset:0;margin:auto;width:100%;height:100%;object-fit:contain;padding:18px;box-sizing:border-box;transform:none}
+.d2d .lead-big.sp-lead .sp-top{max-width:none}
+.d2d .lead-big.sp-lead .btn{align-self:flex-start;margin-top:18px;display:inline-block}
+.d2d .wp-pinned .sp-top{display:flex;align-items:center}
+/* category pages: label + date on one row under the headline, then a few lines of text */
+.d2d .card.cm h3{font-size:21px;line-height:1.2;margin-top:14px}
+.d2d .cm-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;margin-top:12px}
+.d2d .cm-row .tag{position:static;background:#e9e9e7;color:var(--ink);font:600 13px var(--body);padding:5px 11px}
+.d2d .cm-row .tag.tag-link:hover{background:var(--me);color:#fff}
+.d2d .cm-row .date{margin:0;font:400 14.5px var(--body);letter-spacing:0;text-transform:none;color:var(--muted)}
+.d2d .card.cm p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:16px;line-height:1.6;color:#6a6a6a;margin-top:14px}
+@media (max-width:760px){.d2d .card.cm h3{font-size:19px}.d2d .card.cm p{font-size:15px}}
+/* card text: smaller, like the intro on the lead story at the top */
+.d2d .card.cm p,.d2d .sp-card .sp-txt{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;line-height:1.45;color:var(--ink2);margin-top:12px}
+.d2d .card.cm h3{font-size:19px}
+/* Channels page: small picture from the latest story left of each title, short description under it */
+.d2d .tp-sh{align-items:center;gap:16px}
+.d2d .tp-thumb{width:84px;height:56px;object-fit:cover;flex:none}
+.d2d .tp-ttl{flex:1;min-width:0}
+.d2d .tp-desc{font-size:14px;line-height:1.4;color:var(--muted);margin-top:6px}
+@media (max-width:760px){.d2d .tp-thumb{width:64px;height:44px}.d2d .tp-desc{font-size:13px}}
+/* accordion: the three stories open under the heading, one channel at a time */
+.d2d .tp-sh{cursor:pointer;margin-bottom:0}
+.d2d .tp-sh:hover h2{color:var(--me)}
+.d2d .tp-sh:focus-visible{outline:2px solid var(--me);outline-offset:4px}
+.d2d .tp-chev{flex:none;width:12px;height:12px;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg) translate(-3px,-3px);transition:transform .25s}
+.d2d .tp-sec.open .tp-chev{transform:rotate(225deg) translate(-3px,-3px)}
+.d2d .tp-acc{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.d2d .tp-sec.open .tp-acc{grid-template-rows:1fr}
+.d2d .tp-in{overflow:hidden;min-height:0}
+.d2d .tp-in > .grid3{padding-top:22px}
+.d2d .tp-sec + .tp-sec{margin-top:26px}
+@media (prefers-reduced-motion:reduce){.d2d .tp-acc,.d2d .tp-chev{transition:none}}
+/* header: Subscribe and Log in as white buttons, smaller text */
+.d2d .cv-acct > a{background:#fff;border:1px solid #dcdcd8;border-radius:5px;font:500 13px/1 var(--body);letter-spacing:.06em;padding:10px 14px;color:var(--ink)}
+.d2d .cv-acct > a:hover{border-color:var(--me);color:var(--me)}
+.d2d .cv-acct > span{display:none}
+.d2d .cv-acct{gap:10px}
+@media (max-width:760px){.d2d .cv-acct > a{font-size:11.5px;padding:8px 10px}.d2d .cv-acct{gap:6px}}
+/* homepage Independent Research: three reports */
+@media (min-width:761px){.d2d[data-page="home"] .res-grid{grid-template-columns:1.25fr 1fr 1fr}.d2d[data-page="home"] .res-item.big{grid-column:auto}}
+/* homepage white papers: full width, four in a row, above the research band */
+.d2d .wp-full{margin-bottom:48px}
+.d2d .wp3.wp4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:760px){.d2d .wp3.wp4{grid-template-columns:repeat(2,1fr);gap:20px 14px}}
+/* article pictures: gentle parallax as you scroll (the picture moves slower than the page) */
+.d2d .ac-hero{overflow:hidden;isolation:isolate;background:#222}
+.d2d .ac-hero::before{content:"";position:absolute;left:0;right:0;top:-14%;bottom:-14%;z-index:-1;background:var(--img) center 30%/cover no-repeat;transform:translate3d(0,var(--py,0px),0);will-change:transform}
+@media (prefers-reduced-motion:reduce){.d2d .ac-hero::before{transform:none}}
 """
 (OUT / 'styles.css').write_text((OUT / 'styles.css').read_text() + CSS)
 print('built', len(list(OUT.glob('*.html'))), 'pages in', OUT.name)
