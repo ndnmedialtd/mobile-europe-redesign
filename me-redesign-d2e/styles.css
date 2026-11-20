@@ -2472,3 +2472,8 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 @media (min-width:761px) and (max-width:1029px){
   .d2e .bb-zone:has(.ad-bb){display:none!important}
 }
+/* homepage: the red mark always tucks over the top of the cover picture, at every screen size */
+@media (min-width:761px) and (max-width:1279px){.d2e[data-page="home"] .cv-me{width:140px!important;height:140px!important;margin-bottom:-84px!important}}
+/* small tablets: the strapline would wrap to several lines and push the picture down, so it is left out there */
+@media (min-width:761px) and (max-width:959px){.d2e:not(.d2g)[data-page="home"] .cv-id .cv-tag{display:none}}
+@media (max-width:760px){.d2e[data-page="home"] .cv-me{width:84px!important;height:84px!important;margin-bottom:-42px!important;position:relative;top:32px;z-index:9}}

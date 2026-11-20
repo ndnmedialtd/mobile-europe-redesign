@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mobile Europe logo block options</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&family=Roboto+Condensed:wght@400;700;900&family=Roboto+Slab:wght@800&display=swap" rel="stylesheet">
+<style>
+:root{--me:#d0103a;--ink:#141414}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f2f2ef;font-family:Roboto,sans-serif;color:var(--ink);width:1400px;padding:44px 48px 40px}
+h1{font:800 26px Roboto;margin-bottom:6px}
+.sub{font:400 15px Roboto;color:#666;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.opt{background:#fff;border-radius:6px;padding:26px 20px 18px;display:flex;flex-direction:column;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.stage{height:190px;display:flex;align-items:center;justify-content:center}
+.cap{margin-top:16px;text-align:center}
+.cap b{display:block;font:700 14px Roboto;margin-bottom:3px}
+.cap span{font:400 12.5px/1.4 Roboto;color:#6a6a6a}
+.n{display:inline-block;background:var(--ink);color:#fff;font:700 11px Roboto;border-radius:3px;padding:2px 6px;margin-right:6px;vertical-align:1px}
+.blk{background:var(--me);color:#fff;display:flex;flex-direction:column;justify-content:center}
+
+/* 1 current D2G */
+.o1{width:150px;height:150px;border-radius:0 26px 0 26px;align-items:center;font:800 34px/.92 Roboto;letter-spacing:-.02em}
+/* 2 left aligned, condensed black */
+.o2{width:150px;height:150px;border-radius:0 26px 0 26px;align-items:flex-start;padding:0 16px;font:900 37px/.9 'Roboto Condensed';letter-spacing:-.01em}
+/* 3 weight contrast */
+.o3{width:150px;height:150px;border-radius:0 26px 0 26px;align-items:flex-start;padding:0 17px}
+.o3 .a{font:300 31px/1 Roboto;letter-spacing:.02em}
+.o3 .b{font:900 33px/1 Roboto;letter-spacing:-.02em}
+/* 4 text sits low, magazine masthead style */
+.o4{width:150px;height:150px;border-radius:0 26px 0 0;justify-content:flex-end;align-items:flex-start;padding:0 14px 14px;font:900 36px/.88 'Roboto Condensed'}
+.o4 i{width:26px;height:4px;background:#fff;margin-bottom:auto;margin-top:16px;display:block}
+/* 5 wide banner, one line */
+.o5{width:260px;height:74px;border-radius:0 20px 0 20px;align-items:center;font:800 30px/1 Roboto;letter-spacing:-.02em;white-space:nowrap}
+/* 6 circle */
+.o6{width:156px;height:156px;border-radius:50%;align-items:center;font:900 31px/.92 'Roboto Condensed';letter-spacing:.01em}
+/* 7 ME big + name small */
+.o7{width:150px;height:150px;border-radius:0 26px 0 26px;align-items:center}
+.o7 .a{font:900 70px/.9 Roboto;letter-spacing:-.05em}
+.o7 .b{font:700 12.5px/1 Roboto;letter-spacing:.18em;margin-top:8px}
+/* 8 mixed case */
+.o8{width:150px;height:150px;border-radius:0 26px 0 26px;align-items:flex-start;padding:0 18px;font:800 36px/.98 Roboto;letter-spacing:-.03em}
+/* 9 keyline inside */
+.o9{width:150px;height:150px;border-radius:0 26px 0 26px;align-items:center;padding:10px}
+.o9 .in{width:100%;height:100%;border:2px solid rgba(255,255,255,.85);border-radius:0 18px 0 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 29px/.95 Roboto;letter-spacing:-.01em}
+/* 10 black and red, two colour */
+.o10{width:150px;height:150px;border-radius:0 26px 0 26px;overflow:hidden;font:900 36px/1 'Roboto Condensed'}
+.o10 span{flex:1;display:flex;align-items:center;padding:0 18px}
+.o10 .a{background:var(--me)}
+.o10 .b{background:var(--ink)}
+/* 11 lowercase, rounded */
+.o11{width:150px;height:150px;border-radius:22px;align-items:flex-start;padding:0 18px;font:700 37px/.95 Roboto;letter-spacing:-.04em}
+/* 12 tab shape with folded corner */
+.o12{width:150px;height:150px;border-radius:0 0 0 26px;align-items:flex-start;padding:0 16px;font:900 35px/.92 Roboto;letter-spacing:-.03em;position:relative}
+.o12::after{content:"";position:absolute;right:0;top:0;width:32px;height:32px;background:linear-gradient(225deg,#f2f2ef 50%,#9c0a2b 50%)}
+</style>
+</head>
+<body>
+<h1>Mobile Europe – logo block options</h1>
+<p class="sub">Each would replace the big ME mark (it hangs over the menu bar on the homepage and shrinks on inner pages and phones). All Roboto family, ME red #d0103a.</p>
+<div class="grid">
+  <div class="opt"><div class="stage"><div class="blk o1"><span>MOBILE</span><span>EUROPE</span></div></div><div class="cap"><b><span class="n">1</span>Current D2G</b><span>Centred, bold, two rounded corners</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o2"><span>MOBILE</span><span>EUROPE</span></div></div><div class="cap"><b><span class="n">2</span>Condensed, left-aligned</b><span>Roboto Condensed Black, fills the block</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o3"><span class="a">MOBILE</span><span class="b">EUROPE</span></div></div><div class="cap"><b><span class="n">3</span>Light / heavy</b><span>MOBILE light, EUROPE black</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o4"><i></i><span>MOBILE</span><span>EUROPE</span></div></div><div class="cap"><b><span class="n">4</span>Masthead</b><span>Name sits low with a short white rule, one rounded corner</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o5"><span>MOBILE EUROPE</span></div></div><div class="cap"><b><span class="n">5</span>One-line banner</b><span>Wide block, name on one line</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o6"><span>MOBILE</span><span>EUROPE</span></div></div><div class="cap"><b><span class="n">6</span>Roundel</b><span>Circle, condensed type</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o7"><span class="a">ME</span><span class="b">MOBILE EUROPE</span></div></div><div class="cap"><b><span class="n">7</span>ME + name</b><span>Keeps the ME initials, full name spaced out underneath</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o8"><span>Mobile</span><span>Europe</span></div></div><div class="cap"><b><span class="n">8</span>Upper and lower case</b><span>Softer, more editorial</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o9"><div class="in"><span>MOBILE</span><span>EUROPE</span></div></div></div><div class="cap"><b><span class="n">9</span>Inner keyline</b><span>Thin white frame following the corners</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o10"><span class="a">MOBILE</span><span class="b">EUROPE</span></div></div><div class="cap"><b><span class="n">10</span>Red and black</b><span>Split block, picks up the black menu and headers</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o11"><span>mobile</span><span>europe</span></div></div><div class="cap"><b><span class="n">11</span>Lower case, soft corners</b><span>All four corners rounded, friendlier</span></div></div>
+  <div class="opt"><div class="stage"><div class="blk o12"><span>MOBILE</span><span>EUROPE</span></div></div><div class="cap"><b><span class="n">12</span>Folded corner</b><span>Page-turn corner top right</span></div></div>
+</div>
+</body>
+</html>

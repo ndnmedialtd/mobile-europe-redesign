@@ -459,7 +459,7 @@ js += r"""
 js = js.replace("['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html'",
                 "['news.html', 'news', 'News'], ['channels.html', 'topics', 'Channels'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html'", 1)
 js = js.replace("    if (/^me-redesign(-d2c)?$/.test(sel.value) && ONLY_NEW.includes(file)) file = 'index.html';",
-                "    if (/^me-redesign(-d2c)?$/.test(sel.value) && ONLY_NEW.includes(file)) file = 'index.html';\n    if (file === 'channels.html' && !/d2[def]$/.test(sel.value)) file = 'news.html';", 1)
+                "    if (/^me-redesign(-d2c)?$/.test(sel.value) && ONLY_NEW.includes(file)) file = 'index.html';\n    if (file === 'channels.html' && !/d2[defg]$/.test(sel.value)) file = 'news.html';", 1)
 assert "['channels.html', 'topics', 'Channels']" in js and "file === 'channels.html'" in js
 js += r"""
 

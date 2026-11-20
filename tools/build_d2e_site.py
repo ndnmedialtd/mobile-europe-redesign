@@ -20,7 +20,7 @@ for f in sorted(OUT.glob('*.html')):
     t = f.read_text()
     t = re.sub(r'(<body[^>]*class=")', r'\1d2e ', t, count=1)
     t = t.replace('Mobile Europe D2D mockup', 'Mobile Europe D2E mockup').replace('Mobile Europe – D2D homepage mockup', 'Mobile Europe – D2E homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=d2d\d+', r'\1?v=d2e47', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=d2d\d+', r'\1?v=d2e56', t)
     # header strapline also links to the homepage (looks the same on rollover)
     t = re.sub(r'<p class="cv-tag">([^<]*)</p>', r'<p class="cv-tag"><a href="index.html">\1</a></p>', t)
     t = t.replace('family=Oswald:wght@500;600;700', 'family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;500;600;700;900')
@@ -249,6 +249,11 @@ CSS = """
 @media (min-width:761px) and (max-width:1029px){
   .d2e .bb-zone:has(.ad-bb){display:none!important}
 }
+/* homepage: the red mark always tucks over the top of the cover picture, at every screen size */
+@media (min-width:761px) and (max-width:1279px){.d2e[data-page="home"] .cv-me{width:140px!important;height:140px!important;margin-bottom:-84px!important}}
+/* small tablets: the strapline would wrap to several lines and push the picture down, so it is left out there */
+@media (min-width:761px) and (max-width:959px){.d2e:not(.d2g)[data-page="home"] .cv-id .cv-tag{display:none}}
+@media (max-width:760px){.d2e[data-page="home"] .cv-me{width:84px!important;height:84px!important;margin-bottom:-42px!important;position:relative;top:32px;z-index:9}}
 """
 (OUT / 'styles.css').write_text((OUT / 'styles.css').read_text() + CSS)
 print('built', len(list(OUT.glob('*.html'))), 'pages in', OUT.name)

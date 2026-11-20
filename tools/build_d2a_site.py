@@ -323,13 +323,13 @@ js += r"""
 # Mockup bar: switch between D2A and D2B, staying on the same page
 lab = '<span class="lbl" style="padding:0 6px;color:#888">Mockup <b style="color:#fff">D2A</b></span>'
 assert lab in js
-js = js.replace(lab, '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option></select><span class="div"></span>', 1)
+js = js.replace(lab, '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option><option value="me-redesign-d2g">D2G</option></select><span class="div"></span>', 1)
 js += r"""
 
 // D2A / D2B version switch (mockup only): same page, other version
 (function () {
   const sel = document.getElementById('ver-switch'); if (!sel) return;
-  const here = (location.pathname.match(/\/(me-redesign(?:-d2[a-f])?)\//) || [])[1] || 'me-redesign';
+  const here = (location.pathname.match(/\/(me-redesign(?:-d2[a-g])?)\//) || [])[1] || 'me-redesign';
   sel.value = here;
   // pages that only exist in D2A/D2B fall back to the homepage elsewhere
   const ONLY_NEW = ['about.html', 'editorial-board.html', 'white-paper.html'];
