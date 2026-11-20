@@ -2208,9 +2208,9 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 .d2d .cv-minds{background:#ececea;border:1px solid #dcdcd8;border-radius:0 18px 0 18px;padding:22px 26px 28px}
 .d2d .cv-minds-hd{border-top:0;padding-top:0}
 .d2d .mh-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
-.d2d .mh-logo img{display:block;height:30px;width:auto}
+.d2d .mh-logo img{display:block;height:42px;width:auto}
 .d2d .mh-row h2{font-size:20px;padding-left:18px;border-left:1px solid #cfcfcb}
-@media (max-width:760px){.d2d .mh-logo img{height:24px}.d2d .mh-row{gap:8px}.d2d .mh-row h2{font-size:17px;padding-left:0;border-left:0;flex-basis:100%}}
+@media (max-width:760px){.d2d .mh-logo img{height:30px}.d2d .mh-row{gap:8px}.d2d .mh-row h2{font-size:17px;padding-left:0;border-left:0;flex-basis:100%}}
 @media (max-width:760px){.d2d .cv-minds{padding:18px 14px 20px}}
 
 /* articles: date line (no editor byline); a guest author's head sits above the intro */
