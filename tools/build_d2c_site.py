@@ -43,7 +43,7 @@ css = (OUT / 'styles.css').read_text() + '\n\n' + block + extra
 # ---- shared.js: build the header, version switch, drop the old header picker ----
 js = (OUT / 'shared.js').read_text()
 js = js.replace('<span class="lbl" style="padding:0 6px;color:#888">Mockup <b style="color:#fff">v1</b></span>',
-                '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option></select><span class="div"></span>', 1)
+                '<span class="lbl" style="padding:0 2px 0 6px;color:#888">Mockup</span><select id="ver-switch" aria-label="Mockup version"><option value="me-redesign-d2a">D2A</option><option value="me-redesign-d2b">D2B</option><option value="me-redesign-d2c">D2C</option><option value="me-redesign-d2d">D2D</option><option value="me-redesign-d2e">D2E</option><option value="me-redesign-d2f">D2F</option></select><span class="div"></span>', 1)
 js = re.sub(r'\n    <span class="div"></span>\n    <label class="lbl" for="hdr-var".*?</select>', '', js, count=1, flags=re.S)
 js += r"""
 
@@ -91,7 +91,7 @@ js += r"""
 // Version 1 / D2C switch (mockup only): same page, other version
 (function () {
   const sel = document.getElementById('ver-switch'); if (!sel) return;
-  const here = (location.pathname.match(/\/(me-redesign(?:-d2[a-e])?)\//) || [])[1] || 'me-redesign';
+  const here = (location.pathname.match(/\/(me-redesign(?:-d2[a-f])?)\//) || [])[1] || 'me-redesign';
   sel.value = here;
   // pages that only exist in D2A/D2B fall back to the homepage elsewhere
   const ONLY_NEW = ['about.html', 'editorial-board.html', 'white-paper.html'];
@@ -107,5 +107,5 @@ js += r"""
 # cache-bust both files on every page
 for f in OUT.glob('*.html'):
     t = f.read_text()
-    f.write_text(re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2c4', t))
+    f.write_text(re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2c5', t))
 print('built', len(list(OUT.glob('*.html'))), 'pages in', OUT.name)

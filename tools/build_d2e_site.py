@@ -20,7 +20,7 @@ for f in sorted(OUT.glob('*.html')):
     t = f.read_text()
     t = re.sub(r'(<body[^>]*class=")', r'\1d2e ', t, count=1)
     t = t.replace('Mobile Europe D2D mockup', 'Mobile Europe D2E mockup').replace('Mobile Europe – D2D homepage mockup', 'Mobile Europe – D2E homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=d2d\d+', r'\1?v=d2e19', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=d2d\d+', r'\1?v=d2e23', t)
     t = t.replace('family=Oswald:wght@500;600;700', 'family=Oswald:wght@400;500;600;700')
     f.write_text(t)
 

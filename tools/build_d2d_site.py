@@ -36,7 +36,7 @@ for f in sorted(OUT.glob('*.html')):
     t = re.sub(r'<div class="nl"><h4>Get the newsletter</h4>.*?</div>', BOARD_BOX, t)
     t = re.sub(r'(<body[^>]*class=")', r'\1d2d ', t, count=1)
     t = t.replace(' – Mobile Europe mockup</title>', ' – Mobile Europe D2D mockup</title>').replace('Mobile Europe – D2A homepage mockup', 'Mobile Europe – D2D homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2d19', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=\d+', r'\1?v=d2d23', t)
     f.write_text(t)
 
 # ---- homepage ----
@@ -459,7 +459,7 @@ js += r"""
 js = js.replace("['news.html', 'news', 'News'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html'",
                 "['news.html', 'news', 'News'], ['channels.html', 'topics', 'Channels'], ['insights.html', 'insights', 'Insights'], ['cxo.html', 'cxo', 'CxO Zone'], ['white-papers.html', 'white-papers', 'White Paper Hub'], ['videos.html', 'videos', 'Videos'], ['events.html', 'events', 'Events'], ['category-5g.html'", 1)
 js = js.replace("    if (/^me-redesign(-d2c)?$/.test(sel.value) && ONLY_NEW.includes(file)) file = 'index.html';",
-                "    if (/^me-redesign(-d2c)?$/.test(sel.value) && ONLY_NEW.includes(file)) file = 'index.html';\n    if (file === 'channels.html' && !/d2[de]$/.test(sel.value)) file = 'news.html';", 1)
+                "    if (/^me-redesign(-d2c)?$/.test(sel.value) && ONLY_NEW.includes(file)) file = 'index.html';\n    if (file === 'channels.html' && !/d2[def]$/.test(sel.value)) file = 'news.html';", 1)
 assert "['channels.html', 'topics', 'Channels']" in js and "file === 'channels.html'" in js
 js += r"""
 
@@ -744,6 +744,9 @@ CSS = r"""
 @media (min-width:761px){.d2d[data-page="brief"] .fband .wrap{padding-top:42px!important;padding-bottom:20px!important}.d2d[data-page="res"] .fband .wrap{padding-top:11px!important;padding-bottom:20px!important}}
 @media (max-width:1100px) and (min-width:761px){.d2d:is([data-page="brief"],[data-page="res"]) .cv-me{width:120px;height:120px;margin-bottom:-70px}.d2d:is([data-page="brief"],[data-page="res"]) .fband .wrap{padding-left:164px;padding-top:16px!important}}
 @media (max-width:760px){.d2d:is([data-page="brief"],[data-page="res"]) .cv-me{width:72px;height:72px;margin:6px 0 -44px}}
+/* The Briefing page: a smaller ME mark, and the title moves up */
+@media (min-width:1101px){.d2d[data-page="brief"] .cv-me{width:120px;height:120px;margin-bottom:-70px}.d2d[data-page="brief"] .fband .wrap{padding-left:164px;padding-top:14px!important}}
+@media (max-width:1100px) and (min-width:761px){.d2d[data-page="brief"] .cv-me{width:112px;height:112px;margin-bottom:-62px}.d2d[data-page="brief"] .fband .wrap{padding-left:156px;padding-top:4px!important}}
 /* Briefing sign-up page: no top advert; the small ME tucks into the top-left of the navy bar, which moves up */
 .d2d[data-page="brief-event"] .lb-zone{display:none}
 @media (min-width:761px){
@@ -890,6 +893,11 @@ CSS = r"""
 .d2d .tp-ttl{flex:1;min-width:0}
 .d2d .tp-desc{font-size:14px;line-height:1.4;color:var(--muted);margin-top:6px}
 @media (max-width:760px){.d2d .tp-thumb{width:64px;height:44px}.d2d .tp-desc{font-size:13px}}
+/* card text and date a little smaller */
+.d2d .card.cm p,.d2d .sp-card .sp-txt{font-size:14px;line-height:1.5;margin-top:10px}
+.d2d .cm-row{margin-top:10px;gap:6px 12px}
+.d2d .cm-row .date{font-size:13px}
+.d2d .cm-row .tag{font-size:12px;padding:4px 9px}
 /* accordion: the three stories open under the heading, one channel at a time */
 .d2d .tp-sh{cursor:pointer;margin-bottom:0}
 .d2d .tp-sh:hover h2{color:var(--me)}
