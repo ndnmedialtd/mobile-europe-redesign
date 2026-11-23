@@ -138,7 +138,7 @@ window.PIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
       ${pages.map(p => `<option value="${p[0]}"${p[1] === page ? ' selected' : ''}>${p[2]}</option>`).join('')}
     </select>
     <a href="${pages[(idx + 1) % pages.length][0]}" aria-label="Next page">→</a>
-    <span class="div"></span><label class="lbl" for="tab-style">Tabs</label><select id="tab-style" aria-label="Tab style"><option value="red">Red</option><option value="grey">Grey</option></select><span class="div"></span><label class="lbl" for="hdr-style">Headers</label><select id="hdr-style" aria-label="Header colour"><option value="black">Black</option><option value="grey">Grey</option></select><span class="div"></span><label class="lbl" for="font-style">Sections</label><select id="font-style" aria-label="Section heading and menu font"><option value="rc">Roboto Condensed</option><option value="oswald">Oswald (original)</option><option value="barlow">Barlow Condensed</option><option value="saira">Saira Condensed</option><option value="fira">Fira Sans Condensed</option><option value="plex">IBM Plex Sans Condensed</option><option value="archivo">Archivo Narrow</option><option value="antonio">Antonio</option></select><span class="div"></span><label class="lbl" for="hl-style">Headlines</label><select id="hl-style" aria-label="Headline font"><option value="rob">Roboto (current)</option><option value="rc">Roboto Condensed</option><option value="inter">Inter</option><option value="plex">IBM Plex Sans</option><option value="fira">Fira Sans</option><option value="barlow">Barlow</option><option value="rslab">Roboto Slab</option><option value="metronic">Metronic Slab (Adobe)</option><option value="source">Source Serif</option><option value="merri">Merriweather</option><option value="playfair">Playfair Display</option></select><span class="div"></span>
+    <span class="div"></span><label class="lbl" for="tab-style">Tabs</label><select id="tab-style" aria-label="Tab style"><option value="red">Red</option><option value="grey">Grey</option></select><span class="div"></span><label class="lbl" for="hdr-style">Headers</label><select id="hdr-style" aria-label="Header colour"><option value="black">Black</option><option value="grey">Grey</option></select><span class="div"></span><label class="lbl" for="font-style">Sections</label><select id="font-style" aria-label="Section heading and menu font"><option value="rc">Roboto Condensed</option><option value="oswald">Oswald (original)</option><option value="barlow">Barlow Condensed</option><option value="saira">Saira Condensed</option><option value="fira">Fira Sans Condensed</option><option value="plex">IBM Plex Sans Condensed</option><option value="archivo">Archivo Narrow</option><option value="antonio">Antonio</option></select><span class="div"></span><label class="lbl" for="hl-style">Headlines</label><select id="hl-style" aria-label="Headline font"><option value="rob">Roboto (current)</option><option value="rc">Roboto Condensed</option><option value="inter">Inter</option><option value="plex">IBM Plex Sans</option><option value="fira">Fira Sans</option><option value="barlow">Barlow</option><option value="rslab">Roboto Slab</option><option value="metronic">Metronic Slab (Adobe)</option><option value="source">Source Serif</option><option value="merri">Merriweather</option><option value="playfair">Playfair Display</option></select><span class="div"></span><label class="lbl" for="btn-style">Buttons</label><select id="btn-style" aria-label="Action button colour"><option value="red">Red</option><option value="blue">Blue</option></select><span class="div"></span>
       </div>`;
 
   document.getElementById('site-header').outerHTML = header;
@@ -825,6 +825,14 @@ document.querySelectorAll('h1.ptitle').forEach(h => {
   document.title = label + ' – ' + document.title;
 })();
 
+// D2E: action button colour switch (mockup only): Blue keeps red for the brand only
+(function () {
+  let v = 'red'; try { v = localStorage.getItem('me-btn') || 'red'; } catch (e) {}
+  const apply = x => document.body.classList.toggle('btn-blue', x === 'blue');
+  apply(v);
+  const sel = document.getElementById('btn-style');
+  if (sel) { sel.value = v; sel.addEventListener('change', () => { apply(sel.value); try { localStorage.setItem('me-btn', sel.value); } catch (e) {} }); }
+})();
 
 // D2E: header colour switch (mockup only), remembered in this browser
 (function () {

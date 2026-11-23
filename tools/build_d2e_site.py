@@ -20,7 +20,7 @@ for f in sorted(OUT.glob('*.html')):
     t = f.read_text()
     t = re.sub(r'(<body[^>]*class=")', r'\1d2e ', t, count=1)
     t = t.replace('Mobile Europe D2D mockup', 'Mobile Europe D2E mockup').replace('Mobile Europe – D2D homepage mockup', 'Mobile Europe – D2E homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=d2d\d+', r'\1?v=d2e56', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=d2d\d+', r'\1?v=d2e63', t)
     # header strapline also links to the homepage (looks the same on rollover)
     t = re.sub(r'<p class="cv-tag">([^<]*)</p>', r'<p class="cv-tag"><a href="index.html">\1</a></p>', t)
     t = t.replace('family=Oswald:wght@500;600;700', 'family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;500;600;700;900')
@@ -51,8 +51,16 @@ sj = OUT / 'shared.js'
 js = sj.read_text()
 tabsel = '<option value="grey">Grey</option></select><span class="div"></span>'
 assert tabsel in js
-js = js.replace(tabsel, tabsel + '<label class="lbl" for="hdr-style">Headers</label><select id="hdr-style" aria-label="Header colour"><option value="black">Black</option><option value="grey">Grey</option></select><span class="div"></span>', 1)
+js = js.replace(tabsel, tabsel + '<label class="lbl" for="hdr-style">Headers</label><select id="hdr-style" aria-label="Header colour"><option value="black">Black</option><option value="grey">Grey</option></select><span class="div"></span><label class="lbl" for="btn-style">Buttons</label><select id="btn-style" aria-label="Action button colour"><option value="red">Red</option><option value="blue">Blue</option></select><span class="div"></span>', 1)
 js += """
+// D2E: action button colour switch (mockup only): Blue keeps red for the brand only
+(function () {
+  let v = 'red'; try { v = localStorage.getItem('me-btn') || 'red'; } catch (e) {}
+  const apply = x => document.body.classList.toggle('btn-blue', x === 'blue');
+  apply(v);
+  const sel = document.getElementById('btn-style');
+  if (sel) { sel.value = v; sel.addEventListener('change', () => { apply(sel.value); try { localStorage.setItem('me-btn', sel.value); } catch (e) {} }); }
+})();
 
 // D2E: header colour switch (mockup only), remembered in this browser
 (function () {
@@ -104,7 +112,7 @@ for f in OUT.glob('*.html'):
     t = f.read_text()
     f.write_text(re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + FONT_EARLY + HL_EARLY, t, count=1))
 # apply the saved header colour before first paint (no black-to-grey flash); ?hdr=grey also sets it
-EARLY = "<script>try{var q=new URLSearchParams(location.search).get('hdr');if(q)localStorage.setItem('me-hdr',q);if(localStorage.getItem('me-hdr')==='grey')document.body.classList.add('hdr-grey')}catch(e){}</script>"
+EARLY = "<script>try{var q=new URLSearchParams(location.search).get('hdr');if(q)localStorage.setItem('me-hdr',q);if(localStorage.getItem('me-hdr')==='grey')document.body.classList.add('hdr-grey');var b=new URLSearchParams(location.search).get('btn');if(b)localStorage.setItem('me-btn',b);if(localStorage.getItem('me-btn')==='blue')document.body.classList.add('btn-blue')}catch(e){}</script>"
 for f in OUT.glob('*.html'):
     t = f.read_text()
     f.write_text(re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + EARLY, t, count=1))
@@ -254,6 +262,35 @@ CSS = """
 /* small tablets: the strapline would wrap to several lines and push the picture down, so it is left out there */
 @media (min-width:761px) and (max-width:959px){.d2e:not(.d2g)[data-page="home"] .cv-id .cv-tag{display:none}}
 @media (max-width:760px){.d2e[data-page="home"] .cv-me{width:84px!important;height:84px!important;margin-bottom:-42px!important;position:relative;top:32px;z-index:9}}
+
+/* ===================== D2E: Buttons: Blue (action buttons blue, red kept for the brand) ===================== */
+.btn-blue{--act:#1f5fd6;--act-dark:#1749a8}
+.btn-blue .btn:not(.white):not(.ghost),.btn-blue .btn.red,.btn-blue .btn.pink,.btn-blue .bl-introrow .btn,.btn-blue .r-introrow .btn,.btn-blue.cv-sub.brief-page .fband .btn.pink,.btn-blue .tri-sub,.btn-blue .to-top{background:var(--act)!important;color:#fff!important}
+.btn-blue .btn:not(.white):not(.ghost):hover,.btn-blue .tri-sub:hover,.btn-blue .to-top:hover{background:var(--act-dark)!important}
+.btn-blue .to-top{box-shadow:0 6px 18px rgba(31,95,214,.35)}
+.btn-blue .cv-more:hover{background:var(--act)!important;border-color:var(--act)!important;color:#fff!important}
+.btn-blue .pref input:checked + i{background:var(--act)}
+.btn-blue .tone-pink .is-event .btn,.btn-blue .mm-next .btn{background:#fff!important;color:var(--act)!important}
+.btn-blue :is(.art-body a,.author-box a,.sh a,.latest-box .all,.login-row a,.login-foot a,.ecta,.wp-dl,.cta,.res-item .cta,.mem-h a,.issue-nav a span,.ab-media a:not(.btn),.ab-team a:not(.btn)){color:var(--act)!important}
 """
 (OUT / 'styles.css').write_text((OUT / 'styles.css').read_text() + CSS)
+
+# Buttons: Blue: headlines no longer turn red on rollover, they get a thin underline instead.
+# The red headline hovers are kept for Red only (:where adds no specificity, so other rules still win as before).
+st = (OUT / 'styles.css').read_text()
+HL = []
+# .d2d / .d2e are classes on body itself, so join onto them rather than nesting
+_pre = lambda p, x: p + x if re.match(r'\.d2[a-g]\b', x) else p + ' ' + x
+def _hl(m):
+    sel, body = m.group(2).strip(), m.group(3)
+    if re.search(r'cv-sections|stk-tabs|cv-up|nav|tabs', sel) or not re.search(r'\b(h[1-4]|b)\b|span', sel):
+        return m.group(0)
+    parts = [x.strip() for x in sel.split(',')] if ':is(' not in sel else [sel]
+    HL.extend(parts)
+    return m.group(1) + ','.join(_pre(':where(body:not(.btn-blue))', x) for x in parts) + '{' + body + '}'
+st = re.sub(r'(^|})([^{}@]*:hover[^{}]*)\{([^{}]*color:\s*var\(--me\)[^{}]*)\}', _hl, st, flags=re.M)
+assert len(HL) >= 15, HL
+st += '\n/* Buttons: Blue: thin underline on headline rollover instead of red */\n' + ',\n'.join(_pre('.btn-blue', x) for x in HL) + \
+  '{text-decoration:underline;text-decoration-thickness:max(2px,.055em);text-underline-offset:.14em;text-decoration-skip-ink:auto}\n'
+(OUT / 'styles.css').write_text(st)
 print('built', len(list(OUT.glob('*.html'))), 'pages in', OUT.name)

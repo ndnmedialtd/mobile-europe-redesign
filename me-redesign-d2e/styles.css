@@ -109,8 +109,7 @@ a:hover .pic img{transform:scale(1.03)}
 .tag.ins{background:var(--me)}
 .kick{font:700 11px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--me);margin-bottom:6px}
 .date{font:600 11px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
-.card h3{font:700 18px/1.22 var(--body);margin-top:10px;letter-spacing:-.005em}
-.card:hover h3{color:var(--me)}
+.card h3{font:700 18px/1.22 var(--body);margin-top:10px;letter-spacing:-.005em}:where(body:not(.btn-blue)) .card:hover h3{color:var(--me)}
 .card p{color:var(--ink2);font-size:14px;margin-top:6px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 22px}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 24px}
@@ -126,8 +125,7 @@ a:hover .pic img{transform:scale(1.03)}
 /* Lead pinned story (homepage + section top) */
 .lead{display:grid;grid-template-columns:1.55fr 1fr;gap:26px;align-items:start}
 .lead-main .pic{aspect-ratio:16/10}
-.lead-main h1{font:700 36px/1.08 var(--body);letter-spacing:-.02em;margin-top:14px}
-.lead-main:hover h1{color:var(--me)}
+.lead-main h1{font:700 36px/1.08 var(--body);letter-spacing:-.02em;margin-top:14px}:where(body:not(.btn-blue)) .lead-main:hover h1{color:var(--me)}
 .lead-main p{font-size:17px;color:var(--ink2);margin-top:10px;line-height:1.5}
 .lead-side{display:flex;flex-direction:column;gap:18px}
 .lead-side .card{display:grid;grid-template-columns:130px 1fr;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
@@ -191,8 +189,7 @@ a:hover .cover{transform:translateY(-3px)}
 .rows a{display:grid;grid-template-columns:88px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
 .rows a:first-child{border-top:0;padding-top:0}
 .rows .pic{aspect-ratio:1}
-.rows h3{font:700 15px/1.3 var(--body)}
-.rows a:hover h3{color:var(--me)}
+.rows h3{font:700 15px/1.3 var(--body)}:where(body:not(.btn-blue)) .rows a:hover h3{color:var(--me)}
 .wp .pic{aspect-ratio:3/4;background:#111}
 .spon{font:600 10.5px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 
@@ -347,8 +344,7 @@ footer.site .legal{border-top:1px solid #2a2a2a;margin-top:28px;padding-top:16px
 /* Top story (section & News pages): the latest article, never pinned */
 .top-story{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:center;margin-top:22px;padding-bottom:26px;border-bottom:1px solid var(--line)}
 .top-story .pic{aspect-ratio:16/9}
-.top-story h2{font:700 32px/1.1 var(--body);letter-spacing:-.02em;margin-top:4px}
-.top-story:hover h2{color:var(--me)}
+.top-story h2{font:700 32px/1.1 var(--body);letter-spacing:-.02em;margin-top:4px}:where(body:not(.btn-blue)) .top-story:hover h2{color:var(--me)}
 .top-story p{color:var(--ink2);font-size:16.5px;line-height:1.5;margin-top:12px}
 @media (max-width:900px){.top-story{grid-template-columns:1fr;gap:14px}.top-story h2{font-size:26px}}
 
@@ -597,8 +593,7 @@ a:hover .cover-p{transform:translateY(-3px)}
 .wp-pinned .sp-top{justify-content:flex-start;gap:16px}
 .wp-meta{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .wp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 24px}
-.wp-card h3{font:600 15.5px/1.3 var(--body);margin-top:14px}
-.wp-card:hover h3{color:var(--me)}
+.wp-card h3{font:600 15.5px/1.3 var(--body);margin-top:14px}:where(body:not(.btn-blue)) .wp-card:hover h3{color:var(--me)}
 .wp-dl{display:inline-block;font:700 12px var(--body);color:var(--me);margin-top:6px}
 
 /* ================= Videos ================= */
@@ -614,8 +609,7 @@ a:hover .vthumb img{transform:scale(1.03);opacity:.85}
 .vid-hero h2{font:700 26px/1.18 var(--body);letter-spacing:-.01em}
 .vid-hero p{color:#bbb;margin-top:8px}
 .vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 22px}
-.vid-card h3{font:700 15.5px/1.3 var(--body);margin-top:10px}
-.vid-card:hover h3{color:var(--me)}
+.vid-card h3{font:700 15.5px/1.3 var(--body);margin-top:10px}:where(body:not(.btn-blue)) .vid-card:hover h3{color:var(--me)}
 
 /* ================= Events ================= */
 .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -1156,15 +1150,13 @@ body.hdr-tabs .fband .mark{padding-right:28px;margin-right:2px;border-right:1px 
 .rec-pic img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .rec:hover img{transform:scale(1.04)}
 .rec-why{font:700 10px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--me);margin-top:10px}
-.rec b{font:700 15px/1.3 var(--body);margin-top:4px}
-.rec:hover b{color:var(--me)}
+.rec b{font:700 15px/1.3 var(--body);margin-top:4px}:where(body:not(.btn-blue)) .rec:hover b{color:var(--me)}
 .rec small{color:var(--muted);font-size:12px;margin-top:4px}
 /* Events */
 .ev-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
 .ev-badge{background:var(--brief-pink);color:#fff;font:700 11px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:4px;white-space:nowrap}
 .ev-info small{display:block;font:700 10.5px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.ev-info b{display:block;font-size:15.5px;line-height:1.3;margin:2px 0}
-.ev-info a:hover b{color:var(--me)}
+.ev-info b{display:block;font-size:15.5px;line-height:1.3;margin:2px 0}:where(body:not(.btn-blue)) .ev-info a:hover b{color:var(--me)}
 .ev-info span{font-size:13px;color:var(--ink2)}
 .ev-btns{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .ev-btns .btn{padding:7px 11px;font-size:12px}
@@ -1186,8 +1178,7 @@ body.hdr-tabs .fband .mark{padding-right:28px;margin-right:2px;border-right:1px 
 .read-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .read{display:flex;gap:10px;align-items:flex-start}
 .read img{width:72px;height:56px;object-fit:cover;border-radius:4px;flex:none}
-.read b{display:block;font-size:13.5px;line-height:1.3}
-.read:hover b{color:var(--me)}
+.read b{display:block;font-size:13.5px;line-height:1.3}:where(body:not(.btn-blue)) .read:hover b{color:var(--me)}
 .bar{display:block;height:4px;background:#eee;border-radius:2px;margin:6px 0 3px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--me)}
 .read small{font-size:11.5px;color:var(--muted)}
@@ -1306,14 +1297,12 @@ body.hdr-tabs .fband .mark{padding-right:28px;margin-right:2px;border-right:1px 
 .issue-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;margin-top:18px}
 .is-lead{display:block}
 .is-lead .pic{display:block;aspect-ratio:16/9}
-.is-lead b{display:block;font:700 21px/1.2 var(--body);margin-top:10px}
-.is-lead:hover b{color:var(--me)}
+.is-lead b{display:block;font:700 21px/1.2 var(--body);margin-top:10px}:where(body:not(.btn-blue)) .is-lead:hover b{color:var(--me)}
 .is-lead small,.is-more small{color:var(--muted);font-size:12px}
 .is-list{margin:14px 0}
 .is-more{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
 .is-more img{width:84px;height:58px;object-fit:cover}
-.is-more b{display:block;font-size:14.5px;line-height:1.3}
-.is-more:hover b{color:var(--me)}
+.is-more b{display:block;font-size:14.5px;line-height:1.3}:where(body:not(.btn-blue)) .is-more:hover b{color:var(--me)}
 .is-people{background:var(--soft);border-radius:0 16px 0 16px;padding:16px}
 .is-people h3{font:700 11px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
 .faces-col{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 10px}
@@ -1329,8 +1318,7 @@ body.hdr-tabs .fband .mark{padding-right:28px;margin-right:2px;border-right:1px 
 .is-report b{font-size:13.5px;line-height:1.3}
 .latest-box{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .latest-box h3{font:600 18px var(--head);text-transform:uppercase;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:4px}
-.latest-box a{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.3}
-.latest-box a:hover b{color:var(--me)}
+.latest-box a{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.3}:where(body:not(.btn-blue)) .latest-box a:hover b{color:var(--me)}
 .latest-box time{font:700 11px var(--body);color:var(--me);padding-top:2px}
 .latest-box b{font-weight:600}
 .latest-box .all{display:block;border:0;font:700 13px var(--body);color:var(--me);padding-top:10px}
@@ -1367,8 +1355,7 @@ body.hdr-tabs .fband .mark{padding-right:28px;margin-right:2px;border-right:1px 
 .q-date{width:56px;height:56px;border-radius:50%;background:var(--brief-navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font:600 10.5px var(--body);text-transform:uppercase}
 .q-date b{font:700 20px/1 var(--body)}
 .q-item small{display:block;font:700 10.5px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--brief-pink)}
-.q-item > span > b{display:block;font:700 16.5px/1.3 var(--body);margin:2px 0 8px}
-.q-item:hover > span > b{color:var(--me)}
+.q-item > span > b{display:block;font:700 16.5px/1.3 var(--body);margin:2px 0 8px}:where(body:not(.btn-blue)) .q-item:hover > span > b{color:var(--me)}
 
 @media (max-width:1100px){
   .voices-row{grid-template-columns:1fr}
@@ -2130,8 +2117,7 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 .d2d .cv-head .cv-meta i{padding:6px 10px 8px}
 /* rollover: headline (and Trending today links) turn red instead of underlining */
 .d2d .cv-slide:hover .cv-head b{text-decoration:none}
-.d2d .cv-slide .cv-head b span{transition:color .15s}
-.d2d .cv-slide:hover .cv-head b span{color:var(--me)}
+.d2d .cv-slide .cv-head b span{transition:color .15s}:where(body:not(.btn-blue)).d2d .cv-slide:hover .cv-head b span{color:var(--me)}
 .d2d .cv-also a{transition:color .15s}
 .d2d .cv-also a:hover{text-decoration:none;color:#ff5c7c}
 .d2d.cv2 .cv-head{max-width:440px}
@@ -2239,15 +2225,13 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 /* CxO Zone: lead + list with date and short summary */
 .d2d .cx{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
 .d2d .cx .cx-lead{display:block;margin:0}
-.d2d .cx-lead h3{color:var(--ink);margin-top:16px}
-.d2d .cx-lead:hover h3{color:var(--me)}
+.d2d .cx-lead h3{color:var(--ink);margin-top:16px}:where(body:not(.btn-blue)).d2d .cx-lead:hover h3{color:var(--me)}
 .d2d .cx-lead p{color:var(--muted)}
 .d2d .cx-list a{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:start;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid #ececea}
 .d2d .cx-list a:last-child{border-bottom:0;margin-bottom:0}
 .d2d .cx-list .pic{aspect-ratio:3/2;overflow:hidden}
 .d2d .cx-list img{width:100%;height:100%;object-fit:cover}
-.d2d .cx-list h3{font:700 16px/1.25 var(--body)}
-.d2d .cx-list a:hover h3{color:var(--me)}
+.d2d .cx-list h3{font:700 16px/1.25 var(--body)}:where(body:not(.btn-blue)).d2d .cx-list a:hover h3{color:var(--me)}
 .d2d .cx-list .date{margin-top:5px}
 .d2d .cx-list p{font-size:14px;line-height:1.45;color:var(--muted);margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 /* white papers: three covers, title under */
@@ -2255,8 +2239,7 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 .d2d .wp3 .pic{aspect-ratio:3/4;overflow:hidden;background:#f2f2f0}
 .d2d .wp3 img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s}
 .d2d .wp3 a:hover img{transform:scale(1.03)}
-.d2d .wp3 h3{font:500 16.5px/1.3 var(--body);margin-top:14px}
-.d2d .wp3 a:hover h3{color:var(--me)}
+.d2d .wp3 h3{font:500 16.5px/1.3 var(--body);margin-top:14px}:where(body:not(.btn-blue)).d2d .wp3 a:hover h3{color:var(--me)}
 .d2d .wp3 .spon{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px}
 /* events & webinars: three cards (Briefings sit in with the other events) */
 .d2d .evx{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -2313,8 +2296,7 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 .d2d .cm-row .date{font-size:13px}
 .d2d .cm-row .tag{font-size:12px;padding:4px 9px}
 /* accordion: the three stories open under the heading, one channel at a time */
-.d2d .tp-sh{cursor:pointer;margin-bottom:0}
-.d2d .tp-sh:hover h2{color:var(--me)}
+.d2d .tp-sh{cursor:pointer;margin-bottom:0}:where(body:not(.btn-blue)).d2d .tp-sh:hover h2{color:var(--me)}
 .d2d .tp-sh:focus-visible{outline:2px solid var(--me);outline-offset:4px}
 .d2d .tp-chev{flex:none;width:12px;height:12px;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg) translate(-3px,-3px);transition:transform .25s}
 .d2d .tp-sec.open .tp-chev{transform:rotate(225deg) translate(-3px,-3px)}
@@ -2391,12 +2373,10 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 .d2e :is(.sh h2,.nc-band h1,.ptitle,.cv-also h2,.latest-box h3,.onstage-hd h2,.mem-h h2,.mem-locked h1,.eb-side h4,.nl h4){font-weight:900!important}
 .d2e :is(.fr.brief b,.mm-brief b,.fband.brief .name,.bl-strip b,.tri-tab.brief b,.bm-word){font-weight:600!important}
 /* News / Insights / CxO lead: the headline goes red only when the text panel is hovered, not the picture */
-.d2e .top-story:hover h2{color:inherit}
-.d2e .top-story .txt:hover h2{color:var(--me)}
+.d2e .top-story:hover h2{color:inherit}:where(body:not(.btn-blue)).d2e .top-story .txt:hover h2{color:var(--me)}
 /* the same for the other big lead stories (the homepage cover keeps red on any rollover): homepage Insights / CxO Zone / Videos leads, channel page leads */
 .d2e :is(.hx-lead,.lead-big):hover :is(h2,h3){color:inherit}
-.d2e .cx-lead:hover h3{color:inherit}
-.d2e :is(.hx-lead,.lead-big) .txt:hover :is(h2,h3){color:var(--me)}
+.d2e .cx-lead:hover h3{color:inherit}:where(body:not(.btn-blue)).d2e :is(.hx-lead,.lead-big) .txt:hover :is(h2,h3){color:var(--me)}
 
 /* ---- Headers: Black / Grey switch (mockup bar). Grey = light grey section headers instead of black (was D2F) ---- */
 .hdr-grey{--band:#dcdde0}
@@ -2477,3 +2457,35 @@ body[data-page="brief"] .bl-intro{font-size:22px;line-height:1.45;max-width:820p
 /* small tablets: the strapline would wrap to several lines and push the picture down, so it is left out there */
 @media (min-width:761px) and (max-width:959px){.d2e:not(.d2g)[data-page="home"] .cv-id .cv-tag{display:none}}
 @media (max-width:760px){.d2e[data-page="home"] .cv-me{width:84px!important;height:84px!important;margin-bottom:-42px!important;position:relative;top:32px;z-index:9}}
+
+/* ===================== D2E: Buttons: Blue (action buttons blue, red kept for the brand) ===================== */
+.btn-blue{--act:#1f5fd6;--act-dark:#1749a8}
+.btn-blue .btn:not(.white):not(.ghost),.btn-blue .btn.red,.btn-blue .btn.pink,.btn-blue .bl-introrow .btn,.btn-blue .r-introrow .btn,.btn-blue.cv-sub.brief-page .fband .btn.pink,.btn-blue .tri-sub,.btn-blue .to-top{background:var(--act)!important;color:#fff!important}
+.btn-blue .btn:not(.white):not(.ghost):hover,.btn-blue .tri-sub:hover,.btn-blue .to-top:hover{background:var(--act-dark)!important}
+.btn-blue .to-top{box-shadow:0 6px 18px rgba(31,95,214,.35)}
+.btn-blue .cv-more:hover{background:var(--act)!important;border-color:var(--act)!important;color:#fff!important}
+.btn-blue .pref input:checked + i{background:var(--act)}
+.btn-blue .tone-pink .is-event .btn,.btn-blue .mm-next .btn{background:#fff!important;color:var(--act)!important}
+.btn-blue :is(.art-body a,.author-box a,.sh a,.latest-box .all,.login-row a,.login-foot a,.ecta,.wp-dl,.cta,.res-item .cta,.mem-h a,.issue-nav a span,.ab-media a:not(.btn),.ab-team a:not(.btn)){color:var(--act)!important}
+
+/* Buttons: Blue: thin underline on headline rollover instead of red */
+.btn-blue .card:hover h3,
+.btn-blue .lead-main:hover h1,
+.btn-blue .rows a:hover h3,
+.btn-blue .top-story:hover h2,
+.btn-blue .wp-card:hover h3,
+.btn-blue .vid-card:hover h3,
+.btn-blue .rec:hover b,
+.btn-blue .ev-info a:hover b,
+.btn-blue .read:hover b,
+.btn-blue .is-lead:hover b,
+.btn-blue .is-more:hover b,
+.btn-blue .latest-box a:hover b,
+.btn-blue .q-item:hover > span > b,
+.btn-blue.d2d .cv-slide:hover .cv-head b span,
+.btn-blue.d2d .cx-lead:hover h3,
+.btn-blue.d2d .cx-list a:hover h3,
+.btn-blue.d2d .wp3 a:hover h3,
+.btn-blue.d2d .tp-sh:hover h2,
+.btn-blue.d2e .top-story .txt:hover h2,
+.btn-blue.d2e :is(.hx-lead,.lead-big) .txt:hover :is(h2,h3){text-decoration:underline;text-decoration-thickness:max(2px,.055em);text-underline-offset:.14em;text-decoration-skip-ink:auto}
