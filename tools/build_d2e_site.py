@@ -20,7 +20,7 @@ for f in sorted(OUT.glob('*.html')):
     t = f.read_text()
     t = re.sub(r'(<body[^>]*class=")', r'\1d2e ', t, count=1)
     t = t.replace('Mobile Europe D2D mockup', 'Mobile Europe D2E mockup').replace('Mobile Europe – D2D homepage mockup', 'Mobile Europe – D2E homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=d2d\d+', r'\1?v=d2e63', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=d2d\d+', r'\1?v=d2e67', t)
     # header strapline also links to the homepage (looks the same on rollover)
     t = re.sub(r'<p class="cv-tag">([^<]*)</p>', r'<p class="cv-tag"><a href="index.html">\1</a></p>', t)
     t = t.replace('family=Oswald:wght@500;600;700', 'family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;500;600;700;900')
@@ -272,6 +272,15 @@ CSS = """
 .btn-blue .pref input:checked + i{background:var(--act)}
 .btn-blue .tone-pink .is-event .btn,.btn-blue .mm-next .btn{background:#fff!important;color:var(--act)!important}
 .btn-blue :is(.art-body a,.author-box a,.sh a,.latest-box .all,.login-row a,.login-foot a,.ecta,.wp-dl,.cta,.res-item .cta,.mem-h a,.issue-nav a span,.ab-media a:not(.btn),.ab-team a:not(.btn)){color:var(--act)!important}
+
+
+/* menu: the divider before a word stays on rollover */
+.d2e .cv-sections a:not(.on) + a:not(.f-b):not(.on):hover{border-left:1.5px solid #b9b9b4!important}
+/* Briefing / Research pages: the plain word sits on the same line as the word in the tab, and stays put on rollover */
+.d2e:is([data-page="brief"],[data-page="brief-event"],[data-page="res"]) .cv-sections a:not(.on),
+.d2e:is([data-page="brief"],[data-page="brief-event"],[data-page="res"]) .cv-sections a:not(.on):hover{align-self:flex-end;padding-top:0!important;padding-bottom:12px!important}
+@media (max-width:760px){.d2e:is([data-page="brief"],[data-page="brief-event"],[data-page="res"]) .cv-sections a:not(.on),
+.d2e:is([data-page="brief"],[data-page="brief-event"],[data-page="res"]) .cv-sections a:not(.on):hover{padding-bottom:9px!important}}
 """
 (OUT / 'styles.css').write_text((OUT / 'styles.css').read_text() + CSS)
 

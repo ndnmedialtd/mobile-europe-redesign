@@ -80,7 +80,7 @@ for f in sorted(OUT.glob('*.html')):
     t = f.read_text()
     t = re.sub(r'(<body[^>]*class=")', r'\1d2g ', t, count=1)
     t = t.replace('Mobile Europe D2E mockup', 'Mobile Europe D2G mockup').replace('Mobile Europe – D2E homepage mockup', 'Mobile Europe – D2G homepage mockup')
-    t = re.sub(r'(styles\.css|shared\.js)\?v=d2e\d+', r'\1?v=d2g27', t)
+    t = re.sub(r'(styles\.css|shared\.js)\?v=d2e\d+', r'\1?v=d2g31', t)
     # trial: the big ME mark is built in the page: MOBILE / EUROPE stacked in bold on the red square
     t = t.replace('<a class="cv-me" href="index.html" aria-label="Mobile Europe home"><img src="../brand/me-mark.png" alt="ME" width="400" height="400"></a>',
                   '<a class="cv-me me-built" href="index.html" aria-label="Mobile Europe home"><span class="me-stack"><b>MOBILE</b><b>EUROPE</b></span></a>')
